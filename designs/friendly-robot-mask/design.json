@@ -1,0 +1,643 @@
+{
+  "slug": "friendly-robot-mask",
+  "title": "Friendly Robot Mask",
+  "tagline": "A beep-boop buddy with a jaw that really opens — antenna up, robot on!",
+  "category": "crowns-helmets-hats",
+  "difficulty": 2,
+  "ageRange": "5+ with a grown-up",
+  "buildTime": "About 1–1.5 hours (plus drying time)",
+  "finishedSize": {
+    "widthIn": 8,
+    "heightIn": 13,
+    "depthIn": 1.5
+  },
+  "materials": [
+    "Corrugated cardboard — one medium box (single-wall is fine; cereal-box card is too floppy)",
+    "Flat elastic, about 20 inches (3/8 inch wide works great)",
+    "White glue or hot glue",
+    "Strong tape for the antenna tab (masking or packing tape)",
+    "Paint, markers, bottle caps and foil to decorate (optional)"
+  ],
+  "tools": [
+    "Scissors or craft knife (grown-up job!)",
+    "Metal ruler",
+    "Pencil",
+    "Printer + tape for the template"
+  ],
+  "parts": [
+    {
+      "id": "face-plate",
+      "name": "Face Plate",
+      "count": 1,
+      "path": "M 1.2 0 L 6.8 0 C 7.5 0 8 0.5 8 1.2 L 8 6.3 C 8 7 7.5 7.5 6.8 7.5 L 1.2 7.5 C 0.5 7.5 0 7 0 6.3 L 0 1.2 C 0 0.5 0.5 0 1.2 0 Z",
+      "holes": [
+        "M 3.45 0.55 L 4.55 0.55 L 4.55 0.73 L 3.45 0.73 Z",
+        "M 2.2 3.1 C 2.2 2.82 2.51 2.6 2.9 2.6 C 3.29 2.6 3.6 2.82 3.6 3.1 C 3.6 3.38 3.29 3.6 2.9 3.6 C 2.51 3.6 2.2 3.38 2.2 3.1 Z",
+        "M 4.4 3.1 C 4.4 2.82 4.71 2.6 5.1 2.6 C 5.49 2.6 5.8 2.82 5.8 3.1 C 5.8 3.38 5.49 3.6 5.1 3.6 C 4.71 3.6 4.4 3.38 4.4 3.1 Z",
+        "M 0.45 2.7 L 0.63 2.7 L 0.63 3.5 L 0.45 3.5 Z",
+        "M 7.37 2.7 L 7.55 2.7 L 7.55 3.5 L 7.37 3.5 Z"
+      ],
+      "slits": [
+        "M 1.5 0 L 1.5 7.5",
+        "M 6.5 0 L 6.5 7.5"
+      ],
+      "corrugation": "vertical",
+      "labelAt": {
+        "x": 4,
+        "y": 5.2
+      },
+      "arrowAt": {
+        "x": 4,
+        "y": 6.5
+      }
+    },
+    {
+      "id": "jaw-flap",
+      "name": "Jaw Flap",
+      "count": 1,
+      "path": "M 0 0 L 4.8 0 L 4.8 2.7 C 4.8 3.15 4.45 3.5 4 3.5 L 0.8 3.5 C 0.35 3.5 0 3.15 0 2.7 L 0 0 Z",
+      "holes": [
+        "M 1.2 1.6 L 3.6 1.6 L 3.6 1.85 L 1.2 1.85 Z",
+        "M 1.2 2.15 L 3.6 2.15 L 3.6 2.4 L 1.2 2.4 Z",
+        "M 1.2 2.7 L 3.6 2.7 L 3.6 2.95 L 1.2 2.95 Z"
+      ],
+      "slits": [
+        "M 0 1 L 4.8 1"
+      ],
+      "corrugation": "horizontal",
+      "labelAt": {
+        "x": 2.4,
+        "y": 0.55
+      },
+      "arrowAt": {
+        "x": 2.4,
+        "y": 3.2
+      }
+    },
+    {
+      "id": "antenna",
+      "name": "Antenna",
+      "count": 1,
+      "path": "M 1 0 C 1.5 0 1.9 0.4 1.9 0.9 C 1.9 1.35 1.62 1.68 1.3 1.75 L 1.3 3 L 1.7 3.5 L 1.5 3.5 L 1.5 4.75 L 0.5 4.75 L 0.5 3.5 L 0.3 3.5 L 0.7 3 L 0.7 1.75 C 0.38 1.68 0.1 1.35 0.1 0.9 C 0.1 0.4 0.5 0 1 0 Z",
+      "holes": [],
+      "slits": [],
+      "corrugation": "vertical",
+      "labelAt": {
+        "x": 1,
+        "y": 0.92
+      },
+      "arrowAt": {
+        "x": 1,
+        "y": 2.4
+      }
+    }
+  ],
+  "fitChecks": [
+    {
+      "reason": "the antenna slot must drop over the antenna tab with wiggle room",
+      "a": {
+        "part": "face-plate",
+        "measure": "holeWidth",
+        "hole": 0
+      },
+      "op": "clearance",
+      "b": {
+        "part": "antenna",
+        "measure": "length",
+        "d": "M 0.5 4.75 L 1.5 4.75"
+      },
+      "minIn": 0.05,
+      "maxIn": 0.3
+    },
+    {
+      "reason": "the antenna's flared foot must be wider than the slot so it cannot fall through",
+      "a": {
+        "part": "antenna",
+        "measure": "length",
+        "d": "M 0.3 3.5 L 1.7 3.5"
+      },
+      "op": "clearance",
+      "b": {
+        "part": "face-plate",
+        "measure": "holeWidth",
+        "hole": 0
+      },
+      "minIn": 0.1,
+      "maxIn": 0.6
+    },
+    {
+      "reason": "the jaw flap and its glue tab must fit between the face plate's two cheek fold lines, which sit 5 inches apart",
+      "a": {
+        "valueIn": 5
+      },
+      "op": "clearance",
+      "b": {
+        "part": "jaw-flap",
+        "measure": "length",
+        "d": "M 0 0 L 4.8 0"
+      },
+      "minIn": 0.1,
+      "maxIn": 0.5
+    },
+    {
+      "reason": "the face plate must be wide enough to cover a 6-year-old's face, about 7 inches ear to ear plus margin",
+      "a": {
+        "part": "face-plate",
+        "measure": "width"
+      },
+      "op": "atLeast",
+      "b": {
+        "valueIn": 7.5
+      }
+    },
+    {
+      "reason": "eye holes must be wide enough for a clear view out (kid eye spacing is about 2.2 inches, so each hole needs real width)",
+      "a": {
+        "part": "face-plate",
+        "measure": "holeWidth",
+        "hole": 1
+      },
+      "op": "atLeast",
+      "b": {
+        "valueIn": 1.2
+      }
+    },
+    {
+      "reason": "strap slots must be tall enough for 3/8-inch flat elastic to thread through",
+      "a": {
+        "part": "face-plate",
+        "measure": "holeHeight",
+        "hole": 3
+      },
+      "op": "atLeast",
+      "b": {
+        "valueIn": 0.5
+      }
+    }
+  ],
+  "steps": [
+    {
+      "title": "Print, tape and trace",
+      "figures": [
+        {
+          "refPart": "face-plate",
+          "caption": "Face Plate — trace ONCE. The ovals, small rectangles and slot are holes to cut; dashed lines are scores."
+        },
+        {
+          "refPart": "jaw-flap",
+          "caption": "Jaw Flap — trace ONCE. The dashed line is the hinge."
+        },
+        {
+          "refPart": "antenna",
+          "caption": "Antenna — trace ONCE. The narrow tab at the bottom goes through the mask."
+        }
+      ],
+      "instructions": [
+        "Print the template at 100% actual size and tape the pages together using the grid.",
+        "Trace the Face Plate, Jaw Flap and Antenna once each onto cardboard.",
+        "Keep each corrugation arrow lined up with the little waves inside the cardboard — that keeps the mask stiff and the folds crisp."
+      ],
+      "check": "You should have 3 pencil outlines, with the eye holes, slots and dashed lines marked inside them.",
+      "tip": "Mark the holes by poking a pencil through the template at each corner, then connect the dots."
+    },
+    {
+      "title": "Cut out the parts",
+      "figures": [
+        {
+          "parts": [
+            {
+              "refPart": "face-plate"
+            },
+            {
+              "refPart": "jaw-flap",
+              "dx": 8.7,
+              "dy": 0
+            },
+            {
+              "refPart": "antenna",
+              "dx": 14,
+              "dy": 0
+            }
+          ],
+          "labels": [
+            {
+              "at": [
+                4,
+                -0.7
+              ],
+              "text": "Face Plate ×1"
+            },
+            {
+              "at": [
+                11.1,
+                -0.7
+              ],
+              "text": "Jaw Flap ×1"
+            },
+            {
+              "at": [
+                15,
+                -0.7
+              ],
+              "text": "Antenna ×1"
+            }
+          ],
+          "caption": "Your full cut list — 3 pieces. Dashed lines are NOT cuts: score them half-deep only."
+        }
+      ],
+      "instructions": [
+        "Grown-up job: cut all the solid outlines with a sharp knife and metal ruler, in 2–3 light passes.",
+        "Cut out the eye holes, the antenna slot, the two strap slots and the three mouth-grille slots — poke the knife tip through the middle of each and work outward.",
+        "Do NOT cut the dashed lines — score them lightly (half-deep) so they fold cleanly."
+      ],
+      "check": "3 cut pieces; you can see through both eye holes; every dashed line is still uncut on the front."
+    },
+    {
+      "title": "Curve the face plate",
+      "figures": [
+        {
+          "paths": [
+            {
+              "d": "M 0 1.1 L 1.5 0.3 L 6.5 0.3 L 8 1.1",
+              "stroke": "kraftEdge",
+              "width": 3
+            }
+          ],
+          "arrows": [
+            {
+              "from": [
+                -0.8,
+                2.1
+              ],
+              "to": [
+                0.5,
+                0.95
+              ]
+            },
+            {
+              "from": [
+                8.8,
+                2.1
+              ],
+              "to": [
+                7.5,
+                0.95
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "at": [
+                4,
+                -0.5
+              ],
+              "text": "top view",
+              "size": 8.5
+            },
+            {
+              "at": [
+                4,
+                2.3
+              ],
+              "text": "cheeks angle back at the scored lines",
+              "size": 8.5
+            }
+          ],
+          "caption": "Seen from above: crease both scored cheek lines so the sides sweep back and the mask hugs the face."
+        }
+      ],
+      "instructions": [
+        "Lay the mask face-down and crease along each vertical scored line, folding both cheek panels gently backward.",
+        "Hold it up to your robot's face: eyes should line up with the eye holes and the cheeks should curve toward the ears.",
+        "If a fold fights you, have a grown-up deepen the score a little — never cut all the way through."
+      ],
+      "check": "The mask stands up like a shallow U when you set it on the table."
+    },
+    {
+      "title": "Hinge the jaw",
+      "figures": [
+        {
+          "paths": [
+            {
+              "d": "M 1 0 L 1 7.5",
+              "stroke": "kraftEdge",
+              "width": 3.5
+            },
+            {
+              "d": "M 1.28 6.5 L 1.28 7.5",
+              "stroke": "crimson",
+              "width": 2
+            },
+            {
+              "d": "M 1.28 7.5 L 3.1 9.3",
+              "stroke": "kraftEdge",
+              "width": 3
+            }
+          ],
+          "arrows": [
+            {
+              "from": [
+                1.5,
+                10.1
+              ],
+              "to": [
+                3.2,
+                9.6
+              ],
+              "label": "swings open"
+            }
+          ],
+          "labels": [
+            {
+              "at": [
+                0.75,
+                6.9
+              ],
+              "text": "glue tab on the BACK",
+              "size": 8.5,
+              "align": "right",
+              "color": "crimson"
+            },
+            {
+              "at": [
+                0.75,
+                0.6
+              ],
+              "text": "face plate (side view)",
+              "size": 8.5,
+              "align": "right"
+            }
+          ],
+          "caption": "Side view — glue ONLY the short tab above the scored line to the back of the face plate; the jaw below the score swings free like a drawbridge."
+        }
+      ],
+      "instructions": [
+        "Fold the Jaw Flap backward along its scored hinge line so the short 1-inch tab points up.",
+        "Spread glue ONLY on the tab, then press it to the BACK of the face plate, centered, with the scored hinge sitting right at the face plate's bottom edge.",
+        "Hold for a minute, then flick the jaw gently — the grille mouth should swing open and shut."
+      ],
+      "check": "The jaw hangs closed on its own and opens when you flick it — and no glue touched the part below the score.",
+      "tip": "Clothespins along the bottom edge make perfect tiny clamps while the glue dries."
+    },
+    {
+      "title": "Raise the antenna",
+      "figures": [
+        {
+          "refPart": "antenna",
+          "caption": "Antenna — the wide foot stops at the slot; only the narrow tab goes through."
+        },
+        {
+          "paths": [
+            {
+              "d": "M 0 1.2 C 0 0.5 0.5 0 1.2 0 L 6.8 0 C 7.5 0 8 0.5 8 1.2",
+              "stroke": "kraftEdge",
+              "width": 2.5
+            },
+            {
+              "d": "M 3.45 0.55 L 4.55 0.55 L 4.55 0.73 L 3.45 0.73 Z",
+              "stroke": "black",
+              "width": 1.5
+            },
+            {
+              "d": "M 4 -4.9 C 4.4 -4.9 4.7 -4.6 4.7 -4.2 C 4.7 -3.8 4.4 -3.5 4 -3.5 C 3.6 -3.5 3.3 -3.8 3.3 -4.2 C 3.3 -4.6 3.6 -4.9 4 -4.9 Z",
+              "stroke": "kraftEdge",
+              "width": 2
+            },
+            {
+              "d": "M 3.78 -3.55 L 3.78 -1.6 L 3.5 -1.25 L 3.5 -0.85 M 4.22 -3.55 L 4.22 -1.6 L 4.5 -1.25 L 4.5 -0.85",
+              "stroke": "kraftEdge",
+              "width": 2
+            }
+          ],
+          "arrows": [
+            {
+              "from": [
+                4,
+                -0.7
+              ],
+              "to": [
+                4,
+                0.5
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "at": [
+                4.75,
+                0.68
+              ],
+              "text": "slot",
+              "size": 8.5,
+              "align": "left"
+            },
+            {
+              "at": [
+                4.9,
+                -2.4
+              ],
+              "text": "tab goes through, foot stays on top",
+              "size": 8.5,
+              "align": "left"
+            }
+          ],
+          "caption": "Drop the tab through the slot from the front; the wide foot stops on the mask, and the tail gets taped flat on the back."
+        }
+      ],
+      "instructions": [
+        "Slide the antenna's narrow tab through the slot near the top of the mask, from the front, until the wide foot sits flat.",
+        "On the back, fold the poking-through tab flat against the cardboard and tape it down well.",
+        "Give the bulb a gentle wiggle — the foot should keep it standing tall."
+      ],
+      "check": "The antenna stands straight up and springs back when you boop the bulb."
+    },
+    {
+      "title": "Strap up and decorate",
+      "figures": [
+        {
+          "parts": [
+            {
+              "refPart": "face-plate",
+              "style": "filled"
+            }
+          ],
+          "paths": [
+            {
+              "d": "M 0.54 3.1 L -1.6 2.75 M 7.46 3.1 L 9.6 2.75",
+              "stroke": "black",
+              "width": 2
+            }
+          ],
+          "labels": [
+            {
+              "at": [
+                -1.7,
+                2.3
+              ],
+              "text": "elastic",
+              "size": 8.5,
+              "align": "right"
+            },
+            {
+              "at": [
+                4,
+                8.3
+              ],
+              "text": "thread through the side slots and knot",
+              "size": 8.5
+            }
+          ],
+          "caption": "The elastic runs from slot to slot around the back of the head — knot each end onto itself so it can't slip back through."
+        }
+      ],
+      "instructions": [
+        "Cut about 20 inches of flat elastic, thread one end through each side slot, and tie each end back onto itself with a chunky double knot.",
+        "Try it on your robot and slide the knots to snug it up — comfy, not tight — BEFORE trimming the extra elastic.",
+        "Decorate: paint it silver or gray, add bottle-cap dials and foil rivets, and color the grille black.",
+        "Keep decorations clear of the eye holes so your robot can see!"
+      ],
+      "check": "The mask stays on when your robot shakes their head, and both eyes see daylight.",
+      "tip": "No elastic? Tie on two ribbon ties instead and bow them at the back."
+    }
+  ],
+  "hero": {
+    "paths": [
+      {
+        "d": "M 3.7 1.5 L 4.3 1.5 L 4.3 3.4 L 3.7 3.4 Z",
+        "fill": "kraft",
+        "stroke": "kraftEdge",
+        "width": 2
+      },
+      {
+        "d": "M 4 0.1 C 4.5 0.1 4.9 0.5 4.9 1 C 4.9 1.5 4.5 1.9 4 1.9 C 3.5 1.9 3.1 1.5 3.1 1 C 3.1 0.5 3.5 0.1 4 0.1 Z",
+        "fill": "kraftDark",
+        "stroke": "kraftEdge",
+        "width": 2
+      },
+      {
+        "d": "M 1.2 3 L 6.8 3 C 7.5 3 8 3.5 8 4.2 L 8 9.3 C 8 10 7.5 10.5 6.8 10.5 L 1.2 10.5 C 0.5 10.5 0 10 0 9.3 L 0 4.2 C 0 3.5 0.5 3 1.2 3 Z",
+        "fill": "kraft",
+        "stroke": "kraftEdge",
+        "width": 2.5
+      },
+      {
+        "d": "M 0.45 3.5 L 1.5 3.5 L 1.5 10 L 0.45 10 Z",
+        "fill": "kraftDark",
+        "stroke": "none"
+      },
+      {
+        "d": "M 6.5 3.5 L 7.55 3.5 L 7.55 10 L 6.5 10 Z",
+        "fill": "kraftDark",
+        "stroke": "none"
+      },
+      {
+        "d": "M 2.2 6.1 C 2.2 5.82 2.51 5.6 2.9 5.6 C 3.29 5.6 3.6 5.82 3.6 6.1 C 3.6 6.38 3.29 6.6 2.9 6.6 C 2.51 6.6 2.2 6.38 2.2 6.1 Z",
+        "fill": "white",
+        "stroke": "black",
+        "width": 2
+      },
+      {
+        "d": "M 4.4 6.1 C 4.4 5.82 4.71 5.6 5.1 5.6 C 5.49 5.6 5.8 5.82 5.8 6.1 C 5.8 6.38 5.49 6.6 5.1 6.6 C 4.71 6.6 4.4 6.38 4.4 6.1 Z",
+        "fill": "white",
+        "stroke": "black",
+        "width": 2
+      },
+      {
+        "d": "M 1.6 10.5 L 6.4 10.5 L 6.4 12.2 C 6.4 12.65 6.05 13 5.6 13 L 2.4 13 C 1.95 13 1.6 12.65 1.6 12.2 L 1.6 10.5 Z",
+        "fill": "kraftDark",
+        "stroke": "kraftEdge",
+        "width": 2
+      },
+      {
+        "d": "M 2.8 11.1 L 5.2 11.1 L 5.2 11.35 L 2.8 11.35 Z M 2.8 11.6 L 5.2 11.6 L 5.2 11.85 L 2.8 11.85 Z M 2.8 12.1 L 5.2 12.1 L 5.2 12.35 L 2.8 12.35 Z",
+        "fill": "white",
+        "stroke": "black",
+        "width": 1
+      },
+      {
+        "d": "M 0.97 4.3 C 1.07 4.3 1.15 4.38 1.15 4.48 C 1.15 4.58 1.07 4.66 0.97 4.66 C 0.87 4.66 0.79 4.58 0.79 4.48 C 0.79 4.38 0.87 4.3 0.97 4.3 Z M 7.03 4.3 C 7.13 4.3 7.21 4.38 7.21 4.48 C 7.21 4.58 7.13 4.66 7.03 4.66 C 6.93 4.66 6.85 4.58 6.85 4.48 C 6.85 4.38 6.93 4.3 7.03 4.3 Z",
+        "fill": "none",
+        "stroke": "black",
+        "width": 1.5
+      }
+    ]
+  },
+  "assembly": {
+    "thicknessIn": 0.15,
+    "instances": [
+      {
+        "id": "face",
+        "part": "face-plate",
+        "copy": 0,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          10,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": false,
+        "folds": [
+          {
+            "slit": "all",
+            "angleDeg": -15
+          }
+        ]
+      },
+      {
+        "id": "jaw",
+        "part": "jaw-flap",
+        "copy": 0,
+        "order": 1,
+        "step": 3,
+        "pos": [
+          1.6,
+          3.48,
+          -0.31
+        ],
+        "rot": [
+          -12,
+          0,
+          0
+        ],
+        "mirror": false,
+        "folds": [
+          {
+            "slit": "all",
+            "angleDeg": 12
+          }
+        ]
+      },
+      {
+        "id": "antenna",
+        "part": "antenna",
+        "copy": 0,
+        "order": 2,
+        "step": 4,
+        "pos": [
+          3,
+          12.95,
+          0.16
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": false
+      }
+    ]
+  },
+  "createdAt": "2026-08-11T06:26:37.475Z",
+  "brief": "A friendly robot mask for a 6-year-old (fits over the face, eye holes lined up for a kid, elastic strap slots), with an antenna on top and a hinged jaw flap that can open, about 8 x 10 inches, difficulty 2",
+  "templateGrid": {
+    "cols": 2,
+    "rows": 2
+  },
+  "templatePages": 4
+}

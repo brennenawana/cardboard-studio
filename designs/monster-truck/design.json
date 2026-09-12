@@ -1,0 +1,1740 @@
+{
+  "slug": "monster-truck",
+  "title": "Cardboard Monster Truck",
+  "tagline": "A stacked-cardboard pickup on real spinning dowel axles — it actually rolls!",
+  "category": "vehicles",
+  "difficulty": 3,
+  "ageRange": "6+ with a grown-up",
+  "buildTime": "2-3 hours (plus glue drying overnight)",
+  "finishedSize": {
+    "widthIn": 12,
+    "heightIn": 9.15,
+    "depthIn": 7.1
+  },
+  "materials": [
+    "Corrugated cardboard — a LOT (about 6 large boxes; the core alone is 24 layers)",
+    "Wood glue or white glue (a big bottle)",
+    "Two 1/4-inch wooden dowels, 7.5 inches long",
+    "Paint or markers for flames and mud splatter"
+  ],
+  "tools": [
+    "Craft knife and spare blades (grown-up job!)",
+    "Metal ruler",
+    "Pencil",
+    "Awl or 5/16-inch drill bit for the axle holes (grown-up job!)",
+    "Saw or strong snips to cut the dowels (grown-up job!)",
+    "Printer + tape for the template"
+  ],
+  "hardware": [
+    {
+      "id": "axle-dowel",
+      "kind": "dowel",
+      "diameterIn": 0.25,
+      "lengthIn": 7.5,
+      "count": 2,
+      "label": "1/4-inch wooden dowel, 7.5 inches long",
+      "source": "craft store, hardware store, or the garage"
+    }
+  ],
+  "parts": [
+    {
+      "id": "body-core",
+      "name": "Truck Body Core",
+      "count": 24,
+      "path": "M 0 8.25 L 0 6 L 0.5 5.4 L 0.5 3.6 L 1.2 3 L 4.6 3 L 5.4 0.4 L 5.8 0 L 8.4 0 L 8.6 3 L 11.8 3 L 12 3.6 L 12 8.25 Z",
+      "holes": [
+        "M 2.745 6.625 C 2.745 6.539 2.814 6.47 2.9 6.47 C 2.986 6.47 3.055 6.539 3.055 6.625 C 3.055 6.711 2.986 6.78 2.9 6.78 C 2.814 6.78 2.745 6.711 2.745 6.625 Z",
+        "M 8.945 6.625 C 8.945 6.539 9.014 6.47 9.1 6.47 C 9.186 6.47 9.255 6.539 9.255 6.625 C 9.255 6.711 9.186 6.78 9.1 6.78 C 9.014 6.78 8.945 6.711 8.945 6.625 Z",
+        "M 6 0.6 L 8.1 0.6 L 8.1 2.6 L 5.6 2.6 Z"
+      ],
+      "slits": [],
+      "corrugation": "horizontal",
+      "laminate": true,
+      "labelAt": {
+        "x": 9.9,
+        "y": 5
+      },
+      "arrowAt": {
+        "x": 6.9,
+        "y": 8
+      },
+      "backing": null
+    },
+    {
+      "id": "side-skin",
+      "name": "Truck Side Silhouette",
+      "count": 2,
+      "path": "M 0 8.25 L 0 6 L 0.5 5.4 L 0.5 3.6 L 1.2 3 L 4.6 3 L 5.4 0.4 L 5.8 0 L 8.4 0 L 8.6 3 L 11.8 3 L 12 3.6 L 12 8.25 L 11.8 8.25 L 11.8 6.625 C 11.8 5.134 10.591 3.925 9.1 3.925 C 7.609 3.925 6.4 5.134 6.4 6.625 L 6.4 8.25 L 5.6 8.25 L 5.6 6.625 C 5.6 5.134 4.391 3.925 2.9 3.925 C 1.409 3.925 0.2 5.134 0.2 6.625 L 0.2 8.25 Z",
+      "holes": [
+        "M 6 0.6 L 8.1 0.6 L 8.1 2.6 L 5.6 2.6 Z"
+      ],
+      "slits": [],
+      "corrugation": "horizontal",
+      "laminate": true,
+      "labelAt": {
+        "x": 7,
+        "y": 3.6
+      },
+      "arrowAt": {
+        "x": 6,
+        "y": 5
+      }
+    },
+    {
+      "id": "wheel-disc",
+      "name": "Wheel Disc",
+      "count": 36,
+      "path": "M 0 2.375 C 0 1.063 1.063 0 2.375 0 C 3.687 0 4.75 1.063 4.75 2.375 C 4.75 3.687 3.687 4.75 2.375 4.75 C 1.063 4.75 0 3.687 0 2.375 Z",
+      "holes": [
+        "M 2.245 2.375 C 2.245 2.303 2.303 2.245 2.375 2.245 C 2.447 2.245 2.505 2.303 2.505 2.375 C 2.505 2.447 2.447 2.505 2.375 2.505 C 2.303 2.505 2.245 2.447 2.245 2.375 Z"
+      ],
+      "slits": [
+        "M 4.225 2.375 L 4.606 2.932",
+        "M 3.683 3.683 L 3.56 4.346",
+        "M 2.375 4.225 L 1.819 4.607",
+        "M 1.067 3.683 L 0.404 3.56",
+        "M 0.525 2.375 L 0.143 1.819",
+        "M 1.067 1.067 L 1.19 0.404",
+        "M 2.375 0.525 L 2.931 0.143",
+        "M 3.683 1.067 L 4.346 1.19"
+      ],
+      "corrugation": "vertical",
+      "laminate": true,
+      "labelAt": {
+        "x": 2.375,
+        "y": 1.5
+      },
+      "arrowAt": {
+        "x": 2.375,
+        "y": 3.3
+      }
+    },
+    {
+      "id": "wheel-face",
+      "name": "Wheel Face Ring",
+      "count": 4,
+      "path": "M 0 2.375 C 0 1.063 1.063 0 2.375 0 C 3.687 0 4.75 1.063 4.75 2.375 C 4.75 3.687 3.687 4.75 2.375 4.75 C 1.063 4.75 0 3.687 0 2.375 Z",
+      "holes": [
+        "M 1.175 2.375 C 1.175 1.712 1.712 1.175 2.375 1.175 C 3.038 1.175 3.575 1.712 3.575 2.375 C 3.575 3.038 3.038 3.575 2.375 3.575 C 1.712 3.575 1.175 3.038 1.175 2.375 Z"
+      ],
+      "slits": [
+        "M 3.695 2.375 L 4.458 3.302",
+        "M 3.308 3.308 L 3.192 4.504",
+        "M 2.375 3.695 L 1.448 4.458",
+        "M 1.442 3.308 L 0.246 3.192",
+        "M 1.055 2.375 L 0.292 1.448",
+        "M 1.442 1.442 L 1.558 0.246",
+        "M 2.375 1.055 L 3.302 0.292",
+        "M 3.308 1.442 L 4.504 1.558"
+      ],
+      "corrugation": "vertical",
+      "labelAt": {
+        "x": 2.375,
+        "y": 0.6
+      },
+      "arrowAt": {
+        "x": 2.375,
+        "y": 4.2
+      }
+    },
+    {
+      "id": "bumper-plate",
+      "name": "Bumper Plate",
+      "count": 2,
+      "path": "M 0 0 L 3.9 0 L 3.9 2 L 0 2 Z",
+      "holes": [],
+      "slits": [
+        "M 0.4 0.4 L 3.5 0.4",
+        "M 0.4 0.8 L 3.5 0.8",
+        "M 0.4 1.2 L 3.5 1.2",
+        "M 0.4 1.6 L 3.5 1.6"
+      ],
+      "corrugation": "horizontal",
+      "labelAt": {
+        "x": 1.95,
+        "y": 1.85
+      },
+      "arrowAt": {
+        "x": 1.95,
+        "y": 0.25
+      }
+    },
+    {
+      "id": "light-bar",
+      "name": "Roof Light Bar",
+      "count": 1,
+      "path": "M 0 0 L 0.9 0 L 0.9 3.9 L 0 3.9 Z",
+      "holes": [
+        "M 0.225 0.55 C 0.225 0.426 0.326 0.325 0.45 0.325 C 0.574 0.325 0.675 0.426 0.675 0.55 C 0.675 0.674 0.574 0.775 0.45 0.775 C 0.326 0.775 0.225 0.674 0.225 0.55 Z",
+        "M 0.225 1.5 C 0.225 1.376 0.326 1.275 0.45 1.275 C 0.574 1.275 0.675 1.376 0.675 1.5 C 0.675 1.624 0.574 1.725 0.45 1.725 C 0.326 1.725 0.225 1.624 0.225 1.5 Z",
+        "M 0.225 2.4 C 0.225 2.276 0.326 2.175 0.45 2.175 C 0.574 2.175 0.675 2.276 0.675 2.4 C 0.675 2.524 0.574 2.625 0.45 2.625 C 0.326 2.625 0.225 2.524 0.225 2.4 Z",
+        "M 0.225 3.35 C 0.225 3.226 0.326 3.125 0.45 3.125 C 0.574 3.125 0.675 3.226 0.675 3.35 C 0.675 3.474 0.574 3.575 0.45 3.575 C 0.326 3.575 0.225 3.474 0.225 3.35 Z"
+      ],
+      "slits": [],
+      "corrugation": "vertical",
+      "labelAt": {
+        "x": 0.45,
+        "y": 3.8
+      },
+      "arrowAt": {
+        "x": 0.8,
+        "y": 1.95
+      }
+    }
+  ],
+  "fitChecks": [
+    {
+      "reason": "the front axle hole in the body core must be loose enough for the dowel to spin freely, but not sloppy",
+      "a": {
+        "part": "body-core",
+        "measure": "holeWidth",
+        "hole": 0
+      },
+      "op": "clearance",
+      "b": {
+        "valueIn": 0.25
+      },
+      "minIn": 0.04,
+      "maxIn": 0.12
+    },
+    {
+      "reason": "the rear axle hole in the body core must also spin free on the dowel",
+      "a": {
+        "part": "body-core",
+        "measure": "holeWidth",
+        "hole": 1
+      },
+      "op": "clearance",
+      "b": {
+        "valueIn": 0.25
+      },
+      "minIn": 0.04,
+      "maxIn": 0.12
+    },
+    {
+      "reason": "the wheel hub hole must press-fit snugly onto the dowel so the wheel turns with the axle",
+      "a": {
+        "part": "wheel-disc",
+        "measure": "holeWidth",
+        "hole": 0
+      },
+      "op": "clearance",
+      "b": {
+        "valueIn": 0.25
+      },
+      "minIn": 0,
+      "maxIn": 0.03
+    },
+    {
+      "reason": "the front wheel arch must sweep clear of the 4.75-inch wheel plus a quarter inch of mud room",
+      "a": {
+        "part": "side-skin",
+        "measure": "length",
+        "d": "M 5.6 6.625 C 5.6 5.134 4.391 3.925 2.9 3.925"
+      },
+      "op": "atLeast",
+      "b": {
+        "valueIn": 2.625
+      }
+    },
+    {
+      "reason": "the wheel face opening must be wide enough to read as a recessed hub",
+      "a": {
+        "part": "wheel-face",
+        "measure": "holeWidth",
+        "hole": 0
+      },
+      "op": "atLeast",
+      "b": {
+        "valueIn": 2
+      }
+    },
+    {
+      "reason": "the side skin silhouette must match the body core exactly so the truck has clean edges",
+      "a": {
+        "part": "body-core",
+        "measure": "width"
+      },
+      "op": "match",
+      "b": {
+        "part": "side-skin",
+        "measure": "width"
+      },
+      "toleranceIn": 0.125
+    },
+    {
+      "reason": "the bumper plate must span the full 3.9-inch thickness of the stacked body",
+      "a": {
+        "part": "bumper-plate",
+        "measure": "width"
+      },
+      "op": "match",
+      "b": {
+        "valueIn": 3.9
+      },
+      "toleranceIn": 0.125
+    },
+    {
+      "reason": "the light bar must reach right across the roof, side to side",
+      "a": {
+        "part": "light-bar",
+        "measure": "height"
+      },
+      "op": "match",
+      "b": {
+        "valueIn": 3.9
+      },
+      "toleranceIn": 0.125
+    }
+  ],
+  "mechanisms": [
+    {
+      "type": "revolute",
+      "id": "front-axle",
+      "axle": "axle-dowel",
+      "bearings": [
+        {
+          "part": "body-core",
+          "hole": 0
+        }
+      ],
+      "hubs": [
+        {
+          "part": "wheel-disc",
+          "hole": 0
+        }
+      ],
+      "spins": [
+        "wheel-fl-d0",
+        "wheel-fl-d1",
+        "wheel-fl-d2",
+        "wheel-fl-d3",
+        "wheel-fl-d4",
+        "wheel-fl-d5",
+        "wheel-fl-d6",
+        "wheel-fl-d7",
+        "wheel-fl-d8",
+        "wheel-fl-face",
+        "wheel-fr-d0",
+        "wheel-fr-d1",
+        "wheel-fr-d2",
+        "wheel-fr-d3",
+        "wheel-fr-d4",
+        "wheel-fr-d5",
+        "wheel-fr-d6",
+        "wheel-fr-d7",
+        "wheel-fr-d8",
+        "wheel-fr-face"
+      ]
+    },
+    {
+      "type": "revolute",
+      "id": "rear-axle",
+      "axle": "axle-dowel",
+      "bearings": [
+        {
+          "part": "body-core",
+          "hole": 1
+        }
+      ],
+      "hubs": [
+        {
+          "part": "wheel-disc",
+          "hole": 0
+        }
+      ],
+      "spins": [
+        "wheel-rl-d0",
+        "wheel-rl-d1",
+        "wheel-rl-d2",
+        "wheel-rl-d3",
+        "wheel-rl-d4",
+        "wheel-rl-d5",
+        "wheel-rl-d6",
+        "wheel-rl-d7",
+        "wheel-rl-d8",
+        "wheel-rl-face",
+        "wheel-rr-d0",
+        "wheel-rr-d1",
+        "wheel-rr-d2",
+        "wheel-rr-d3",
+        "wheel-rr-d4",
+        "wheel-rr-d5",
+        "wheel-rr-d6",
+        "wheel-rr-d7",
+        "wheel-rr-d8",
+        "wheel-rr-face"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "title": "Print, tape and trace",
+      "figures": [
+        {
+          "refPart": "body-core",
+          "caption": "Truck Body Core — trace this 24 times. Yes, 24!"
+        }
+      ],
+      "instructions": [
+        "Print at 100% actual size and tape the pages together on the grid lines.",
+        "Trace 24 Body Cores, 2 Truck Sides, 36 Wheel Discs, 4 Wheel Faces, 2 Bumper Plates and 1 Light Bar.",
+        "Line the corrugation arrow up with the flutes inside the cardboard every time."
+      ],
+      "tip": "Cut ONE Body Core first, then use it as a stencil for the other 23 — much faster than tracing."
+    },
+    {
+      "title": "Cut, score and punch the holes",
+      "figures": [
+        {
+          "refPart": "side-skin",
+          "caption": "Truck Side — the big wheel arches are cut all the way out."
+        }
+      ],
+      "instructions": [
+        "Grown-up job: cut every solid line with a sharp knife and a metal ruler, in 2-3 light passes.",
+        "Score the dashed tread lines and grille bars HALF-deep only — never cut through.",
+        "Grown-up job: punch the two 5/16-inch axle holes in all 24 Body Cores and the small centre hole in all 36 Wheel Discs."
+      ]
+    },
+    {
+      "title": "Stack the 24-layer core",
+      "figures": [
+        {
+          "refPart": "body-core",
+          "caption": "Body Core ×24 — glued into one 3.6-inch-thick slab."
+        }
+      ],
+      "instructions": [
+        "Slide both dowels through two Body Cores to line them up perfectly, then glue those two face to face.",
+        "Keep adding glued layers down the dowels until all 24 are stacked, spreading glue right to the edges.",
+        "Slide the dowels back out and press the slab flat under books overnight."
+      ],
+      "tip": "Wood glue is far stronger than hot glue here — the overnight wait is worth it."
+    },
+    {
+      "title": "Skin the sides, add bumpers and lights",
+      "figures": [
+        {
+          "refPart": "side-skin",
+          "caption": "Truck Side ×2 — one per face, arches centred on the axle tunnels."
+        }
+      ],
+      "instructions": [
+        "Glue a Truck Side onto each face of the slab, matching the outline and centring each arch on an axle tunnel.",
+        "Glue a Bumper Plate across the nose and another across the tail, grille bars facing out.",
+        "Glue the Light Bar across the roof behind the windscreen."
+      ]
+    },
+    {
+      "title": "Build four fat wheels",
+      "figures": [
+        {
+          "refPart": "wheel-disc",
+          "caption": "Wheel Disc ×36 — nine discs make one 1.35-inch-thick wheel."
+        }
+      ],
+      "instructions": [
+        "Thread 9 Wheel Discs onto a spare dowel so the hub holes line up, gluing each disc to the next.",
+        "Glue a Wheel Face ring on the outside of each stack for the recessed-hub look.",
+        "Make four wheels, slide them off the dowel and let them dry."
+      ],
+      "tip": "Sand around each rim so the wheels roll round instead of lumpy."
+    },
+    {
+      "title": "Fit the axles and go",
+      "figures": [
+        {
+          "refPart": "wheel-face",
+          "caption": "Wheel Face ×4 — the outer ring of each finished wheel."
+        }
+      ],
+      "instructions": [
+        "Push one dowel through the front tunnel and one through the rear — they must spin freely inside the body.",
+        "Grown-up job: glue the DOWEL ENDS only, then press a wheel onto each end. Never glue inside the tunnels.",
+        "Leave a dime's thickness of daylight between each wheel and the truck side, dry it, then paint flames and race it."
+      ]
+    }
+  ],
+  "hero": {
+    "paths": [
+      {
+        "d": "M 0 8.25 L 0 6 L 0.5 5.4 L 0.5 3.6 L 1.2 3 L 4.6 3 L 5.4 0.4 L 5.8 0 L 8.4 0 L 8.6 3 L 11.8 3 L 12 3.6 L 12 8.25 Z",
+        "fill": "kraft",
+        "stroke": "kraftEdge",
+        "width": 2.5
+      },
+      {
+        "d": "M 6 0.6 L 8.1 0.6 L 8.1 2.6 L 5.6 2.6 Z",
+        "fill": "kraftDark",
+        "stroke": "kraftEdge",
+        "width": 2
+      },
+      {
+        "d": "M 0.525 6.625 C 0.525 5.313 1.588 4.25 2.9 4.25 C 4.212 4.25 5.275 5.313 5.275 6.625 C 5.275 7.937 4.212 9 2.9 9 C 1.588 9 0.525 7.937 0.525 6.625 Z",
+        "fill": "kraftDark",
+        "stroke": "kraftEdge",
+        "width": 2.5
+      },
+      {
+        "d": "M 6.725 6.625 C 6.725 5.313 7.788 4.25 9.1 4.25 C 10.412 4.25 11.475 5.313 11.475 6.625 C 11.475 7.937 10.412 9 9.1 9 C 7.788 9 6.725 7.937 6.725 6.625 Z",
+        "fill": "kraftDark",
+        "stroke": "kraftEdge",
+        "width": 2.5
+      },
+      {
+        "d": "M 1.7 6.625 C 1.7 5.962 2.237 5.425 2.9 5.425 C 3.563 5.425 4.1 5.962 4.1 6.625 C 4.1 7.288 3.563 7.825 2.9 7.825 C 2.237 7.825 1.7 7.288 1.7 6.625 Z",
+        "fill": "kraft",
+        "stroke": "kraftEdge",
+        "width": 2
+      },
+      {
+        "d": "M 7.9 6.625 C 7.9 5.962 8.437 5.425 9.1 5.425 C 9.763 5.425 10.3 5.962 10.3 6.625 C 10.3 7.288 9.763 7.825 9.1 7.825 C 8.437 7.825 7.9 7.288 7.9 6.625 Z",
+        "fill": "kraft",
+        "stroke": "kraftEdge",
+        "width": 2
+      }
+    ]
+  },
+  "assembly": {
+    "thicknessIn": 0.15,
+    "instances": [
+      {
+        "id": "core-00",
+        "part": "body-core",
+        "copy": 0,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          -1.8
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-01",
+        "part": "body-core",
+        "copy": 1,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          -1.65
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-02",
+        "part": "body-core",
+        "copy": 2,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          -1.5
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-03",
+        "part": "body-core",
+        "copy": 3,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          -1.35
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-04",
+        "part": "body-core",
+        "copy": 4,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          -1.2
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-05",
+        "part": "body-core",
+        "copy": 5,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          -1.05
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-06",
+        "part": "body-core",
+        "copy": 6,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          -0.9
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-07",
+        "part": "body-core",
+        "copy": 7,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          -0.75
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-08",
+        "part": "body-core",
+        "copy": 8,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          -0.6
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-09",
+        "part": "body-core",
+        "copy": 9,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          -0.45
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-10",
+        "part": "body-core",
+        "copy": 10,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          -0.3
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-11",
+        "part": "body-core",
+        "copy": 11,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          -0.15
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-12",
+        "part": "body-core",
+        "copy": 12,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-13",
+        "part": "body-core",
+        "copy": 13,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          0.15
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-14",
+        "part": "body-core",
+        "copy": 14,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          0.3
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-15",
+        "part": "body-core",
+        "copy": 15,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          0.45
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-16",
+        "part": "body-core",
+        "copy": 16,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          0.6
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-17",
+        "part": "body-core",
+        "copy": 17,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          0.75
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-18",
+        "part": "body-core",
+        "copy": 18,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          0.9
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-19",
+        "part": "body-core",
+        "copy": 19,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          1.05
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-20",
+        "part": "body-core",
+        "copy": 20,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          1.2
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-21",
+        "part": "body-core",
+        "copy": 21,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          1.35
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-22",
+        "part": "body-core",
+        "copy": 22,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          1.5
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-23",
+        "part": "body-core",
+        "copy": 23,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          9,
+          1.65
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "skin-left",
+        "part": "side-skin",
+        "copy": 0,
+        "order": 1,
+        "step": 3,
+        "pos": [
+          0,
+          9,
+          -1.95
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "skin-right",
+        "part": "side-skin",
+        "copy": 1,
+        "order": 1,
+        "step": 3,
+        "pos": [
+          0,
+          9,
+          1.8
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": false
+      },
+      {
+        "id": "bumper-front",
+        "part": "bumper-plate",
+        "copy": 0,
+        "order": 2,
+        "step": 3,
+        "pos": [
+          0,
+          2.9,
+          -1.95
+        ],
+        "rot": [
+          0,
+          -90,
+          0
+        ]
+      },
+      {
+        "id": "bumper-rear",
+        "part": "bumper-plate",
+        "copy": 1,
+        "order": 2,
+        "step": 3,
+        "pos": [
+          12,
+          2.9,
+          1.95
+        ],
+        "rot": [
+          0,
+          90,
+          0
+        ]
+      },
+      {
+        "id": "lightbar",
+        "part": "light-bar",
+        "copy": 0,
+        "order": 2,
+        "step": 3,
+        "pos": [
+          6.2,
+          9,
+          -1.95
+        ],
+        "rot": [
+          -90,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "axle-front-3d",
+        "hardware": "axle-dowel",
+        "copy": 0,
+        "order": 3,
+        "step": 5,
+        "pos": [
+          2.9,
+          2.375,
+          0
+        ],
+        "rot": [
+          0,
+          90,
+          0
+        ]
+      },
+      {
+        "id": "axle-rear-3d",
+        "hardware": "axle-dowel",
+        "copy": 1,
+        "order": 3,
+        "step": 5,
+        "pos": [
+          9.1,
+          2.375,
+          0
+        ],
+        "rot": [
+          0,
+          90,
+          0
+        ]
+      },
+      {
+        "id": "wheel-fl-d0",
+        "part": "wheel-disc",
+        "copy": 0,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          0.525,
+          4.75,
+          -2.2
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-fl-d1",
+        "part": "wheel-disc",
+        "copy": 1,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          0.525,
+          4.75,
+          -2.35
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-fl-d2",
+        "part": "wheel-disc",
+        "copy": 2,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          0.525,
+          4.75,
+          -2.5
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-fl-d3",
+        "part": "wheel-disc",
+        "copy": 3,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          0.525,
+          4.75,
+          -2.65
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-fl-d4",
+        "part": "wheel-disc",
+        "copy": 4,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          0.525,
+          4.75,
+          -2.8
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-fl-d5",
+        "part": "wheel-disc",
+        "copy": 5,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          0.525,
+          4.75,
+          -2.95
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-fl-d6",
+        "part": "wheel-disc",
+        "copy": 6,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          0.525,
+          4.75,
+          -3.1
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-fl-d7",
+        "part": "wheel-disc",
+        "copy": 7,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          0.525,
+          4.75,
+          -3.25
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-fl-d8",
+        "part": "wheel-disc",
+        "copy": 8,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          0.525,
+          4.75,
+          -3.4
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-fl-face",
+        "part": "wheel-face",
+        "copy": 0,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          0.525,
+          4.75,
+          -3.55
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-fr-d0",
+        "part": "wheel-disc",
+        "copy": 9,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          0.525,
+          4.75,
+          2.05
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-fr-d1",
+        "part": "wheel-disc",
+        "copy": 10,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          0.525,
+          4.75,
+          2.2
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-fr-d2",
+        "part": "wheel-disc",
+        "copy": 11,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          0.525,
+          4.75,
+          2.35
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-fr-d3",
+        "part": "wheel-disc",
+        "copy": 12,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          0.525,
+          4.75,
+          2.5
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-fr-d4",
+        "part": "wheel-disc",
+        "copy": 13,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          0.525,
+          4.75,
+          2.65
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-fr-d5",
+        "part": "wheel-disc",
+        "copy": 14,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          0.525,
+          4.75,
+          2.8
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-fr-d6",
+        "part": "wheel-disc",
+        "copy": 15,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          0.525,
+          4.75,
+          2.95
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-fr-d7",
+        "part": "wheel-disc",
+        "copy": 16,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          0.525,
+          4.75,
+          3.1
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-fr-d8",
+        "part": "wheel-disc",
+        "copy": 17,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          0.525,
+          4.75,
+          3.25
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-fr-face",
+        "part": "wheel-face",
+        "copy": 1,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          0.525,
+          4.75,
+          3.4
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-rl-d0",
+        "part": "wheel-disc",
+        "copy": 18,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          6.725,
+          4.75,
+          -2.2
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-rl-d1",
+        "part": "wheel-disc",
+        "copy": 19,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          6.725,
+          4.75,
+          -2.35
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-rl-d2",
+        "part": "wheel-disc",
+        "copy": 20,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          6.725,
+          4.75,
+          -2.5
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-rl-d3",
+        "part": "wheel-disc",
+        "copy": 21,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          6.725,
+          4.75,
+          -2.65
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-rl-d4",
+        "part": "wheel-disc",
+        "copy": 22,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          6.725,
+          4.75,
+          -2.8
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-rl-d5",
+        "part": "wheel-disc",
+        "copy": 23,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          6.725,
+          4.75,
+          -2.95
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-rl-d6",
+        "part": "wheel-disc",
+        "copy": 24,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          6.725,
+          4.75,
+          -3.1
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-rl-d7",
+        "part": "wheel-disc",
+        "copy": 25,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          6.725,
+          4.75,
+          -3.25
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-rl-d8",
+        "part": "wheel-disc",
+        "copy": 26,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          6.725,
+          4.75,
+          -3.4
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-rl-face",
+        "part": "wheel-face",
+        "copy": 2,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          6.725,
+          4.75,
+          -3.55
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-rr-d0",
+        "part": "wheel-disc",
+        "copy": 27,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          6.725,
+          4.75,
+          2.05
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-rr-d1",
+        "part": "wheel-disc",
+        "copy": 28,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          6.725,
+          4.75,
+          2.2
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-rr-d2",
+        "part": "wheel-disc",
+        "copy": 29,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          6.725,
+          4.75,
+          2.35
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-rr-d3",
+        "part": "wheel-disc",
+        "copy": 30,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          6.725,
+          4.75,
+          2.5
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-rr-d4",
+        "part": "wheel-disc",
+        "copy": 31,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          6.725,
+          4.75,
+          2.65
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-rr-d5",
+        "part": "wheel-disc",
+        "copy": 32,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          6.725,
+          4.75,
+          2.8
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-rr-d6",
+        "part": "wheel-disc",
+        "copy": 33,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          6.725,
+          4.75,
+          2.95
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-rr-d7",
+        "part": "wheel-disc",
+        "copy": 34,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          6.725,
+          4.75,
+          3.1
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-rr-d8",
+        "part": "wheel-disc",
+        "copy": 35,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          6.725,
+          4.75,
+          3.25
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-rr-face",
+        "part": "wheel-face",
+        "copy": 3,
+        "order": 4,
+        "step": 5,
+        "pos": [
+          6.725,
+          4.75,
+          3.4
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "createdAt": "2026-08-12T04:23:09.195Z",
+  "brief": "A FUNCTIONAL rolling monster truck (slug monster-truck, category vehicles): pickup silhouette ~12 in long x 9 in tall, rolling on wooden dowel axles. EXACTLY 6 part types, 6 steps, one refPart figure per step, round coordinates. PARTS: (1) 'body-core' — full pickup profile (long hood, cab with window hole, bed rail), 12 in long, STRAIGHT solid bottom edge with NO arch cutouts, count 24, laminate true (stacks to 3.6 in solid core, like commercial stacked-profile cardboard toys), with TWO round Ø0.31 in axle holes at (2.9, ~2.4 in above the bottom edge) and (9.1, same) — every layer identical. (2) 'side-skin' Truck Side Silhouette — same profile but WITH big wheel-arch openings: semicircle radius 2.7 centered exactly on each axle hole center plus straight legs down to the bottom edge; count 2, laminate true, NO axle holes (the arch is open there). (3) 'wheel-disc' — Ø4.75 in circle, count 36, laminate true, ONE round Ø0.26 in hub hole dead center (snug press-fit on the dowel), 8 scored diagonal tread slits around the rim; 9 discs glue into one 1.35 in thick wheel, four wheels. (4) 'wheel-face' — Ø4.75 in ring, Ø2.4 in center opening (recessed hub look), count 4. HARDWARE: one entry id 'axle-dowel', kind dowel, diameterIn 0.25, lengthIn 7.5, count 2, label '1/4-inch wooden dowel, 7.5 inches long'. MECHANISMS: two revolutes 'front-axle' and 'rear-axle', axle 'axle-dowel', bearings [{part body-core, hole 0}] resp hole 1, hubs [{part wheel-disc, hole 0}], spins listing every disc and face-ring instance of that end. ASSEMBLY (thicknessIn 0.15, ground y=0): 24 body-core instances pos [0,9,z] z=-1.8,-1.65,...,+1.65; side-skins at z=-1.95 (mirror true) and +1.8; per wheel 9 discs + 1 face ring stacked outboard from z=±2.05 with 0.1 in washer gap to the skin (front wheels pos x 0.525, rear 6.725, pos y 4.75); two hardware dowel instances pos [2.9,2.375,0] and [9.1,2.375,0] rot [0,90,0]. Axle holes land at world y 2.375 so Ø4.75 wheels touch the ground. fitChecks: core axle hole vs 0.25 dowel clearance +0.04..0.12; wheel-disc hub hole vs 0.25 dowel clearance 0..0.03; skin arch radius (length d from arch top to axle center) atLeast 2.625; wheel-face opening holeWidth atLeast 2.0; body-core width match side-skin width. STEPS (grown-up flags on knife/drill/dowel steps): print+trace; cut+score+punch holes; glue the 24-layer core using the dowels as alignment pins; glue a skin on each face; build four wheels (9 discs + face ring, hub holes lined up); push dowels through the core bearings and press+glue wheels onto the dowel ends only — wheels spin, truck rolls. Difficulty 3, 6+ with a grown-up, 2-3 hours. SPEED: hard 9-minute budget — decide geometry fast, round coordinates, compact JSON, terse instructions (2-3 per step), simple hero (4-6 paths). Start writing JSON early.",
+  "templateGrid": {
+    "cols": 2,
+    "rows": 4
+  },
+  "templatePages": 8
+}

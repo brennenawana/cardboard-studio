@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cardboard Studio</title>
+<style>
+  :root {
+    --crimson: #A8214A; --kraft: #C9AB84; --kraft-dark: #9E8261; --ink: #2b2523;
+    --paper: #faf7f2; --panel: #efeae2;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Avenir Next", "Segoe UI", system-ui, sans-serif; background: var(--paper); color: var(--ink); }
+  header { background: var(--ink); color: #fff; padding: 14px 22px; display: flex; align-items: center; gap: 14px; }
+  header .logo { width: 34px; height: 34px; background: var(--crimson); border-radius: 6px; position: relative; }
+  header .logo::after { content: ""; position: absolute; inset: 9px; background: var(--kraft); border-radius: 50%; }
+  header h1 { font-size: 20px; margin: 0; letter-spacing: 1px; }
+  header .tag { color: #bbb; font-size: 13px; }
+  main { max-width: 1080px; margin: 0 auto; padding: 24px 18px 80px; }
+  h2 { letter-spacing: 0.5px; }
+  .row { display: flex; gap: 20px; flex-wrap: wrap; }
+  .card { background: #fff; border: 1px solid #e2dbd0; border-radius: 12px; padding: 16px; box-shadow: 0 2px 6px rgba(60,40,20,0.06); }
+  /* gallery */
+  #gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
+  .design { cursor: pointer; transition: transform 0.12s; }
+  .design:hover { transform: translateY(-3px); }
+  .design .thumb { height: 150px; display: flex; align-items: center; justify-content: center; background: var(--panel); border-radius: 8px; overflow: hidden; }
+  .design .thumb svg { max-height: 140px; max-width: 95%; }
+  .design h3 { margin: 10px 0 2px; font-size: 16px; }
+  .design p { margin: 0; font-size: 12.5px; color: #7a6f65; }
+  /* chat */
+  #chat { display: flex; flex-direction: column; height: 420px; }
+  #msgs { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding: 6px 2px; }
+  .msg { max-width: 82%; padding: 10px 14px; border-radius: 14px; font-size: 14.5px; line-height: 1.45; white-space: pre-wrap; }
+  .msg.user { align-self: flex-end; background: var(--crimson); color: #fff; border-bottom-right-radius: 4px; }
+  .msg.studio { align-self: flex-start; background: var(--panel); border-bottom-left-radius: 4px; }
+  .msg.sys { align-self: center; background: none; color: #948a7e; font-size: 12.5px; font-style: italic; }
+  #chatForm { display: flex; gap: 8px; margin-top: 10px; }
+  #chatInput { flex: 1; padding: 12px; border: 2px solid #d8cfc2; border-radius: 10px; font-size: 15px; }
+  button { background: var(--crimson); border: none; color: #fff; font-weight: 700; padding: 12px 18px; border-radius: 10px; cursor: pointer; font-size: 14px; }
+  button.secondary { background: var(--kraft-dark); }
+  button:disabled { opacity: 0.5; cursor: default; }
+  #buildBar { display: none; margin-top: 10px; padding: 12px; background: #fdf3e3; border: 1.5px dashed var(--kraft-dark); border-radius: 10px; font-size: 14px; }
+  #log { font-family: ui-monospace, monospace; font-size: 12px; color: #6c6157; white-space: pre-wrap; margin-top: 8px; }
+  /* detail */
+  #detail { display: none; }
+  #detail .files a { display: inline-block; margin: 6px 10px 6px 0; }
+  #partsPreview svg { background: #fff; border: 1px solid #e2dbd0; border-radius: 8px; }
+  .pill { display: inline-block; background: var(--panel); padding: 3px 10px; border-radius: 999px; font-size: 12px; margin-right: 6px; }
+  button.mini { padding: 6px 12px; font-size: 12px; margin-top: 8px; }
+  .back { color: var(--crimson); cursor: pointer; font-weight: 700; font-size: 14px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"></div>
+  <div>
+    <h1>CARDBOARD STUDIO</h1>
+    <div class="tag">our family workshop — dream it, print it, build it</div>
+  </div>
+</header>
+<main>
+  <section id="home">
+    <div class="row">
+      <div class="card" style="flex: 1.2; min-width: 320px;">
+        <h2>&#128161; Invent something!</h2>
+        <div id="chat">
+          <div id="msgs">
+            <div class="msg studio">Ahoy! What should we build today? A sword? A castle? A garage for your cars? Tell me your idea — or say "surprise us"!</div>
+          </div>
+          <div id="buildBar">
+            <b>&#128736; Ready to build:</b> <span id="briefText"></span>
+            <div style="margin-top:8px"><button id="buildBtn">Make the template!</button></div>
+            <div id="log"></div>
+          </div>
+          <form id="chatForm">
+            <input id="chatInput" placeholder="Type your idea..." autocomplete="off">
+            <button>Send</button>
+          </form>
+        </div>
+      </div>
+      <div class="card" style="flex: 1.6; min-width: 340px;">
+        <h2>&#128230; Our designs</h2>
+        <div id="gallery"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="detail" class="card">
+    <span class="back" onclick="showHome()">&#8592; Back to the workshop</span>
+    <h2 id="dTitle"></h2>
+    <p id="dTagline" style="color:#7a6f65"></p>
+    <div id="dPills"></div>
+    <h3>Print these:</h3>
+    <div class="files" id="dFiles"></div>
+    <h3>The parts:</h3>
+    <div id="partsPreview" class="row"></div>
+  </section>
+</main>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const history = [];
+
+function pathsToSvg(paths, maxW = 220, maxH = 150) {
+  // crude bbox from numbers in path strings
+  let minX = 1e9, minY = 1e9, maxX = -1e9, maxY = -1e9;
+  for (const p of paths) {
+    const nums = (p.d.match(/-?\d*\.?\d+/g) || []).map(Number);
+    for (let i = 0; i + 1 < nums.length; i += 2) {
+      minX = Math.min(minX, nums[i]); maxX = Math.max(maxX, nums[i]);
+      minY = Math.min(minY, nums[i + 1]); maxY = Math.max(maxY, nums[i + 1]);
+    }
+  }
+  if (minX > maxX) return '';
+  const w = maxX - minX || 1, h = maxY - minY || 1;
+  const fills = { kraft: '#C9AB84', kraftDark: '#9E8261', white: '#fff' };
+  const strokes = { kraftEdge: '#6f5940', black: '#221f1e', gray: '#8a8a8a' };
+  const inner = paths.map(p => {
+    const fill = fills[p.fill] || 'none';
+    const stroke = p.stroke === 'none' ? 'none' : (strokes[p.stroke] || '#221f1e');
+    const dash = p.dash ? 'stroke-dasharray="0.08 0.06"' : '';
+    return `<path d="${p.d}" fill="${fill}" stroke="${stroke}" stroke-width="${(p.width || 2) * 0.02}" ${dash} vector-effect="non-scaling-stroke"/>`;
+  }).join('');
+  return `<svg viewBox="${minX - 0.2} ${minY - 0.2} ${w + 0.4} ${h + 0.4}" width="${maxW}" height="${maxH}" preserveAspectRatio="xMidYMid meet">${inner}</svg>`;
+}
+
+// holes[]/slits[] entries: bare path string (legacy) or {id, d} (stable ids)
+const pathD = (x) => (typeof x === 'string' ? x : (x && typeof x.d === 'string' ? x.d : ''));
+
+function partToPaths(part) {
+  const out = [{ d: part.path, stroke: 'black', width: 2.5 }];
+  for (const h of part.holes || []) out.push({ d: pathD(h), stroke: 'black', width: 2 });
+  for (const s of part.slits || []) out.push({ d: pathD(s), stroke: 'gray', width: 1.5, dash: true });
+  if (part.backing) out.push({ d: part.backing, stroke: 'gray', width: 1.5, dash: true });
+  return out;
+}
+
+async function loadGallery() {
+  const designs = await (await fetch('/api/designs')).json();
+  const g = $('#gallery');
+  g.innerHTML = '';
+  for (const d of designs) {
+    const full = await (await fetch('/api/designs/' + d.slug)).json();
+    const el = document.createElement('div');
+    el.className = 'design card';
+    el.innerHTML = `<div class="thumb">${full.hero ? pathsToSvg(full.hero.paths) : ''}</div>
+      <h3>${d.title}</h3><p>${d.tagline || ''}</p>${full.assembly
+        ? `<button class="secondary mini" onclick="event.stopPropagation();location.href='/viewer/${d.slug}'">&#129482; 3D preview</button>` : ''}
+      <button class="mini" onclick="event.stopPropagation();location.href='/edit/${d.slug}'">&#9999;&#65039; Edit on the Mat</button>`;
+    el.onclick = () => showDetail(full, d.files);
+    g.appendChild(el);
+  }
+}
+
+function showHome() {
+  $('#detail').style.display = 'none';
+  $('#home').style.display = 'block';
+}
+
+function showDetail(design, files) {
+  $('#home').style.display = 'none';
+  $('#detail').style.display = 'block';
+  $('#dTitle').textContent = design.title;
+  $('#dTagline').textContent = design.tagline || '';
+  const fs = design.finishedSize;
+  const sizePill = fs ? `${fs.widthIn} × ${fs.heightIn}${fs.depthIn ? ' × ' + fs.depthIn : ''} in` : null;
+  $('#dPills').innerHTML = [
+    design.category, `difficulty ${design.difficulty}/3`, sizePill, design.buildTime, design.ageRange,
+  ].filter(Boolean).map(x => `<span class="pill">${x}</span>`).join('');
+  $('#dFiles').innerHTML = (files || []).map(f =>
+    `<a href="/files/${design.slug}/${f}" target="_blank"><button class="secondary">${f.includes('guide') ? '&#128214; Guide' : f.includes('A4') ? '&#128196; Template (A4)' : '&#128196; Template (Letter)'}</button></a>`
+  ).join('') + (design.assembly
+    ? `<a href="/viewer/${design.slug}"><button>&#129482; 3D preview</button></a>` : '')
+    + `<a href="/edit/${design.slug}"><button>&#9999;&#65039; Edit on the Mat</button></a>`;
+  $('#partsPreview').innerHTML = (design.parts || []).map(p =>
+    `<div style="text-align:center"><div>${pathsToSvg(partToPaths(p), 180, 200)}</div>
+     <small>${p.name} &times;${p.count}</small></div>`
+  ).join('');
+}
+
+function addMsg(cls, text) {
+  const el = document.createElement('div');
+  el.className = 'msg ' + cls;
+  el.textContent = text;
+  $('#msgs').appendChild(el);
+  $('#msgs').scrollTop = 1e9;
+  return el;
+}
+
+$('#chatForm').onsubmit = async (e) => {
+  e.preventDefault();
+  const text = $('#chatInput').value.trim();
+  if (!text) return;
+  $('#chatInput').value = '';
+  addMsg('user', text);
+  history.push({ role: 'user', text });
+  const thinking = addMsg('sys', 'thinking...');
+  try {
+    const res = await (await fetch('/api/ideate', {
+      method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ history }),
+    })).json();
+    thinking.remove();
+    if (res.error) return addMsg('sys', 'hmm: ' + res.error);
+    addMsg('studio', res.reply);
+    history.push({ role: 'studio', text: res.reply });
+    if (res.brief) {
+      $('#buildBar').style.display = 'block';
+      $('#briefText').textContent = res.brief;
+      $('#buildBtn').dataset.brief = res.brief;
+    }
+  } catch (err) {
+    thinking.textContent = 'connection hiccup — try again';
+  }
+};
+
+function fmtElapsed(ms) {
+  const s = Math.max(0, Math.round(ms / 1000));
+  return s < 60 ? s + 's' : Math.floor(s / 60) + 'm ' + (s % 60) + 's';
+}
+
+$('#buildBtn').onclick = async () => {
+  const brief = $('#buildBtn').dataset.brief;
+  $('#buildBtn').disabled = true;
+  $('#log').textContent = 'Starting the design engine (a full design takes a few minutes)...';
+  let jobId;
+  try {
+    ({ jobId } = await (await fetch('/api/generate', {
+      method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ brief }),
+    })).json());
+  } catch {
+    $('#buildBtn').disabled = false;
+    $('#log').textContent = 'Could not reach the workshop server — is it running? Try again.';
+    return;
+  }
+  const startedAt = Date.now();
+  const timer = setInterval(async () => {
+    let job;
+    try {
+      job = await (await fetch('/api/jobs/' + jobId)).json();
+    } catch {
+      return; // transient network hiccup — keep polling
+    }
+    const lines = job.log.slice(-4);
+    // always show a "right now" line: live heartbeat, else the last milestone
+    const now = job.progress || job.log[job.log.length - 1] || 'warming up...';
+    lines.push('  ↻ now: ' + now);
+    lines.push('⏱ ' + fmtElapsed(Date.now() - startedAt) + ' elapsed');
+    $('#log').textContent = lines.join('\n');
+    if (job.status === 'done') {
+      clearInterval(timer);
+      $('#buildBtn').disabled = false;
+      $('#buildBar').style.display = 'none';
+      addMsg('studio', 'IT\'S READY! Find "' + (job.title || job.slug) + '" in Our Designs — print the template and let\'s build! ✂️');
+      loadGallery();
+    } else if (job.status === 'error') {
+      clearInterval(timer);
+      $('#buildBtn').disabled = false;
+      const reason = (job.error || 'unknown error').split('\n')[0];
+      $('#log').textContent = 'That one stumped me: ' + reason + '\nTweak the idea (simpler? smaller?) and hit the button to try again!';
+    }
+  }, 1500);
+};
+
+loadGallery();
+</script>
+</body>
+</html>

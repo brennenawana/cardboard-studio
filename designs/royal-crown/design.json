@@ -1,0 +1,689 @@
+{
+  "slug": "royal-crown",
+  "title": "Royal Crown",
+  "tagline": "Five proud points and ten shiny jewels — a real crown sized for a real royal head!",
+  "category": "crowns-helmets-hats",
+  "difficulty": 1,
+  "ageRange": "5+ with a grown-up",
+  "buildTime": "About 1 hour (plus drying time)",
+  "finishedSize": {
+    "widthIn": 6.9,
+    "heightIn": 5.5,
+    "depthIn": 6.9
+  },
+  "materials": [
+    "Corrugated cardboard — one flat piece at least 24 x 6 inches (single-wall curls best)",
+    "Cereal-box cardboard for the 10 jewels (corrugated works too)",
+    "White glue or hot glue",
+    "Gold paint, markers, foil or glitter to decorate (optional)"
+  ],
+  "tools": [
+    "Scissors or craft knife (grown-up job!)",
+    "Metal ruler",
+    "Pencil",
+    "Printer + tape for the template",
+    "Clothespins or paper clips to hold the seam while it dries"
+  ],
+  "parts": [
+    {
+      "id": "crown-band",
+      "name": "Crown Band",
+      "count": 1,
+      "path": "M 0 5.5 L 0 3.5 L 2.15 0 L 4.3 3.5 L 6.45 0 L 8.6 3.5 L 10.75 0 L 12.9 3.5 L 15.05 0 L 17.2 3.5 L 19.35 0 L 21.5 3.5 L 23 3.5 L 23 5.5 Z",
+      "holes": [],
+      "slits": [
+        "M 0.75 3.5 L 0.75 5.5",
+        "M 1.5 3.5 L 1.5 5.5",
+        "M 2.25 3.5 L 2.25 5.5",
+        "M 3 3.5 L 3 5.5",
+        "M 3.75 3.5 L 3.75 5.5",
+        "M 4.5 3.5 L 4.5 5.5",
+        "M 5.25 3.5 L 5.25 5.5",
+        "M 6 3.5 L 6 5.5",
+        "M 6.75 3.5 L 6.75 5.5",
+        "M 7.5 3.5 L 7.5 5.5",
+        "M 8.25 3.5 L 8.25 5.5",
+        "M 9 3.5 L 9 5.5",
+        "M 9.75 3.5 L 9.75 5.5",
+        "M 10.5 3.5 L 10.5 5.5",
+        "M 11.25 3.5 L 11.25 5.5",
+        "M 12 3.5 L 12 5.5",
+        "M 12.75 3.5 L 12.75 5.5",
+        "M 13.5 3.5 L 13.5 5.5",
+        "M 14.25 3.5 L 14.25 5.5",
+        "M 15 3.5 L 15 5.5",
+        "M 15.75 3.5 L 15.75 5.5",
+        "M 16.5 3.5 L 16.5 5.5",
+        "M 17.25 3.5 L 17.25 5.5",
+        "M 18 3.5 L 18 5.5",
+        "M 18.75 3.5 L 18.75 5.5",
+        "M 19.5 3.5 L 19.5 5.5",
+        "M 20.25 3.5 L 20.25 5.5",
+        "M 21 3.5 L 21 5.5",
+        "M 21.75 3.5 L 21.75 5.5",
+        "M 22.5 3.5 L 22.5 5.5"
+      ],
+      "corrugation": "vertical",
+      "labelAt": {
+        "x": 6.45,
+        "y": 2.7
+      },
+      "arrowAt": {
+        "x": 15.05,
+        "y": 2.7
+      }
+    },
+    {
+      "id": "jewel-diamond",
+      "name": "Diamond Jewel",
+      "count": 5,
+      "path": "M 0.6 0 L 1.2 0.8 L 0.6 1.6 L 0 0.8 Z",
+      "corrugation": "vertical",
+      "labelAt": {
+        "x": 0.6,
+        "y": 0.8
+      }
+    },
+    {
+      "id": "jewel-round",
+      "name": "Round Jewel",
+      "count": 5,
+      "path": "M 0.75 0 C 1.16 0 1.5 0.34 1.5 0.75 C 1.5 1.16 1.16 1.5 0.75 1.5 C 0.34 1.5 0 1.16 0 0.75 C 0 0.34 0.34 0 0.75 0 Z",
+      "corrugation": "horizontal",
+      "labelAt": {
+        "x": 0.75,
+        "y": 0.78
+      }
+    }
+  ],
+  "fitChecks": [
+    {
+      "reason": "unrolled band must equal a 21.5-inch wearing circumference (21-inch head plus breathing room) plus the 1.5-inch glue tab",
+      "a": {
+        "part": "crown-band",
+        "measure": "width"
+      },
+      "op": "match",
+      "b": {
+        "valueIn": 23
+      },
+      "toleranceIn": 0.15
+    },
+    {
+      "reason": "glue tab must give at least 1 inch of overlap for a strong seam",
+      "a": {
+        "part": "crown-band",
+        "measure": "length",
+        "d": "M 21.5 3.5 L 23 3.5"
+      },
+      "op": "atLeast",
+      "b": {
+        "valueIn": 1
+      }
+    },
+    {
+      "reason": "diamond jewel must fit on the 2-inch band without hanging over the edges",
+      "a": {
+        "part": "crown-band",
+        "measure": "length",
+        "d": "M 0 5.5 L 0 3.5"
+      },
+      "op": "clearance",
+      "b": {
+        "part": "jewel-diamond",
+        "measure": "height"
+      },
+      "minIn": 0.05,
+      "maxIn": 0.6
+    },
+    {
+      "reason": "round jewel must fit on the 2-inch band without hanging over the edges",
+      "a": {
+        "part": "crown-band",
+        "measure": "length",
+        "d": "M 0 5.5 L 0 3.5"
+      },
+      "op": "clearance",
+      "b": {
+        "part": "jewel-round",
+        "measure": "height"
+      },
+      "minIn": 0.05,
+      "maxIn": 0.6
+    }
+  ],
+  "steps": [
+    {
+      "title": "Print, tape and trace",
+      "figures": [
+        {
+          "refPart": "crown-band",
+          "caption": "Crown Band — trace ONCE."
+        },
+        {
+          "refPart": "jewel-diamond",
+          "caption": "Diamond Jewel — trace 5 times."
+        },
+        {
+          "refPart": "jewel-round",
+          "caption": "Round Jewel — trace 5 times."
+        }
+      ],
+      "instructions": [
+        "Print the template at 100% actual size and tape the pages together using the grid.",
+        "Trace the Crown Band ONCE onto your biggest flat piece of cardboard.",
+        "Trace the Diamond Jewel and the Round Jewel 5 times each.",
+        "Line the corrugation arrow up with the little waves inside the cardboard — that lets the band curl smoothly around the head."
+      ],
+      "check": "You should have 11 pencil outlines: 1 long zigzag band, 5 diamonds, 5 rounds.",
+      "tip": "Cereal-box cardboard works great for the jewels and is easy for kids to cut."
+    },
+    {
+      "title": "Cut out the parts",
+      "figures": [
+        {
+          "parts": [
+            {
+              "refPart": "crown-band"
+            },
+            {
+              "refPart": "jewel-diamond",
+              "dx": 8.5,
+              "dy": 6.6
+            },
+            {
+              "refPart": "jewel-round",
+              "dx": 11.5,
+              "dy": 6.7
+            }
+          ],
+          "labels": [
+            {
+              "at": [
+                11.5,
+                -0.7
+              ],
+              "text": "Crown Band ×1"
+            },
+            {
+              "at": [
+                9.1,
+                8.9
+              ],
+              "text": "Diamond ×5"
+            },
+            {
+              "at": [
+                12.25,
+                8.9
+              ],
+              "text": "Round ×5"
+            }
+          ],
+          "caption": "Your full cut list — 11 pieces. Dashed lines are NOT cuts: score them half-deep only."
+        }
+      ],
+      "instructions": [
+        "Grown-up job: cut the Crown Band's zigzag top and long edges with a sharp knife and metal ruler, in 2–3 light passes.",
+        "Kids can cut all 10 jewels with scissors.",
+        "Do NOT cut the dashed lines on the band — those get scored lightly (half-deep) for curling."
+      ],
+      "check": "11 cut pieces, and every dashed line on the band is still uncut on the front face."
+    },
+    {
+      "title": "Score and curl the band",
+      "figures": [
+        {
+          "parts": [
+            {
+              "refPart": "crown-band"
+            }
+          ],
+          "arrows": [
+            {
+              "from": [
+                25.5,
+                1.2
+              ],
+              "to": [
+                22.2,
+                4.3
+              ],
+              "label": "crease every dashed line"
+            }
+          ],
+          "caption": "Crease each dashed score line so the band curls into a ring — dashes face IN, toward the head."
+        }
+      ],
+      "instructions": [
+        "Crease every dashed score line gently with a fingernail or a spoon handle.",
+        "Roll the band into a circle with the scored dashes facing IN — it should curve smoothly, not kink.",
+        "If a spot won't curve, crease its score lines a little deeper."
+      ],
+      "check": "The band relaxes into a round ring shape all by itself.",
+      "tip": "Rolling the band around a big cooking pot first helps it remember the curve."
+    },
+    {
+      "title": "Glue the crown ring",
+      "figures": [
+        {
+          "paths": [
+            {
+              "d": "M 6.9 0.5 C 10.38 0.5 13.2 2.38 13.2 4.7 C 13.2 7.02 10.38 8.9 6.9 8.9 C 3.42 8.9 0.6 7.02 0.6 4.7 C 0.6 2.38 3.42 0.5 6.9 0.5 Z",
+              "stroke": "kraftEdge",
+              "width": 3
+            },
+            {
+              "d": "M 6.9 8.9 C 8.2 8.85 9.3 8.55 10.2 8.05",
+              "stroke": "black",
+              "width": 2
+            }
+          ],
+          "arrows": [
+            {
+              "from": [
+                11.6,
+                10.6
+              ],
+              "to": [
+                9.4,
+                8.55
+              ],
+              "label": "tab glues INSIDE"
+            }
+          ],
+          "caption": "Seen from above: the short plain tab end slides INSIDE the other end and glues down, making a 21½-inch ring."
+        }
+      ],
+      "instructions": [
+        "Try the crown on the royal head and hold the overlap closed — it should feel snug but comfy.",
+        "Grown-up job: run hot glue on the tab (the short plain end) and press it INSIDE the other end for 30 seconds.",
+        "White glue works too — clip the seam with clothespins or paper clips while it dries."
+      ],
+      "check": "The ring is round, the seam lies flat, and the crown rests just above the ears without squeezing."
+    },
+    {
+      "title": "Glue on the jewels",
+      "figures": [
+        {
+          "parts": [
+            {
+              "refPart": "crown-band",
+              "style": "filled"
+            },
+            {
+              "refPart": "jewel-diamond",
+              "style": "filledDark",
+              "dx": 10.15,
+              "dy": 1.7
+            },
+            {
+              "refPart": "jewel-round",
+              "style": "filledDark",
+              "dx": 10,
+              "dy": 3.75
+            }
+          ],
+          "arrows": [
+            {
+              "from": [
+                14.6,
+                0.9
+              ],
+              "to": [
+                11.4,
+                2.4
+              ],
+              "label": "diamond on each point"
+            },
+            {
+              "from": [
+                14.9,
+                6.5
+              ],
+              "to": [
+                11.6,
+                4.6
+              ],
+              "label": "round on the band"
+            }
+          ],
+          "caption": "One diamond low on each point, one round on the band below it — or arrange them your own royal way."
+        }
+      ],
+      "instructions": [
+        "Glue a Diamond Jewel low on each of the 5 points.",
+        "Glue a Round Jewel on the band below each point.",
+        "Or invent your own arrangement — the monarch decides!"
+      ],
+      "check": "All 10 jewels sit flat and nothing pokes past the band edges.",
+      "tip": "Wrap the jewels in candy-foil or color them with markers BEFORE gluing them on."
+    },
+    {
+      "title": "Decorate and coronate",
+      "figures": [
+        {
+          "paths": [
+            {
+              "d": "M 0 7.6 L 0 5.4 L 1 0.9 L 2 4.6 L 3 0.9 L 4 4.6 L 5 0.5 L 6 4.6 L 7 0.9 L 8 4.6 L 9 0.9 L 10 5.4 L 10 7.6 Z",
+              "stroke": "kraftEdge",
+              "width": 2.5
+            },
+            {
+              "d": "M 0 5.4 L 10 5.4",
+              "stroke": "kraftEdge",
+              "width": 1.5
+            },
+            {
+              "d": "M 5 2.2 L 5.55 3 L 5 3.8 L 4.45 3 Z",
+              "stroke": "kraftEdge",
+              "width": 1.5
+            },
+            {
+              "d": "M 2 5.85 C 2.25 5.85 2.45 6.05 2.45 6.3 C 2.45 6.55 2.25 6.75 2 6.75 C 1.75 6.75 1.55 6.55 1.55 6.3 C 1.55 6.05 1.75 5.85 2 5.85 Z",
+              "stroke": "kraftEdge",
+              "width": 1.5
+            },
+            {
+              "d": "M 8 5.85 C 8.25 5.85 8.45 6.05 8.45 6.3 C 8.45 6.55 8.25 6.75 8 6.75 C 7.75 6.75 7.55 6.55 7.55 6.3 C 7.55 6.05 7.75 5.85 8 5.85 Z",
+              "stroke": "kraftEdge",
+              "width": 1.5
+            }
+          ],
+          "caption": "The finished crown — gold paint, shiny jewels, one very royal kid."
+        }
+      ],
+      "instructions": [
+        "Paint the whole crown gold, or wrap the band in kitchen foil.",
+        "Color the jewels ruby red, emerald green and sapphire blue.",
+        "Hold a coronation: play a fanfare, kneel, and crown the new monarch!"
+      ],
+      "check": "The crown fits, the jewels sparkle — long live the monarch!"
+    }
+  ],
+  "hero": {
+    "paths": [
+      {
+        "d": "M 0 7.6 L 0 5.4 L 1 0.9 L 2 4.6 L 3 0.9 L 4 4.6 L 5 0.5 L 6 4.6 L 7 0.9 L 8 4.6 L 9 0.9 L 10 5.4 L 10 7.6 Z",
+        "fill": "kraft",
+        "stroke": "kraftEdge",
+        "width": 2.5
+      },
+      {
+        "d": "M 0 6.9 L 10 6.9 L 10 7.6 L 0 7.6 Z",
+        "fill": "kraftDark",
+        "stroke": "none"
+      },
+      {
+        "d": "M 0 5.4 L 10 5.4",
+        "fill": "none",
+        "stroke": "kraftEdge",
+        "width": 1.5
+      },
+      {
+        "d": "M 5 2.2 L 5.55 3 L 5 3.8 L 4.45 3 Z",
+        "fill": "white",
+        "stroke": "kraftEdge",
+        "width": 1.5
+      },
+      {
+        "d": "M 3 2.9 L 3.45 3.6 L 3 4.3 L 2.55 3.6 Z",
+        "fill": "white",
+        "stroke": "kraftEdge",
+        "width": 1.5
+      },
+      {
+        "d": "M 7 2.9 L 7.45 3.6 L 7 4.3 L 6.55 3.6 Z",
+        "fill": "white",
+        "stroke": "kraftEdge",
+        "width": 1.5
+      },
+      {
+        "d": "M 2 5.85 C 2.25 5.85 2.45 6.05 2.45 6.3 C 2.45 6.55 2.25 6.75 2 6.75 C 1.75 6.75 1.55 6.55 1.55 6.3 C 1.55 6.05 1.75 5.85 2 5.85 Z",
+        "fill": "white",
+        "stroke": "kraftEdge",
+        "width": 1.5
+      },
+      {
+        "d": "M 5 5.85 C 5.25 5.85 5.45 6.05 5.45 6.3 C 5.45 6.55 5.25 6.75 5 6.75 C 4.75 6.75 4.55 6.55 4.55 6.3 C 4.55 6.05 4.75 5.85 5 5.85 Z",
+        "fill": "white",
+        "stroke": "kraftEdge",
+        "width": 1.5
+      },
+      {
+        "d": "M 8 5.85 C 8.25 5.85 8.45 6.05 8.45 6.3 C 8.45 6.55 8.25 6.75 8 6.75 C 7.75 6.75 7.55 6.55 7.55 6.3 C 7.55 6.05 7.75 5.85 8 5.85 Z",
+        "fill": "white",
+        "stroke": "kraftEdge",
+        "width": 1.5
+      }
+    ]
+  },
+  "createdAt": "2026-08-10T23:56:39.480Z",
+  "brief": "A royal crown for a 7-year-old (head circumference about 21 inches), with 5 points and jewel shapes to decorate, sized so it actually fits on the head, difficulty 1-2",
+  "templateGrid": {
+    "cols": 4,
+    "rows": 1
+  },
+  "templatePages": 4,
+  "assembly": {
+    "thicknessIn": 0.12,
+    "instances": [
+      {
+        "id": "band",
+        "part": "crown-band",
+        "copy": 0,
+        "order": 0,
+        "step": 3,
+        "pos": [
+          -0.4,
+          5.5,
+          -3.6
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": false,
+        "folds": [
+          {
+            "slit": "all",
+            "angleDeg": 12
+          },
+          {
+            "slit": 27,
+            "angleDeg": 16
+          },
+          {
+            "slit": 28,
+            "angleDeg": 16
+          },
+          {
+            "slit": 29,
+            "angleDeg": 16
+          }
+        ]
+      },
+      {
+        "id": "diamond-0",
+        "part": "jewel-diamond",
+        "copy": 0,
+        "order": 1,
+        "step": 4,
+        "pos": [
+          2.23,
+          3.4,
+          -2.947
+        ],
+        "rot": [
+          0,
+          156,
+          0
+        ],
+        "mirror": false
+      },
+      {
+        "id": "round-0",
+        "part": "jewel-round",
+        "copy": 0,
+        "order": 2,
+        "step": 4,
+        "pos": [
+          2.367,
+          1.75,
+          -2.886
+        ],
+        "rot": [
+          0,
+          156,
+          0
+        ],
+        "mirror": false
+      },
+      {
+        "id": "diamond-1",
+        "part": "jewel-diamond",
+        "copy": 1,
+        "order": 1,
+        "step": 4,
+        "pos": [
+          3.465,
+          3.4,
+          1.013
+        ],
+        "rot": [
+          0,
+          84,
+          0
+        ],
+        "mirror": false
+      },
+      {
+        "id": "round-1",
+        "part": "jewel-round",
+        "copy": 1,
+        "order": 2,
+        "step": 4,
+        "pos": [
+          3.449,
+          1.75,
+          1.163
+        ],
+        "rot": [
+          0,
+          84,
+          0
+        ],
+        "mirror": false
+      },
+      {
+        "id": "diamond-2",
+        "part": "jewel-diamond",
+        "copy": 2,
+        "order": 1,
+        "step": 4,
+        "pos": [
+          0.255,
+          3.4,
+          3.568
+        ],
+        "rot": [
+          0,
+          12,
+          0
+        ],
+        "mirror": false
+      },
+      {
+        "id": "round-2",
+        "part": "jewel-round",
+        "copy": 2,
+        "order": 2,
+        "step": 4,
+        "pos": [
+          0.108,
+          1.75,
+          3.599
+        ],
+        "rot": [
+          0,
+          12,
+          0
+        ],
+        "mirror": false
+      },
+      {
+        "id": "diamond-3",
+        "part": "jewel-diamond",
+        "copy": 3,
+        "order": 1,
+        "step": 4,
+        "pos": [
+          -3.263,
+          3.4,
+          1.52
+        ],
+        "rot": [
+          0,
+          -60,
+          0
+        ],
+        "mirror": false
+      },
+      {
+        "id": "round-3",
+        "part": "jewel-round",
+        "copy": 3,
+        "order": 2,
+        "step": 4,
+        "pos": [
+          -3.338,
+          1.75,
+          1.39
+        ],
+        "rot": [
+          0,
+          -60,
+          0
+        ],
+        "mirror": false
+      },
+      {
+        "id": "diamond-4",
+        "part": "jewel-diamond",
+        "copy": 4,
+        "order": 1,
+        "step": 4,
+        "pos": [
+          -2.713,
+          3.4,
+          -2.537
+        ],
+        "rot": [
+          0,
+          -120,
+          0
+        ],
+        "mirror": false
+      },
+      {
+        "id": "round-4",
+        "part": "jewel-round",
+        "copy": 4,
+        "order": 2,
+        "step": 4,
+        "pos": [
+          -2.638,
+          1.75,
+          -2.666
+        ],
+        "rot": [
+          0,
+          -120,
+          0
+        ],
+        "mirror": false
+      }
+    ]
+  }
+}

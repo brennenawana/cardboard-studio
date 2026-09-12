@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3D Preview — Cardboard Studio</title>
+<style>
+  :root { --crimson: #A8214A; --kraft: #C9AB84; --kraft-dark: #9E8261; --ink: #2b2523;
+          --paper: #FAF6EF; --panel: #efeae2; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden;
+    font-family: "Avenir Next", "Segoe UI", system-ui, sans-serif; background: var(--paper); color: var(--ink); }
+  #scene { position: absolute; inset: 0; }
+  #scene canvas { display: block; }
+  .bar { position: absolute; top: 0; left: 0; right: 0; display: flex; align-items: center; gap: 16px;
+         padding: 12px 20px 26px; pointer-events: none;
+         background: linear-gradient(rgba(250,246,239,0.95), rgba(250,246,239,0)); }
+  .bar > * { pointer-events: auto; }
+  .back { color: var(--crimson); font-weight: 700; font-size: 14px; text-decoration: none; }
+  .title { font-size: 19px; font-weight: 700; letter-spacing: 0.5px; }
+  .subtitle { font-size: 12.5px; color: #7a6f65; }
+  #hud { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%);
+         width: min(600px, calc(100% - 20px)); background: rgba(255,255,255,0.96);
+         border: 1px solid #e2dbd0; border-radius: 14px; padding: 12px 16px 9px;
+         box-shadow: 0 4px 16px rgba(60,40,20,0.13); }
+  #hudRow { display: flex; align-items: center; gap: 12px; }
+  button { background: var(--crimson); border: none; color: #fff; font-weight: 700;
+           padding: 8px 14px; border-radius: 9px; cursor: pointer; font-size: 13px; font-family: inherit; white-space: nowrap; }
+  button.secondary { background: var(--kraft-dark); }
+  #roll.on { background: var(--ink); }
+  #sliderWrap { flex: 1; position: relative; display: flex; align-items: center; }
+  #slider { width: 100%; accent-color: var(--crimson); height: 26px; cursor: pointer; margin: 0; }
+  #ticks { position: absolute; left: 8px; right: 8px; top: 100%; margin-top: -5px; height: 12px; pointer-events: none; }
+  .tick { position: absolute; top: 0; transform: translateX(-50%); width: 11px; height: 11px;
+          border-radius: 50%; background: #fff; border: 2px solid var(--crimson); padding: 0;
+          cursor: pointer; pointer-events: auto; }
+  .tick:hover { background: var(--crimson); }
+  #hudRow { padding-bottom: 8px; }
+  .lbl { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; color: #7a6f65; }
+  #caption { text-align: center; font-size: 13px; color: #5a5048; margin-top: 4px; min-height: 17px; }
+  #parts { position: absolute; right: 14px; top: 70px; width: 196px;
+           background: rgba(255,255,255,0.95); border: 1px solid #e2dbd0; border-radius: 12px;
+           padding: 10px 10px 8px; box-shadow: 0 3px 10px rgba(60,40,20,0.09);
+           max-height: calc(100vh - 190px); display: flex; flex-direction: column; }
+  #partRows { overflow-y: auto; overscroll-behavior: contain; min-height: 0; }
+  #parts h4 { margin: 0 2px 6px; font-size: 11px; letter-spacing: 1.2px; color: #7a6f65; }
+  .prow { display: flex; align-items: center; gap: 8px; padding: 5px 7px; border-radius: 8px;
+          font-size: 12.5px; cursor: pointer; user-select: none; }
+  .prow:hover, .prow.hot { background: var(--crimson); color: #fff; }
+  .prow .sw { width: 12px; height: 12px; border-radius: 3px; background: var(--kraft);
+              border: 1px solid var(--kraft-dark); flex: none; }
+  .prow:hover .sw, .prow.hot .sw { background: #fff; border-color: #fff; }
+  #msg { position: absolute; inset: 0; display: none; align-items: center; justify-content: center;
+         font-size: 15px; color: #7a6f65; text-align: center; padding: 0 30px; }
+  @media (max-width: 640px) { #parts { display: none; } }
+</style>
+<script type="importmap">
+{ "imports": { "three": "/vendor/three/three.module.js" } }
+</script>
+</head>
+<body>
+<div id="scene"></div>
+<div class="bar">
+  <a class="back" href="/">&#8592; back</a>
+  <div>
+    <div class="title" id="title">&hellip;</div>
+    <div class="subtitle" id="subtitle">3D assembly preview</div>
+  </div>
+</div>
+<div id="parts"><h4>PARTS</h4><div id="partRows"></div></div>
+<div id="hud">
+  <div id="hudRow">
+    <button id="play">&#9654;&#xFE0E; Play</button>
+    <button id="roll" style="display:none" title="Roll the finished toy along the ground">&#8635;&#xFE0E; Roll</button>
+    <span class="lbl">FLAT</span>
+    <div id="sliderWrap">
+      <input id="slider" type="range" min="0" max="1000" value="1000">
+      <div id="ticks"></div>
+    </div>
+    <span class="lbl">BUILT</span>
+    <button class="secondary" id="reset">Reset view</button>
+  </div>
+  <div id="caption"></div>
+</div>
+<div id="msg"></div>
+<script type="module" src="/viewer.js"></script>
+</body>
+</html>

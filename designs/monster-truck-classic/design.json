@@ -1,0 +1,1801 @@
+{
+  "slug": "monster-truck-classic",
+  "title": "Classic Monster Truck",
+  "tagline": "Robust stacked chassis, light hollow body, a real open bed — and it rolls.",
+  "category": "vehicles",
+  "difficulty": 3,
+  "ageRange": "6+ with a grown-up",
+  "buildTime": "2-3 hours (plus glue drying overnight)",
+  "finishedSize": {
+    "widthIn": 12.85,
+    "heightIn": 7.4,
+    "depthIn": 7
+  },
+  "materials": [
+    "Corrugated cardboard — a LOT (about 6 large boxes; the chassis core alone is 24 layers)",
+    "Wood glue or white glue (a big bottle)",
+    "Two 1/4-inch wooden dowels, 7 inches long",
+    "Paint or markers for flames and mud splatter"
+  ],
+  "tools": [
+    "Craft knife and spare blades (grown-up job!)",
+    "Metal ruler",
+    "Pencil",
+    "Awl or 5/16-inch drill bit for the axle holes (grown-up job!)",
+    "Saw or strong snips to cut the dowels (grown-up job!)",
+    "Printer + tape for the template"
+  ],
+  "hardware": [
+    {
+      "id": "axle-dowel",
+      "kind": "dowel",
+      "diameterIn": 0.25,
+      "lengthIn": 7,
+      "count": 2,
+      "label": "1/4-inch wooden dowel, 7 inches long",
+      "source": "craft store, hardware store, or the garage"
+    }
+  ],
+  "parts": [
+    {
+      "id": "chassis-core",
+      "name": "Chassis Core",
+      "count": 24,
+      "path": "M 0 0.95 L 9.26 0.95 L 9.26 0 L 12.81 0.2 L 12.81 3.95 L 7.45 3.95 L 7.45 2.45 L 5.32 2.45 L 5.32 3.95 L 0 3.95 Z",
+      "holes": [
+        "M 2.495 3.625 C 2.495 3.534 2.569 3.46 2.66 3.46 C 2.751 3.46 2.825 3.534 2.825 3.625 C 2.825 3.716 2.751 3.79 2.66 3.79 C 2.569 3.79 2.495 3.716 2.495 3.625 Z",
+        "M 9.945 3.625 C 9.945 3.534 10.019 3.46 10.11 3.46 C 10.201 3.46 10.275 3.534 10.275 3.625 C 10.275 3.716 10.201 3.79 10.11 3.79 C 10.019 3.79 9.945 3.716 9.945 3.625 Z"
+      ],
+      "slits": [],
+      "corrugation": "horizontal",
+      "laminate": true,
+      "labelAt": {
+        "x": 6.4,
+        "y": 1.6
+      },
+      "arrowAt": {
+        "x": 3.2,
+        "y": 2.6
+      }
+    },
+    {
+      "id": "truck-side",
+      "name": "Truck Side",
+      "count": 2,
+      "path": "M 0 1.12 L 6.52 1.12 L 6.62 0 L 8.48 0 L 9.26 1.09 L 12.85 1.3 L 12.85 2.85 L 12.3 2.85 C 12.1 2.85 11.9 2.62 11.7 2.4 C 11.5 3.3 11.3 4.4 10.92 5.1 C 10.75 5.55 10.5 5.7 10.15 5.7 C 9.8 5.7 9.55 5.55 9.38 5.1 C 9.3 4.2 10.25 3.1 11 2.65 C 10.9 2.2 10.65 1.92 10.25 1.87 L 9.25 1.87 C 8.85 1.92 8.6 2.35 8.5 2.95 L 4.35 2.95 C 4.25 2.35 4 1.92 3.6 1.87 L 2.6 1.87 C 2.2 1.92 1.95 2.2 1.85 2.65 C 2.6 3.1 3.55 4.2 3.47 5.1 C 3.3 5.55 3.05 5.7 2.7 5.7 C 2.35 5.7 2.1 5.55 1.93 5.1 C 1.55 4.4 1.35 3.3 1.15 2.4 C 0.95 2.62 0.75 2.85 0.55 2.85 L 0 2.85 Z",
+      "holes": [
+        "M 6.83 0.28 L 8.02 0.3 L 8.37 1.09 L 6.83 1.09 Z",
+        "M 2.535 4.875 C 2.535 4.784 2.609 4.71 2.7 4.71 C 2.791 4.71 2.865 4.784 2.865 4.875 C 2.865 4.966 2.791 5.04 2.7 5.04 C 2.609 5.04 2.535 4.966 2.535 4.875 Z",
+        "M 9.985 4.875 C 9.985 4.784 10.059 4.71 10.15 4.71 C 10.241 4.71 10.315 4.784 10.315 4.875 C 10.315 4.966 10.241 5.04 10.15 5.04 C 10.059 5.04 9.985 4.966 9.985 4.875 Z"
+      ],
+      "slits": [],
+      "corrugation": "horizontal",
+      "labelAt": {
+        "x": 3.4,
+        "y": 1.9
+      },
+      "arrowAt": {
+        "x": 6.2,
+        "y": 2.4
+      }
+    },
+    {
+      "id": "hood-wrap",
+      "name": "Hood + Roof Wrap",
+      "count": 1,
+      "path": "M 0 0 L 3.9 0 L 3.9 6.796 L 0 6.796 Z",
+      "holes": [],
+      "slits": [
+        "M 0 1.86 L 3.9 1.86",
+        "M 0 3.2 L 3.9 3.2"
+      ],
+      "corrugation": "horizontal",
+      "labelAt": {
+        "x": 1.95,
+        "y": 5.2
+      },
+      "arrowAt": {
+        "x": 1.95,
+        "y": 0.9
+      }
+    },
+    {
+      "id": "bed-floor",
+      "name": "Bed Floor",
+      "count": 1,
+      "path": "M 0 0 L 6.33 0 L 6.33 3.6 L 0 3.6 Z",
+      "holes": [],
+      "slits": [],
+      "corrugation": "horizontal",
+      "labelAt": {
+        "x": 3.16,
+        "y": 1.8
+      },
+      "arrowAt": {
+        "x": 1.2,
+        "y": 0.5
+      }
+    },
+    {
+      "id": "tailgate",
+      "name": "Tailgate",
+      "count": 1,
+      "path": "M 0 0 L 3.6 0 L 3.6 1.73 L 0 1.73 Z",
+      "holes": [],
+      "slits": [],
+      "corrugation": "horizontal",
+      "labelAt": {
+        "x": 1.8,
+        "y": 0.9
+      },
+      "arrowAt": {
+        "x": 0.6,
+        "y": 0.35
+      }
+    },
+    {
+      "id": "wheel-disc",
+      "name": "Wheel Disc",
+      "count": 36,
+      "path": "M 0 2.375 C 0 1.063 1.063 0 2.375 0 C 3.687 0 4.75 1.063 4.75 2.375 C 4.75 3.687 3.687 4.75 2.375 4.75 C 1.063 4.75 0 3.687 0 2.375 Z",
+      "holes": [
+        "M 2.245 2.375 C 2.245 2.303 2.303 2.245 2.375 2.245 C 2.447 2.245 2.505 2.303 2.505 2.375 C 2.505 2.447 2.447 2.505 2.375 2.505 C 2.303 2.505 2.245 2.447 2.245 2.375 Z"
+      ],
+      "slits": [
+        "M 4.225 2.375 L 4.606 2.932",
+        "M 3.683 3.683 L 3.56 4.346",
+        "M 2.375 4.225 L 1.819 4.607",
+        "M 1.067 3.683 L 0.404 3.56",
+        "M 0.525 2.375 L 0.143 1.819",
+        "M 1.067 1.067 L 1.19 0.404",
+        "M 2.375 0.525 L 2.931 0.143",
+        "M 3.683 1.067 L 4.346 1.19"
+      ],
+      "corrugation": "vertical",
+      "laminate": true,
+      "labelAt": {
+        "x": 2.375,
+        "y": 1.5
+      },
+      "arrowAt": {
+        "x": 2.375,
+        "y": 3.3
+      }
+    },
+    {
+      "id": "wheel-face",
+      "name": "Wheel Face Ring",
+      "count": 4,
+      "path": "M 0 2.375 C 0 1.063 1.063 0 2.375 0 C 3.687 0 4.75 1.063 4.75 2.375 C 4.75 3.687 3.687 4.75 2.375 4.75 C 1.063 4.75 0 3.687 0 2.375 Z",
+      "holes": [
+        "M 1.175 2.375 C 1.175 1.712 1.712 1.175 2.375 1.175 C 3.038 1.175 3.575 1.712 3.575 2.375 C 3.575 3.038 3.038 3.575 2.375 3.575 C 1.712 3.575 1.175 3.038 1.175 2.375 Z"
+      ],
+      "slits": [
+        "M 3.695 2.375 L 4.458 3.302",
+        "M 3.308 3.308 L 3.192 4.504",
+        "M 2.375 3.695 L 1.448 4.458",
+        "M 1.442 3.308 L 0.246 3.192",
+        "M 1.055 2.375 L 0.292 1.448",
+        "M 1.442 1.442 L 1.558 0.246",
+        "M 2.375 1.055 L 3.302 0.292",
+        "M 3.308 1.442 L 4.504 1.558"
+      ],
+      "corrugation": "vertical",
+      "labelAt": {
+        "x": 2.375,
+        "y": 0.6
+      },
+      "arrowAt": {
+        "x": 2.375,
+        "y": 4.2
+      }
+    }
+  ],
+  "fitChecks": [
+    {
+      "reason": "the rear axle tunnel through all 24 core layers must spin free on the dowel",
+      "a": {
+        "part": "chassis-core",
+        "measure": "holeWidth",
+        "hole": 0
+      },
+      "op": "clearance",
+      "b": {
+        "valueIn": 0.25
+      },
+      "minIn": 0.04,
+      "maxIn": 0.12
+    },
+    {
+      "reason": "the front axle tunnel through all 24 core layers must spin free on the dowel",
+      "a": {
+        "part": "chassis-core",
+        "measure": "holeWidth",
+        "hole": 1
+      },
+      "op": "clearance",
+      "b": {
+        "valueIn": 0.25
+      },
+      "minIn": 0.04,
+      "maxIn": 0.12
+    },
+    {
+      "reason": "the rear axle-tab hole in each Truck Side must line up loose on the dowel like the core tunnel",
+      "a": {
+        "part": "truck-side",
+        "measure": "holeWidth",
+        "hole": 1
+      },
+      "op": "clearance",
+      "b": {
+        "valueIn": 0.25
+      },
+      "minIn": 0.04,
+      "maxIn": 0.12
+    },
+    {
+      "reason": "the front axle-tab hole in each Truck Side must line up loose on the dowel like the core tunnel",
+      "a": {
+        "part": "truck-side",
+        "measure": "holeWidth",
+        "hole": 2
+      },
+      "op": "clearance",
+      "b": {
+        "valueIn": 0.25
+      },
+      "minIn": 0.04,
+      "maxIn": 0.12
+    },
+    {
+      "reason": "the wheel hub hole must press-fit snugly onto the dowel so the wheel turns with the axle",
+      "a": {
+        "part": "wheel-disc",
+        "measure": "holeWidth",
+        "hole": 0
+      },
+      "op": "clearance",
+      "b": {
+        "valueIn": 0.25
+      },
+      "minIn": 0,
+      "maxIn": 0.03
+    },
+    {
+      "reason": "the rear arch daylight must sweep clear over the 4.75-inch wheel (crown 5.38 = wheel top 4.75 + 0.63)",
+      "a": {
+        "part": "truck-side",
+        "measure": "length",
+        "d": "M 3.6 1.87 L 2.6 1.87"
+      },
+      "op": "atLeast",
+      "b": {
+        "valueIn": 0.95
+      }
+    },
+    {
+      "reason": "the bed floor must span the full 3.6-inch width of the 24-layer core stack between the sides",
+      "a": {
+        "part": "bed-floor",
+        "measure": "height"
+      },
+      "op": "match",
+      "b": {
+        "valueIn": 3.6
+      },
+      "toleranceIn": 0.125
+    },
+    {
+      "reason": "the tailgate must span the same 3.6-inch gap between the two Truck Sides",
+      "a": {
+        "part": "tailgate",
+        "measure": "width"
+      },
+      "op": "match",
+      "b": {
+        "valueIn": 3.6
+      },
+      "toleranceIn": 0.125
+    },
+    {
+      "reason": "the wrap must be exactly as long as the nose-to-roof edge of the Truck Side it glues onto (3.60 hood + 1.34 windshield + 1.86 roof)",
+      "a": {
+        "part": "hood-wrap",
+        "measure": "height"
+      },
+      "op": "match",
+      "b": {
+        "part": "truck-side",
+        "measure": "length",
+        "d": "M 12.85 1.3 L 9.26 1.09 L 8.48 0 L 6.62 0"
+      },
+      "toleranceIn": 0.125
+    },
+    {
+      "reason": "the wheel face opening must be wide enough to read as a recessed hub",
+      "a": {
+        "part": "wheel-face",
+        "measure": "holeWidth",
+        "hole": 0
+      },
+      "op": "atLeast",
+      "b": {
+        "valueIn": 2
+      }
+    }
+  ],
+  "mechanisms": [
+    {
+      "type": "revolute",
+      "id": "rear-axle",
+      "axle": "axle-dowel",
+      "bearings": [
+        {
+          "part": "chassis-core",
+          "hole": 0
+        }
+      ],
+      "hubs": [
+        {
+          "part": "wheel-disc",
+          "hole": 0
+        }
+      ],
+      "spins": [
+        "wheel-rl-d0",
+        "wheel-rl-d1",
+        "wheel-rl-d2",
+        "wheel-rl-d3",
+        "wheel-rl-d4",
+        "wheel-rl-d5",
+        "wheel-rl-d6",
+        "wheel-rl-d7",
+        "wheel-rl-d8",
+        "wheel-rl-face",
+        "wheel-rr-d0",
+        "wheel-rr-d1",
+        "wheel-rr-d2",
+        "wheel-rr-d3",
+        "wheel-rr-d4",
+        "wheel-rr-d5",
+        "wheel-rr-d6",
+        "wheel-rr-d7",
+        "wheel-rr-d8",
+        "wheel-rr-face"
+      ]
+    },
+    {
+      "type": "revolute",
+      "id": "front-axle",
+      "axle": "axle-dowel",
+      "bearings": [
+        {
+          "part": "chassis-core",
+          "hole": 1
+        }
+      ],
+      "hubs": [
+        {
+          "part": "wheel-disc",
+          "hole": 0
+        }
+      ],
+      "spins": [
+        "wheel-fl-d0",
+        "wheel-fl-d1",
+        "wheel-fl-d2",
+        "wheel-fl-d3",
+        "wheel-fl-d4",
+        "wheel-fl-d5",
+        "wheel-fl-d6",
+        "wheel-fl-d7",
+        "wheel-fl-d8",
+        "wheel-fl-face",
+        "wheel-fr-d0",
+        "wheel-fr-d1",
+        "wheel-fr-d2",
+        "wheel-fr-d3",
+        "wheel-fr-d4",
+        "wheel-fr-d5",
+        "wheel-fr-d6",
+        "wheel-fr-d7",
+        "wheel-fr-d8",
+        "wheel-fr-face"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "title": "Print, tape and trace",
+      "figures": [
+        {
+          "refPart": "chassis-core",
+          "caption": "Chassis Core — trace this 24 times. Yes, 24!"
+        }
+      ],
+      "instructions": [
+        "Print at 100% actual size and tape the pages together on the grid lines.",
+        "Trace 24 Chassis Cores, 2 Truck Sides, 1 Hood + Roof Wrap, 1 Bed Floor, 1 Tailgate, 36 Wheel Discs and 4 Wheel Face Rings.",
+        "Line the corrugation arrow up with the flutes inside the cardboard every time."
+      ],
+      "tip": "Cut ONE Chassis Core first, then use it as a stencil for the other 23 — much faster than tracing."
+    },
+    {
+      "title": "Cut, score and punch",
+      "figures": [
+        {
+          "refPart": "truck-side",
+          "caption": "Truck Side — window and arches cut out, tab legs left on."
+        }
+      ],
+      "instructions": [
+        "Grown-up job: cut every solid line with a sharp knife and metal ruler, in 2-3 light passes.",
+        "Score the two dashed lines on the Wrap and the dashed tread lines on the wheels HALF-deep only — never cut through.",
+        "Grown-up job: punch the 5/16-inch axle holes in all 24 cores and both sides, and the small centre hole in all 36 discs."
+      ]
+    },
+    {
+      "title": "Stack the 24-layer chassis core",
+      "figures": [
+        {
+          "refPart": "chassis-core",
+          "caption": "Chassis Core ×24 — glued into one 3.6-inch-thick chassis."
+        }
+      ],
+      "instructions": [
+        "Slide both dowels through two cores to line the axle tunnels up perfectly, then glue those two face to face.",
+        "Keep adding glued layers down the dowels until all 24 are stacked — spread glue right to the edges.",
+        "Slide the dowels back out and press the chassis flat under books overnight."
+      ],
+      "tip": "Wood glue is far stronger than hot glue here — the overnight wait is worth it."
+    },
+    {
+      "title": "Hang the sides on the chassis",
+      "figures": [
+        {
+          "refPart": "truck-side",
+          "caption": "Truck Side ×2 — tab-leg holes lined up with the axle tunnels."
+        }
+      ],
+      "instructions": [
+        "Slide the dowels through the chassis again and thread a Truck Side onto each end so every tab hole lines up.",
+        "Glue each side to the core face: bed wall against the floor platform, nose edge flush with the core nose.",
+        "The tab legs sandwich the core at the axles — clamp them flat while the glue grabs."
+      ]
+    },
+    {
+      "title": "Bed floor, tailgate and the hood wrap",
+      "figures": [
+        {
+          "refPart": "hood-wrap",
+          "caption": "Hood + Roof Wrap — crease at the two score lines."
+        }
+      ],
+      "instructions": [
+        "Drop the Bed Floor onto the chassis platform between the sides and glue it — the bed stays OPEN for cargo.",
+        "Glue the Tailgate across the back of the bed, tucked between the two sides.",
+        "Crease the Wrap at both score lines, then glue it on: roof first, windshield leaning back, hood meeting the nose."
+      ],
+      "tip": "Crease the wrap over a table edge for two dead-straight bends."
+    },
+    {
+      "title": "Build four fat wheels",
+      "figures": [
+        {
+          "refPart": "wheel-disc",
+          "caption": "Wheel Disc ×36 — nine discs make one 1.35-inch-thick wheel."
+        }
+      ],
+      "instructions": [
+        "Thread 9 Wheel Discs onto a spare dowel so the hub holes line up, gluing each disc to the next.",
+        "Glue a Wheel Face Ring on the outside of each stack for the recessed-hub look.",
+        "Make four wheels, slide them off the dowel and let them dry."
+      ],
+      "tip": "Sand around each rim so the wheels roll round instead of lumpy."
+    },
+    {
+      "title": "Fit the axles and go",
+      "figures": [
+        {
+          "refPart": "wheel-face",
+          "caption": "Wheel Face ×4 — dowel ends sit inside the recessed hubs."
+        }
+      ],
+      "instructions": [
+        "Push one dowel through each axle line: tab, core tunnel, tab — it must spin freely the whole way.",
+        "Grown-up job: glue the DOWEL ENDS only, then press a wheel onto each end. Never glue inside the tunnels.",
+        "Leave a dime of daylight between wheels and tabs, let it dry, then load the bed and race it."
+      ]
+    }
+  ],
+  "hero": {
+    "paths": [
+      {
+        "d": "M 0 1.12 L 6.52 1.12 L 6.62 0 L 8.48 0 L 9.26 1.09 L 12.85 1.3 L 12.85 2.85 L 12.3 2.85 C 12.1 2.85 11.9 2.62 11.7 2.4 C 11.5 3.3 11.3 4.4 10.92 5.1 C 10.75 5.55 10.5 5.7 10.15 5.7 C 9.8 5.7 9.55 5.55 9.38 5.1 C 9.3 4.2 10.25 3.1 11 2.65 C 10.9 2.2 10.65 1.92 10.25 1.87 L 9.25 1.87 C 8.85 1.92 8.6 2.35 8.5 2.95 L 4.35 2.95 C 4.25 2.35 4 1.92 3.6 1.87 L 2.6 1.87 C 2.2 1.92 1.95 2.2 1.85 2.65 C 2.6 3.1 3.55 4.2 3.47 5.1 C 3.3 5.55 3.05 5.7 2.7 5.7 C 2.35 5.7 2.1 5.55 1.93 5.1 C 1.55 4.4 1.35 3.3 1.15 2.4 C 0.95 2.62 0.75 2.85 0.55 2.85 L 0 2.85 Z",
+        "fill": "kraft",
+        "stroke": "kraftEdge",
+        "width": 2.5
+      },
+      {
+        "d": "M 6.83 0.28 L 8.02 0.3 L 8.37 1.09 L 6.83 1.09 Z",
+        "fill": "kraftDark",
+        "stroke": "kraftEdge",
+        "width": 2
+      },
+      {
+        "d": "M 0.325 4.875 C 0.325 3.563 1.388 2.5 2.7 2.5 C 4.012 2.5 5.075 3.563 5.075 4.875 C 5.075 6.187 4.012 7.25 2.7 7.25 C 1.388 7.25 0.325 6.187 0.325 4.875 Z",
+        "fill": "kraftDark",
+        "stroke": "kraftEdge",
+        "width": 2.5
+      },
+      {
+        "d": "M 7.775 4.875 C 7.775 3.563 8.838 2.5 10.15 2.5 C 11.462 2.5 12.525 3.563 12.525 4.875 C 12.525 6.187 11.462 7.25 10.15 7.25 C 8.838 7.25 7.775 6.187 7.775 4.875 Z",
+        "fill": "kraftDark",
+        "stroke": "kraftEdge",
+        "width": 2.5
+      },
+      {
+        "d": "M 1.5 4.875 C 1.5 4.212 2.037 3.675 2.7 3.675 C 3.363 3.675 3.9 4.212 3.9 4.875 C 3.9 5.538 3.363 6.075 2.7 6.075 C 2.037 6.075 1.5 5.538 1.5 4.875 Z",
+        "fill": "kraft",
+        "stroke": "kraftEdge",
+        "width": 2
+      },
+      {
+        "d": "M 8.95 4.875 C 8.95 4.212 9.487 3.675 10.15 3.675 C 10.813 3.675 11.35 4.212 11.35 4.875 C 11.35 5.538 10.813 6.075 10.15 6.075 C 9.487 6.075 8.95 5.538 8.95 4.875 Z",
+        "fill": "kraft",
+        "stroke": "kraftEdge",
+        "width": 2
+      }
+    ]
+  },
+  "assembly": {
+    "thicknessIn": 0.15,
+    "instances": [
+      {
+        "id": "core-00",
+        "part": "chassis-core",
+        "copy": 0,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          -1.8
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-01",
+        "part": "chassis-core",
+        "copy": 1,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          -1.65
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-02",
+        "part": "chassis-core",
+        "copy": 2,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          -1.5
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-03",
+        "part": "chassis-core",
+        "copy": 3,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          -1.35
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-04",
+        "part": "chassis-core",
+        "copy": 4,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          -1.2
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-05",
+        "part": "chassis-core",
+        "copy": 5,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          -1.05
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-06",
+        "part": "chassis-core",
+        "copy": 6,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          -0.9
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-07",
+        "part": "chassis-core",
+        "copy": 7,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          -0.75
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-08",
+        "part": "chassis-core",
+        "copy": 8,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          -0.6
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-09",
+        "part": "chassis-core",
+        "copy": 9,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          -0.45
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-10",
+        "part": "chassis-core",
+        "copy": 10,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          -0.3
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-11",
+        "part": "chassis-core",
+        "copy": 11,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          -0.15
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-12",
+        "part": "chassis-core",
+        "copy": 12,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-13",
+        "part": "chassis-core",
+        "copy": 13,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          0.15
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-14",
+        "part": "chassis-core",
+        "copy": 14,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          0.3
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-15",
+        "part": "chassis-core",
+        "copy": 15,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          0.45
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-16",
+        "part": "chassis-core",
+        "copy": 16,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          0.6
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-17",
+        "part": "chassis-core",
+        "copy": 17,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          0.75
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-18",
+        "part": "chassis-core",
+        "copy": 18,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          0.9
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-19",
+        "part": "chassis-core",
+        "copy": 19,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          1.05
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-20",
+        "part": "chassis-core",
+        "copy": 20,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          1.2
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-21",
+        "part": "chassis-core",
+        "copy": 21,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          1.35
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-22",
+        "part": "chassis-core",
+        "copy": 22,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          1.5
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "core-23",
+        "part": "chassis-core",
+        "copy": 23,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0.04,
+          6,
+          1.65
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "side-left",
+        "part": "truck-side",
+        "copy": 0,
+        "order": 1,
+        "step": 3,
+        "pos": [
+          0,
+          7.25,
+          -1.8
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "side-right",
+        "part": "truck-side",
+        "copy": 1,
+        "order": 1,
+        "step": 3,
+        "pos": [
+          0,
+          7.25,
+          1.8
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "floor",
+        "part": "bed-floor",
+        "copy": 0,
+        "order": 2,
+        "step": 4,
+        "pos": [
+          0.19,
+          5.05,
+          -1.8
+        ],
+        "rot": [
+          -90,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "gate",
+        "part": "tailgate",
+        "copy": 0,
+        "order": 2,
+        "step": 4,
+        "pos": [
+          0.04,
+          6.13,
+          1.8
+        ],
+        "rot": [
+          0,
+          90,
+          0
+        ]
+      },
+      {
+        "id": "wrap",
+        "part": "hood-wrap",
+        "copy": 0,
+        "order": 3,
+        "step": 4,
+        "pos": [
+          6.062,
+          6.347,
+          -1.95
+        ],
+        "rot": [
+          90,
+          -3.348,
+          90
+        ],
+        "mirror": true,
+        "folds": [
+          {
+            "slit": 0,
+            "angleDeg": -54.413
+          },
+          {
+            "slit": 1,
+            "angleDeg": 51.065
+          }
+        ]
+      },
+      {
+        "id": "axle-rear-3d",
+        "hardware": "axle-dowel",
+        "copy": 0,
+        "order": 4,
+        "step": 6,
+        "pos": [
+          2.7,
+          2.375,
+          0
+        ],
+        "rot": [
+          0,
+          90,
+          0
+        ]
+      },
+      {
+        "id": "axle-front-3d",
+        "hardware": "axle-dowel",
+        "copy": 1,
+        "order": 4,
+        "step": 6,
+        "pos": [
+          10.15,
+          2.375,
+          0
+        ],
+        "rot": [
+          0,
+          90,
+          0
+        ]
+      },
+      {
+        "id": "wheel-rl-d0",
+        "part": "wheel-disc",
+        "copy": 0,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          0.325,
+          4.75,
+          -2
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-rl-d1",
+        "part": "wheel-disc",
+        "copy": 1,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          0.325,
+          4.75,
+          -2.15
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-rl-d2",
+        "part": "wheel-disc",
+        "copy": 2,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          0.325,
+          4.75,
+          -2.3
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-rl-d3",
+        "part": "wheel-disc",
+        "copy": 3,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          0.325,
+          4.75,
+          -2.45
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-rl-d4",
+        "part": "wheel-disc",
+        "copy": 4,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          0.325,
+          4.75,
+          -2.6
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-rl-d5",
+        "part": "wheel-disc",
+        "copy": 5,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          0.325,
+          4.75,
+          -2.75
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-rl-d6",
+        "part": "wheel-disc",
+        "copy": 6,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          0.325,
+          4.75,
+          -2.9
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-rl-d7",
+        "part": "wheel-disc",
+        "copy": 7,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          0.325,
+          4.75,
+          -3.05
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-rl-d8",
+        "part": "wheel-disc",
+        "copy": 8,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          0.325,
+          4.75,
+          -3.2
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-rl-face",
+        "part": "wheel-face",
+        "copy": 0,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          0.325,
+          4.75,
+          -3.35
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-rr-d0",
+        "part": "wheel-disc",
+        "copy": 9,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          0.325,
+          4.75,
+          2
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-rr-d1",
+        "part": "wheel-disc",
+        "copy": 10,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          0.325,
+          4.75,
+          2.15
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-rr-d2",
+        "part": "wheel-disc",
+        "copy": 11,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          0.325,
+          4.75,
+          2.3
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-rr-d3",
+        "part": "wheel-disc",
+        "copy": 12,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          0.325,
+          4.75,
+          2.45
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-rr-d4",
+        "part": "wheel-disc",
+        "copy": 13,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          0.325,
+          4.75,
+          2.6
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-rr-d5",
+        "part": "wheel-disc",
+        "copy": 14,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          0.325,
+          4.75,
+          2.75
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-rr-d6",
+        "part": "wheel-disc",
+        "copy": 15,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          0.325,
+          4.75,
+          2.9
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-rr-d7",
+        "part": "wheel-disc",
+        "copy": 16,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          0.325,
+          4.75,
+          3.05
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-rr-d8",
+        "part": "wheel-disc",
+        "copy": 17,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          0.325,
+          4.75,
+          3.2
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-rr-face",
+        "part": "wheel-face",
+        "copy": 1,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          0.325,
+          4.75,
+          3.35
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-fl-d0",
+        "part": "wheel-disc",
+        "copy": 18,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          7.775,
+          4.75,
+          -2
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-fl-d1",
+        "part": "wheel-disc",
+        "copy": 19,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          7.775,
+          4.75,
+          -2.15
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-fl-d2",
+        "part": "wheel-disc",
+        "copy": 20,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          7.775,
+          4.75,
+          -2.3
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-fl-d3",
+        "part": "wheel-disc",
+        "copy": 21,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          7.775,
+          4.75,
+          -2.45
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-fl-d4",
+        "part": "wheel-disc",
+        "copy": 22,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          7.775,
+          4.75,
+          -2.6
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-fl-d5",
+        "part": "wheel-disc",
+        "copy": 23,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          7.775,
+          4.75,
+          -2.75
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-fl-d6",
+        "part": "wheel-disc",
+        "copy": 24,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          7.775,
+          4.75,
+          -2.9
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-fl-d7",
+        "part": "wheel-disc",
+        "copy": 25,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          7.775,
+          4.75,
+          -3.05
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-fl-d8",
+        "part": "wheel-disc",
+        "copy": 26,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          7.775,
+          4.75,
+          -3.2
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-fl-face",
+        "part": "wheel-face",
+        "copy": 2,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          7.775,
+          4.75,
+          -3.35
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "wheel-fr-d0",
+        "part": "wheel-disc",
+        "copy": 27,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          7.775,
+          4.75,
+          2
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-fr-d1",
+        "part": "wheel-disc",
+        "copy": 28,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          7.775,
+          4.75,
+          2.15
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-fr-d2",
+        "part": "wheel-disc",
+        "copy": 29,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          7.775,
+          4.75,
+          2.3
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-fr-d3",
+        "part": "wheel-disc",
+        "copy": 30,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          7.775,
+          4.75,
+          2.45
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-fr-d4",
+        "part": "wheel-disc",
+        "copy": 31,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          7.775,
+          4.75,
+          2.6
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-fr-d5",
+        "part": "wheel-disc",
+        "copy": 32,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          7.775,
+          4.75,
+          2.75
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-fr-d6",
+        "part": "wheel-disc",
+        "copy": 33,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          7.775,
+          4.75,
+          2.9
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-fr-d7",
+        "part": "wheel-disc",
+        "copy": 34,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          7.775,
+          4.75,
+          3.05
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-fr-d8",
+        "part": "wheel-disc",
+        "copy": 35,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          7.775,
+          4.75,
+          3.2
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "wheel-fr-face",
+        "part": "wheel-face",
+        "copy": 3,
+        "order": 5,
+        "step": 5,
+        "pos": [
+          7.775,
+          4.75,
+          3.35
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "templateGrid": {
+    "cols": 2,
+    "rows": 5
+  },
+  "templatePages": 10
+}

@@ -1,0 +1,708 @@
+{
+  "slug": "pirate-treasure-chest",
+  "title": "Pirate Treasure Chest",
+  "tagline": "A barrel-top treasure chest with a real working hasp — stash your gold, matey!",
+  "category": "chest-boxes",
+  "difficulty": 2,
+  "ageRange": "6+ with a grown-up",
+  "buildTime": "1-2 hours (plus drying time)",
+  "finishedSize": {
+    "widthIn": 10,
+    "heightIn": 7,
+    "depthIn": 7
+  },
+  "materials": [
+    "Corrugated cardboard — one big sturdy box (single-wall folds best)",
+    "White glue and hot glue",
+    "Cloth tape or duct tape for the hinge",
+    "Paint or markers to decorate (optional)",
+    "Foil or yellow paper for treasure coins (optional)"
+  ],
+  "tools": [
+    "Scissors or craft knife (grown-up job!)",
+    "Metal ruler",
+    "Pencil",
+    "Clothespins or binder clips to hold parts while glue dries",
+    "Printer + tape for the template"
+  ],
+  "parts": [
+    {
+      "id": "chest-body",
+      "name": "Chest Box",
+      "count": 1,
+      "path": "M 4.5 0 L 14.5 0 L 14.5 4.5 L 15.0 4.5 L 15.3 3.5 L 18.2 3.5 L 18.5 4.5 L 19 4.5 L 19 11.5 L 18.5 11.5 L 18.2 12.5 L 15.3 12.5 L 15.0 11.5 L 14.5 11.5 L 14.5 16 L 4.5 16 L 4.5 11.5 L 4.0 11.5 L 3.7 12.5 L 0.8 12.5 L 0.5 11.5 L 0 11.5 L 0 4.5 L 0.5 4.5 L 0.8 3.5 L 3.7 3.5 L 4.0 4.5 L 4.5 4.5 Z",
+      "holes": [],
+      "slits": [
+        "M 4.5 4.5 L 14.5 4.5",
+        "M 4.5 11.5 L 14.5 11.5",
+        "M 4.5 4.5 L 4.5 11.5",
+        "M 14.5 4.5 L 14.5 11.5",
+        "M 15.0 4.5 L 18.5 4.5",
+        "M 15.0 11.5 L 18.5 11.5",
+        "M 0.5 4.5 L 4.0 4.5",
+        "M 0.5 11.5 L 4.0 11.5"
+      ],
+      "corrugation": "horizontal",
+      "labelAt": {
+        "x": 9.5,
+        "y": 7.5
+      },
+      "arrowAt": {
+        "x": 9.5,
+        "y": 9
+      }
+    },
+    {
+      "id": "lid-end",
+      "name": "Lid Arch End",
+      "count": 2,
+      "path": "M 0 2.5 C 0 1.0 1.6 0 3.5 0 C 5.4 0 7 1.0 7 2.5 Z",
+      "holes": [],
+      "slits": [],
+      "corrugation": "horizontal",
+      "labelAt": {
+        "x": 3.5,
+        "y": 1.3
+      },
+      "arrowAt": {
+        "x": 3.5,
+        "y": 1.95
+      }
+    },
+    {
+      "id": "lid-wrap",
+      "name": "Lid Wrap",
+      "count": 1,
+      "path": "M 0 0 L 10 0 L 10 9.4 L 0 9.4 Z",
+      "holes": [],
+      "slits": [
+        "M 0 0.8 L 10 0.8",
+        "M 0 1.55 L 10 1.55",
+        "M 0 2.3 L 10 2.3",
+        "M 0 3.05 L 10 3.05",
+        "M 0 3.8 L 10 3.8",
+        "M 0 4.55 L 10 4.55",
+        "M 0 5.3 L 10 5.3",
+        "M 0 6.05 L 10 6.05",
+        "M 0 6.8 L 10 6.8",
+        "M 0 7.55 L 10 7.55",
+        "M 0 8.3 L 10 8.3"
+      ],
+      "corrugation": "horizontal",
+      "labelAt": {
+        "x": 5,
+        "y": 4.93
+      },
+      "arrowAt": {
+        "x": 5,
+        "y": 5.68
+      }
+    },
+    {
+      "id": "hasp",
+      "name": "Hasp Strap",
+      "count": 1,
+      "path": "M 0 0 L 1.4 0 L 1.4 2.4 C 1.4 3.3 0 3.3 0 2.4 Z",
+      "holes": [
+        "M 0.7 1.95 C 0.92 1.95 1.1 2.13 1.1 2.35 C 1.1 2.57 0.92 2.75 0.7 2.75 C 0.48 2.75 0.3 2.57 0.3 2.35 C 0.3 2.13 0.48 1.95 0.7 1.95 Z"
+      ],
+      "slits": [
+        "M 0 0.9 L 1.4 0.9"
+      ],
+      "corrugation": "horizontal",
+      "labelAt": {
+        "x": 0.7,
+        "y": 1.45
+      }
+    },
+    {
+      "id": "button",
+      "name": "Lock Button",
+      "count": 2,
+      "path": "M 0.35 0 C 0.54 0 0.7 0.16 0.7 0.35 C 0.7 0.54 0.54 0.7 0.35 0.7 C 0.16 0.7 0 0.54 0 0.35 C 0 0.16 0.16 0 0.35 0 Z",
+      "holes": [],
+      "slits": [],
+      "corrugation": "horizontal",
+      "labelAt": {
+        "x": 0.35,
+        "y": 0.35
+      }
+    }
+  ],
+  "fitChecks": [
+    {
+      "reason": "lid wrap must cover the arch end's curved edge exactly",
+      "a": {
+        "part": "lid-wrap",
+        "measure": "height"
+      },
+      "op": "match",
+      "b": {
+        "part": "lid-end",
+        "measure": "length",
+        "d": "M 0 2.5 C 0 1.0 1.6 0 3.5 0 C 5.4 0 7 1.0 7 2.5"
+      },
+      "toleranceIn": 0.2
+    },
+    {
+      "reason": "lid wrap must be exactly as wide as the box is long",
+      "a": {
+        "part": "lid-wrap",
+        "measure": "width"
+      },
+      "op": "match",
+      "b": {
+        "part": "chest-body",
+        "measure": "length",
+        "d": "M 4.5 0 L 14.5 0"
+      },
+      "toleranceIn": 0.1
+    },
+    {
+      "reason": "arch end base must equal the box depth so the lid sits flush",
+      "a": {
+        "part": "lid-end",
+        "measure": "width"
+      },
+      "op": "match",
+      "b": {
+        "part": "chest-body",
+        "measure": "length",
+        "d": "M 0 4.5 L 0 11.5"
+      },
+      "toleranceIn": 0.1
+    },
+    {
+      "reason": "hasp keyhole must drop over the lock button without jamming",
+      "a": {
+        "part": "hasp",
+        "measure": "holeWidth",
+        "hole": 0
+      },
+      "op": "clearance",
+      "b": {
+        "part": "button",
+        "measure": "width"
+      },
+      "minIn": 0.05,
+      "maxIn": 0.3
+    }
+  ],
+  "steps": [
+    {
+      "title": "Print, tape and trace",
+      "figures": [
+        {
+          "refPart": "chest-body",
+          "caption": "The Chest Box — one big cross shape that folds into the whole box."
+        },
+        {
+          "refPart": "lid-end",
+          "caption": "The Lid Arch End — trace this twice."
+        }
+      ],
+      "instructions": [
+        "Print the template at 100% actual size and tape the pages together using the grid.",
+        "Trace the Chest Box ONCE, the Lid Arch End TWICE, the Lid Wrap ONCE, the Hasp Strap ONCE and the Lock Button TWICE onto cardboard.",
+        "Keep the corrugation arrows lined up with the little waves inside the cardboard.",
+        "Poke a pencil dot through the ends of every dashed line so you can draw the fold lines on your cardboard too."
+      ],
+      "tip": "Trace on the plain side of the cardboard so pencil lines are easy to see."
+    },
+    {
+      "title": "Cut out the parts",
+      "figures": [
+        {
+          "refPart": "lid-wrap",
+          "caption": "The Lid Wrap — cut the outline only. The dashed lines get scored, not cut."
+        }
+      ],
+      "instructions": [
+        "Grown-up job: cut along all solid lines with a sharp knife and metal ruler, in 2-3 light passes.",
+        "Cut out the round keyhole in the Hasp Strap too.",
+        "Do NOT cut the dashed lines — score them lightly (half-deep) with the knife against the ruler so they fold cleanly.",
+        "Kids can help by holding the ruler steady and collecting the offcuts."
+      ]
+    },
+    {
+      "title": "Fold and glue the box",
+      "figures": [
+        {
+          "paths": [
+            {
+              "d": "M 1.0 1.6 L 3.4 1.6 L 3.4 3.2 L 1.0 3.2 Z",
+              "stroke": "kraftEdge",
+              "fill": "kraft",
+              "width": 2
+            },
+            {
+              "d": "M 1.0 1.6 L 1.35 0.7 L 3.75 0.7 L 3.4 1.6 Z",
+              "stroke": "kraftEdge",
+              "fill": "kraftDark",
+              "width": 2
+            },
+            {
+              "d": "M 1.0 1.6 L 0.35 1.0 L 0.35 2.6 L 1.0 3.2 Z",
+              "stroke": "kraftEdge",
+              "fill": "kraft",
+              "width": 2
+            },
+            {
+              "d": "M 4.0 1.2 C 4.35 1.6 4.35 2.2 4.0 2.6 M 3.85 2.4 L 4.0 2.6 L 4.2 2.5",
+              "stroke": "black",
+              "width": 1.5
+            }
+          ],
+          "caption": "Fold all four walls up along the scored lines, then fold the little tabs in."
+        }
+      ],
+      "instructions": [
+        "Crease every scored line by folding it against the edge of a table or ruler.",
+        "Fold the four walls up so the pencil lines end up on the inside.",
+        "Fold the tabs on the end walls inward and glue them to the inside of the front and back walls.",
+        "Hold each corner with clothespins or tape while the glue dries."
+      ],
+      "tip": "Hot glue is faster here — but that's a grown-up job. Press each corner for 30 seconds."
+    },
+    {
+      "title": "Build the curved lid",
+      "figures": [
+        {
+          "paths": [
+            {
+              "d": "M 0.3 2.2 C 0.3 0.9 1.15 0.25 2.15 0.25 C 3.15 0.25 4.0 0.9 4.0 2.2 Z",
+              "stroke": "kraftEdge",
+              "fill": "kraft",
+              "width": 2
+            },
+            {
+              "d": "M 0.15 2.05 C 0.35 0.85 1.2 0.12 2.3 0.1 L 3.2 0.1",
+              "stroke": "kraftEdge",
+              "width": 3
+            },
+            {
+              "d": "M 3.5 0.4 C 3.9 0.7 4.15 1.1 4.25 1.6 M 4.05 1.45 L 4.25 1.6 L 4.32 1.35",
+              "stroke": "black",
+              "width": 1.5
+            }
+          ],
+          "caption": "The scored Lid Wrap bends over the two arch ends like a barrel top."
+        }
+      ],
+      "instructions": [
+        "Gently crease each dashed line on the Lid Wrap so the whole sheet curves like a wave.",
+        "Grown-up job: run a line of hot glue along the curved edge of one Lid Arch End.",
+        "Starting at a back corner, press the wrap onto the curve a little at a time until you reach the front.",
+        "Glue the second arch to the other side, then trim any extra wrap at the front so it's flush."
+      ],
+      "tip": "Line the arches up flush with the ends of the wrap so the lid is exactly as wide as the box."
+    },
+    {
+      "title": "Hinge the lid",
+      "figures": [
+        {
+          "paths": [
+            {
+              "d": "M 0.9 1.7 L 3.1 1.7 L 3.1 3.1 L 0.9 3.1 Z",
+              "stroke": "kraftEdge",
+              "fill": "kraft",
+              "width": 2
+            },
+            {
+              "d": "M 0.9 1.7 C 0.9 0.75 1.55 0.3 2.0 0.3 C 2.45 0.3 3.1 0.75 3.1 1.7 Z",
+              "stroke": "kraftEdge",
+              "fill": "kraftDark",
+              "width": 2
+            },
+            {
+              "d": "M 0.75 1.35 L 0.75 2.05",
+              "stroke": "black",
+              "width": 2.5
+            }
+          ],
+          "caption": "Tape along the back seam — outside AND inside — makes a strong hinge."
+        }
+      ],
+      "instructions": [
+        "Set the lid on the box and line up the back edges exactly.",
+        "Run one long strip of cloth tape along the back seam on the outside.",
+        "Open the lid and run a second strip along the same seam on the inside.",
+        "Open and shut it a few times — a good pirate checks the hinge!"
+      ],
+      "tip": "Cloth tape or duct tape bends thousands of times without tearing — paper tape doesn't."
+    },
+    {
+      "title": "Add the hasp and lock button",
+      "figures": [
+        {
+          "paths": [
+            {
+              "d": "M 0.5 0.3 L 3.5 0.3 L 3.5 1.0 L 0.5 1.0 Z",
+              "stroke": "kraftEdge",
+              "fill": "kraftDark",
+              "width": 2
+            },
+            {
+              "d": "M 0.5 1.0 L 3.5 1.0 L 3.5 2.8 L 0.5 2.8 Z",
+              "stroke": "kraftEdge",
+              "fill": "kraft",
+              "width": 2
+            },
+            {
+              "d": "M 1.72 0.55 L 2.28 0.55 L 2.28 1.75 C 2.28 2.1 1.72 2.1 1.72 1.75 Z",
+              "stroke": "kraftEdge",
+              "fill": "kraft",
+              "width": 2
+            },
+            {
+              "d": "M 2.0 1.56 C 2.09 1.56 2.16 1.63 2.16 1.72 C 2.16 1.81 2.09 1.88 2.0 1.88 C 1.91 1.88 1.84 1.81 1.84 1.72 C 1.84 1.63 1.91 1.56 2.0 1.56 Z",
+              "stroke": "black",
+              "width": 1.5
+            },
+            {
+              "d": "M 2.0 2.25 L 2.0 2.6 M 1.88 2.48 L 2.0 2.6 L 2.12 2.48",
+              "stroke": "black",
+              "width": 1.5
+            }
+          ],
+          "caption": "The hasp folds over the lid edge and its keyhole drops over the button."
+        }
+      ],
+      "instructions": [
+        "Glue the two Lock Buttons on top of each other to make one thick button.",
+        "Glue the short end of the Hasp Strap (above the dashed line) to the middle of the lid front, so the strap folds down over the edge.",
+        "Close the lid, mark where the keyhole lands on the box front, and glue the button right there.",
+        "Drop the keyhole over the button to lock your treasure in!"
+      ],
+      "tip": "The keyhole is a little bigger than the button on purpose — that's what makes it easy to lock and unlock."
+    },
+    {
+      "title": "Decorate like a real pirate chest",
+      "figures": [
+        {
+          "paths": [
+            {
+              "d": "M 0.6 0.25 C 0.79 0.25 0.95 0.41 0.95 0.6 C 0.95 0.79 0.79 0.95 0.6 0.95 C 0.41 0.95 0.25 0.79 0.25 0.6 C 0.25 0.41 0.41 0.25 0.6 0.25 Z",
+              "stroke": "kraftEdge",
+              "fill": "kraft",
+              "width": 2
+            },
+            {
+              "d": "M 1.4 0.15 C 1.59 0.15 1.75 0.31 1.75 0.5 C 1.75 0.69 1.59 0.85 1.4 0.85 C 1.21 0.85 1.05 0.69 1.05 0.5 C 1.05 0.31 1.21 0.15 1.4 0.15 Z",
+              "stroke": "kraftEdge",
+              "fill": "kraftDark",
+              "width": 2
+            },
+            {
+              "d": "M 1.0 0.8 C 1.19 0.8 1.35 0.96 1.35 1.15 C 1.35 1.34 1.19 1.5 1.0 1.5 C 0.81 1.5 0.65 1.34 0.65 1.15 C 0.65 0.96 0.81 0.8 1.0 0.8 Z",
+              "stroke": "kraftEdge",
+              "fill": "kraft",
+              "width": 2
+            }
+          ],
+          "caption": "Cut cardboard circles and wrap them in foil — instant treasure."
+        }
+      ],
+      "instructions": [
+        "Draw or paint wood planks on the box and lid — brown stripes with little dots for nails.",
+        "Color the straps and hasp black or gold so they look like iron bands.",
+        "Write your pirate name on the lid, or draw a skull and crossbones.",
+        "Fill it with treasure: foil coins, shells, jewels — whatever your crew guards best."
+      ],
+      "tip": "Markers are faster than paint and never warp the cardboard."
+    }
+  ],
+  "hero": {
+    "paths": [
+      {
+        "d": "M 0 3.6 L 0 3.2 C 0 1.0 2.2 0.25 5 0.25 C 7.8 0.25 10 1.0 10 3.2 L 10 3.6 Z",
+        "fill": "kraft",
+        "stroke": "kraftEdge",
+        "width": 2.5
+      },
+      {
+        "d": "M 0 3.0 L 10 3.0 L 10 3.6 L 0 3.6 Z",
+        "fill": "kraftDark",
+        "stroke": "none"
+      },
+      {
+        "d": "M 0 3.6 L 10 3.6 L 10 7.8 L 0 7.8 Z",
+        "fill": "kraft",
+        "stroke": "kraftEdge",
+        "width": 2.5
+      },
+      {
+        "d": "M 1.7 0.62 C 2.0 0.5 2.35 0.44 2.7 0.4 L 2.7 3.6 L 1.7 3.6 Z",
+        "fill": "kraftDark",
+        "stroke": "kraftEdge",
+        "width": 1.5
+      },
+      {
+        "d": "M 7.3 0.4 C 7.65 0.44 8.0 0.5 8.3 0.62 L 8.3 3.6 L 7.3 3.6 Z",
+        "fill": "kraftDark",
+        "stroke": "kraftEdge",
+        "width": 1.5
+      },
+      {
+        "d": "M 1.7 3.6 L 2.7 3.6 L 2.7 7.8 L 1.7 7.8 Z",
+        "fill": "kraftDark",
+        "stroke": "kraftEdge",
+        "width": 1.5
+      },
+      {
+        "d": "M 7.3 3.6 L 8.3 3.6 L 8.3 7.8 L 7.3 7.8 Z",
+        "fill": "kraftDark",
+        "stroke": "kraftEdge",
+        "width": 1.5
+      },
+      {
+        "d": "M 4.35 2.75 L 5.65 2.75 L 5.65 4.55 C 5.65 5.35 4.35 5.35 4.35 4.55 Z",
+        "fill": "kraft",
+        "stroke": "kraftEdge",
+        "width": 2
+      },
+      {
+        "d": "M 5 4.32 C 5.21 4.32 5.38 4.49 5.38 4.7 C 5.38 4.91 5.21 5.08 5 5.08 C 4.79 5.08 4.62 4.91 4.62 4.7 C 4.62 4.49 4.79 4.32 5 4.32 Z",
+        "fill": "white",
+        "stroke": "black",
+        "width": 2
+      },
+      {
+        "d": "M 0.3 5.4 L 1.7 5.4 M 2.7 5.4 L 4.35 5.4 M 5.65 5.4 L 7.3 5.4 M 8.3 5.4 L 9.7 5.4 M 0.3 6.6 L 1.7 6.6 M 2.7 6.6 L 4.35 6.6 M 5.65 6.6 L 7.3 6.6 M 8.3 6.6 L 9.7 6.6",
+        "fill": "none",
+        "stroke": "kraftEdge",
+        "width": 1.2
+      },
+      {
+        "d": "M 3.55 0.42 C 3.5 1.3 3.47 2.3 3.47 3.0 M 6.45 0.42 C 6.5 1.3 6.53 2.3 6.53 3.0",
+        "fill": "none",
+        "stroke": "kraftEdge",
+        "width": 1.2
+      }
+    ]
+  },
+  "templateGrid": {
+    "cols": 3,
+    "rows": 4
+  },
+  "templatePages": 12,
+  "createdAt": "2026-08-10T23:28:10.870Z",
+  "brief": "A cardboard treasure chest with hinged opening lid, about 10 x 7 x 7 inches, with a curved lid, a hasp detail, difficulty 2, for a 6-year-old pirate fan",
+  "assembly": {
+    "thicknessIn": 0.15,
+    "instances": [
+      {
+        "id": "box",
+        "part": "chest-body",
+        "copy": 0,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          -9.5,
+          0.02,
+          -8
+        ],
+        "rot": [
+          -90,
+          0,
+          0
+        ],
+        "mirror": false,
+        "folds": [
+          {
+            "slit": 0,
+            "angleDeg": 89.6
+          },
+          {
+            "slit": 1,
+            "angleDeg": 89.6
+          },
+          {
+            "slit": 2,
+            "angleDeg": 89.6
+          },
+          {
+            "slit": 3,
+            "angleDeg": 89.6
+          },
+          {
+            "slit": 4,
+            "angleDeg": 100
+          },
+          {
+            "slit": 5,
+            "angleDeg": 100
+          },
+          {
+            "slit": 6,
+            "angleDeg": 100
+          },
+          {
+            "slit": 7,
+            "angleDeg": 100
+          }
+        ]
+      },
+      {
+        "id": "arch-left",
+        "part": "lid-end",
+        "copy": 0,
+        "order": 7,
+        "step": 3,
+        "pos": [
+          -5,
+          7,
+          3.5
+        ],
+        "rot": [
+          0,
+          90,
+          0
+        ],
+        "mirror": false
+      },
+      {
+        "id": "arch-right",
+        "part": "lid-end",
+        "copy": 1,
+        "order": 7,
+        "step": 3,
+        "pos": [
+          5,
+          7,
+          -3.5
+        ],
+        "rot": [
+          0,
+          -90,
+          0
+        ],
+        "mirror": false
+      },
+      {
+        "id": "lid-wrap",
+        "part": "lid-wrap",
+        "copy": 0,
+        "order": 8,
+        "step": 3,
+        "pos": [
+          5,
+          13.54,
+          1.07
+        ],
+        "rot": [
+          -15.9,
+          180,
+          0
+        ],
+        "mirror": false,
+        "folds": [
+          {
+            "slit": 0,
+            "angleDeg": 22
+          },
+          {
+            "slit": 1,
+            "angleDeg": 17.6
+          },
+          {
+            "slit": 2,
+            "angleDeg": 13.4
+          },
+          {
+            "slit": 3,
+            "angleDeg": 10.6
+          },
+          {
+            "slit": 4,
+            "angleDeg": 9
+          },
+          {
+            "slit": 5,
+            "angleDeg": 8.3
+          },
+          {
+            "slit": 6,
+            "angleDeg": 8.6
+          },
+          {
+            "slit": 7,
+            "angleDeg": 9.9
+          },
+          {
+            "slit": 8,
+            "angleDeg": 12.1
+          },
+          {
+            "slit": 9,
+            "angleDeg": 15.8
+          },
+          {
+            "slit": 10,
+            "angleDeg": 25.2
+          }
+        ]
+      },
+      {
+        "id": "hasp",
+        "part": "hasp",
+        "copy": 0,
+        "order": 9,
+        "step": 5,
+        "pos": [
+          -0.7,
+          5.4,
+          3.66
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": false,
+        "folds": [
+          {
+            "slit": 0,
+            "angleDeg": -16
+          }
+        ]
+      },
+      {
+        "id": "button-inner",
+        "part": "button",
+        "copy": 0,
+        "order": 10,
+        "step": 5,
+        "pos": [
+          -0.35,
+          3.4,
+          3.505
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": false
+      },
+      {
+        "id": "button-outer",
+        "part": "button",
+        "copy": 1,
+        "order": 10,
+        "step": 5,
+        "pos": [
+          -0.35,
+          3.4,
+          3.71
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "mirror": false
+      }
+    ]
+  }
+}

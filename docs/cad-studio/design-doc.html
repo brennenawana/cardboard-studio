@@ -1,0 +1,1511 @@
+<title>Cutting Mat — the Cardboard Studio CAD</title>
+
+<style>
+/* ============ tokens: full light palette on bare :root ============ */
+:root{
+  --bg:#FAF6EF;
+  --surface:#FFFCF4;
+  --panel:#F2E9D8;
+  --panel-2:#EBDFC9;
+  --line:#DFD2BA;
+  --line-2:#C6B394;
+  --ink:#2B2523;
+  --ink-soft:#4A413B;
+  --muted:#706457;
+  --kraft:#C9AB84;
+  --kraft-deep:#A5845B;
+  --kraft-dim:#EBDFC9;
+  --ink-on-kraft:#2B2523;
+  --crimson:#A8214A;
+  --crimson-ink:#8C1B3E;
+  --crimson-soft:#F5DDE5;
+  --you:#3E6B8C;
+  --you-soft:#DFE9F0;
+  --good:#3E7A4E;
+  --good-soft:#E2EEE3;
+  --warn:#8A6512;
+  --warn-soft:#F6EBCC;
+  --bad:#B3372B;
+  --bad-soft:#F5DFDB;
+  --json-bg:#FBF6EA;
+  --add-bg:#E2EEE3;
+  --add-ink:#2E5C3A;
+  --del-bg:#F5DFDB;
+  --del-ink:#8C2B21;
+  --grid:#E4D8C1;
+  --grid-major:#D3C3A4;
+  --shadow:0 1px 2px rgba(43,37,35,.08),0 6px 18px -8px rgba(43,37,35,.18);
+  --sans:"Gill Sans","Gill Sans MT",Seravek,"Trebuchet MS",Verdana,sans-serif;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#211C18;
+    --surface:#2A2420;
+    --panel:#332B25;
+    --panel-2:#3B322A;
+    --line:#463C32;
+    --line-2:#5C4F41;
+    --ink:#EDE3D2;
+    --ink-soft:#D7C9B4;
+    --muted:#A2937F;
+    --kraft:#C0A075;
+    --kraft-deep:#7E6444;
+    --kraft-dim:#3B322A;
+    --ink-on-kraft:#2B2523;
+    --crimson:#D9587E;
+    --crimson-ink:#E27C99;
+    --crimson-soft:#452431;
+    --you:#7FA8C9;
+    --you-soft:#2C3843;
+    --good:#7FB98B;
+    --good-soft:#263429;
+    --warn:#D9A83F;
+    --warn-soft:#3B3120;
+    --bad:#DB7A6A;
+    --bad-soft:#43271F;
+    --json-bg:#26211D;
+    --add-bg:#263429;
+    --add-ink:#9CCBA6;
+    --del-bg:#43271F;
+    --del-ink:#E49A8D;
+    --grid:#37302A;
+    --grid-major:#453B31;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 20px -10px rgba(0,0,0,.5);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#211C18;
+  --surface:#2A2420;
+  --panel:#332B25;
+  --panel-2:#3B322A;
+  --line:#463C32;
+  --line-2:#5C4F41;
+  --ink:#EDE3D2;
+  --ink-soft:#D7C9B4;
+  --muted:#A2937F;
+  --kraft:#C0A075;
+  --kraft-deep:#7E6444;
+  --kraft-dim:#3B322A;
+  --ink-on-kraft:#2B2523;
+  --crimson:#D9587E;
+  --crimson-ink:#E27C99;
+  --crimson-soft:#452431;
+  --you:#7FA8C9;
+  --you-soft:#2C3843;
+  --good:#7FB98B;
+  --good-soft:#263429;
+  --warn:#D9A83F;
+  --warn-soft:#3B3120;
+  --bad:#DB7A6A;
+  --bad-soft:#43271F;
+  --json-bg:#26211D;
+  --add-bg:#263429;
+  --add-ink:#9CCBA6;
+  --del-bg:#43271F;
+  --del-ink:#E49A8D;
+  --grid:#37302A;
+  --grid-major:#453B31;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 20px -10px rgba(0,0,0,.5);
+}
+
+/* ============ base ============ */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--serif);font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 96px}
+h1,h2,h3,h4{font-family:var(--sans);line-height:1.15;text-wrap:balance;margin:0}
+p{margin:.7em 0;max-width:72ch}
+a{color:var(--crimson-ink);text-decoration-color:color-mix(in srgb,var(--crimson) 45%,transparent);text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+strong{color:var(--ink)}
+code{font-family:var(--mono);font-size:.86em;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:.08em .32em}
+button{font-family:var(--sans);cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--crimson);outline-offset:2px}
+.scroll{overflow-x:auto}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  html{scroll-behavior:auto}
+}
+
+/* ============ masthead ============ */
+header.mast{
+  border-bottom:2px solid var(--ink);
+  background:
+    repeating-linear-gradient(90deg,
+      color-mix(in srgb,var(--kraft) 14%,transparent) 0 7px,
+      transparent 7px 14px),
+    var(--bg);
+}
+.mast-in{max-width:1080px;margin:0 auto;padding:34px 20px 26px}
+.plate{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;justify-content:space-between}
+.brand{font-family:var(--sans);font-weight:700;letter-spacing:.22em;font-size:.78rem;text-transform:uppercase}
+.brand b{color:var(--crimson-ink);font-weight:700}
+.sheetno{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+h1.title{font-size:clamp(2.3rem,6vw,3.6rem);font-weight:700;letter-spacing:-.01em;margin:.35em 0 .1em}
+h1.title .tail{color:var(--kraft-deep);font-weight:600}
+.dek{font-size:1.16rem;max-width:62ch;color:var(--ink-soft);margin:.4em 0 0}
+.dek b{color:var(--crimson-ink)}
+.mast-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;font-family:var(--sans);font-size:.78rem}
+.mast-meta span{border:1px solid var(--line-2);border-radius:999px;padding:.2em .8em;color:var(--muted);background:var(--surface)}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px}
+nav.toc a{
+  font-family:var(--sans);font-size:.8rem;text-decoration:none;color:var(--ink-soft);
+  border:1px solid var(--line-2);background:var(--surface);border-radius:6px;padding:.32em .7em;
+}
+nav.toc a:hover{border-color:var(--crimson);color:var(--crimson-ink)}
+
+/* ============ sheets (sections) ============ */
+section.sheet{position:relative;margin-top:72px;padding-top:8px}
+section.sheet::before{
+  content:attr(data-n);
+  position:absolute;top:-18px;right:-6px;z-index:0;
+  font-family:var(--sans);font-weight:700;font-size:7.2rem;line-height:1;
+  color:var(--ink);opacity:.055;pointer-events:none;user-select:none;
+}
+.sheet-label{
+  font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--crimson-ink);display:flex;align-items:center;gap:12px;
+}
+.sheet-label::after{content:"";flex:0 1 160px;border-top:2px dashed var(--line-2)}
+section.sheet h2{font-size:clamp(1.5rem,3.4vw,2.05rem);font-weight:700;margin:.35em 0 .3em;position:relative;z-index:1}
+.lede{font-size:1.06rem;color:var(--ink-soft)}
+
+/* rejected strip */
+.rejected{
+  border-left:3px solid var(--crimson);background:var(--crimson-soft);
+  border-radius:0 8px 8px 0;padding:10px 16px;margin:18px 0 0;font-size:.92rem;
+}
+.rejected b{font-family:var(--sans);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--crimson-ink);display:block;margin-bottom:2px}
+.rejected span{display:inline-block;margin-right:1.1em;color:var(--ink-soft)}
+
+/* ============ decision cards ============ */
+.decisions{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:22px}
+.dcard{
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:18px 18px 16px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.dcard::before{content:"";position:absolute;inset:0 auto 0 0;width:5px;background:var(--kraft)}
+.dcard .dn{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--kraft-deep)}
+.dcard h3{font-size:1.02rem;margin:.25em 0 .35em}
+.dcard p{font-size:.9rem;margin:0;color:var(--ink-soft);line-height:1.5}
+.dcard a.go{font-family:var(--sans);font-size:.78rem;display:inline-block;margin-top:.7em}
+
+/* ============ the mini studio ============ */
+.studio{
+  margin-top:22px;border:2px solid var(--ink);border-radius:12px;background:var(--surface);
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.studio-head{
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;
+  padding:10px 16px;border-bottom:1px solid var(--line);
+  background:repeating-linear-gradient(90deg,color-mix(in srgb,var(--kraft) 20%,transparent) 0 6px,transparent 6px 12px),var(--panel);
+}
+.studio-head .t{font-family:var(--sans);font-weight:700;font-size:.86rem;letter-spacing:.08em}
+.goalcard{display:flex;flex-wrap:wrap;gap:4px 16px;font-family:var(--sans);font-size:.78rem}
+.goalcard .g{color:var(--muted);display:flex;gap:6px;align-items:center}
+.goalcard .g .tick{
+  width:14px;height:14px;border:1.5px solid var(--line-2);border-radius:4px;display:inline-block;flex:none;
+  position:relative;transition:background .25s,border-color .25s;
+}
+.goalcard .g.done{color:var(--good)}
+.goalcard .g.done .tick{background:var(--good);border-color:var(--good)}
+.goalcard .g.done .tick::after{
+  content:"";position:absolute;left:3.5px;top:.5px;width:4px;height:8px;
+  border:solid var(--bg);border-width:0 2px 2px 0;transform:rotate(40deg);
+}
+.studio-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:0}
+.studio-grid > div{min-width:0}
+.pane{border-bottom:1px solid var(--line)}
+.pane + .pane{border-left:1px solid var(--line)}
+.pane-head{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:space-between;
+  font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);padding:9px 14px 7px;
+}
+.pane-head .hint{font-weight:400;letter-spacing:.02em;text-transform:none;font-size:.76rem;color:var(--muted)}
+svg.mat,svg.fold{display:block;width:100%;height:auto;background:var(--bg)}
+svg.mat{aspect-ratio:16/7.5;touch-action:none;cursor:default}
+svg.mat.punchmode{cursor:crosshair}
+svg.fold{aspect-ratio:21/8}
+.verbbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:10px 14px;border-top:1px dashed var(--line)}
+.verbbar .vb{
+  font-size:.74rem;font-weight:700;letter-spacing:.08em;border:1.5px solid var(--line-2);
+  background:var(--surface);color:var(--ink-soft);border-radius:7px;padding:.38em .75em;
+}
+.verbbar .vb.live{border-color:var(--ink);color:var(--ink)}
+.verbbar .vb.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.verbbar .vb.dim{opacity:.45;cursor:not-allowed}
+.verbbar .fit{
+  font-size:.72rem;font-weight:700;border:1.5px solid var(--kraft-deep);border-radius:7px;overflow:hidden;display:none;
+}
+.verbbar .fit.show{display:inline-flex}
+.verbbar .fit button{border:0;background:var(--surface);color:var(--ink-soft);padding:.4em .7em;font-size:.72rem;font-weight:700}
+.verbbar .fit button.on{background:var(--kraft);color:var(--ink-on-kraft)}
+.verbnote{font-family:var(--sans);font-size:.72rem;color:var(--muted);margin-left:auto}
+.lintstrip{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 12px;font-family:var(--sans)}
+.lint-chip{
+  display:inline-flex;align-items:center;gap:8px;font-size:.76rem;font-weight:600;
+  border-radius:999px;padding:.28em .5em .28em .85em;border:1px solid transparent;
+}
+.lint-chip.ok{background:var(--good-soft);color:var(--good);padding-right:.85em}
+.lint-chip.warn{background:var(--warn-soft);color:var(--warn)}
+.lint-chip button{
+  border:1px solid currentColor;background:transparent;color:inherit;border-radius:999px;
+  font-size:.7rem;font-weight:700;padding:.15em .6em;
+}
+.foldbar{display:flex;align-items:center;gap:10px;padding:10px 14px;border-top:1px dashed var(--line);font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--muted)}
+.foldbar input[type=range]{flex:1;accent-color:var(--crimson);min-width:60px}
+.ba-toggle{display:none;border:1.5px solid var(--crimson);border-radius:7px;overflow:hidden}
+.ba-toggle.show{display:inline-flex}
+.ba-toggle button{border:0;background:var(--surface);color:var(--crimson-ink);padding:.32em .6em;font-size:.68rem;font-weight:700;letter-spacing:.08em}
+.ba-toggle button.on{background:var(--crimson);color:#FAF6EF}
+
+/* json pane */
+.jsonpane{background:var(--json-bg)}
+.jsonbox{position:relative;height:330px;overflow:auto;padding:4px 0 12px;font-family:var(--mono);font-size:.75rem;line-height:1.5}
+.jl{padding:0 16px;white-space:pre}
+.jl.chg{animation:flashline 1.2s ease-out}
+@keyframes flashline{0%{background:var(--warn-soft)}100%{background:transparent}}
+.jl.add{background:var(--add-bg);color:var(--add-ink)}
+.jl.del{background:var(--del-bg);color:var(--del-ink);text-decoration:line-through;text-decoration-thickness:1px;opacity:.85}
+.livedot{width:8px;height:8px;border-radius:50%;background:var(--good);display:inline-block;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* chat rail */
+.chatpane{display:flex;flex-direction:column}
+.chatlog{flex:1;overflow:auto;max-height:270px;padding:4px 14px 10px;display:flex;flex-direction:column;gap:8px;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 22px);mask-image:linear-gradient(180deg,transparent 0,#000 22px)}
+.bub{border-radius:10px;padding:8px 12px;font-size:.85rem;line-height:1.45;max-width:95%;font-family:var(--sans)}
+.bub.you{background:var(--you-soft);color:var(--ink);align-self:flex-end;border-bottom-right-radius:3px}
+.bub.claude{background:var(--panel);border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:3px}
+.bub .who{font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:2px}
+.bub.you .who{color:var(--you)}
+.bub.claude .who{color:var(--crimson-ink)}
+.pipeline{display:flex;flex-wrap:wrap;gap:4px;margin:.5em 0;font-family:var(--mono);font-size:.62rem;letter-spacing:.06em}
+.pipeline span{border:1px solid var(--line-2);border-radius:4px;padding:.1em .45em;color:var(--muted);opacity:.4;transition:all .2s}
+.pipeline span.lit{opacity:1;color:var(--good);border-color:var(--good)}
+.chips{display:flex;flex-direction:column;gap:5px;margin:.6em 0}
+.chip{
+  font-size:.78rem;font-weight:600;background:var(--surface);border:1px solid var(--kraft-deep);
+  border-radius:7px;padding:.32em .7em;cursor:default;
+}
+.chip:hover{border-color:var(--crimson);color:var(--crimson-ink)}
+.lintline{font-size:.76rem;color:var(--good);font-weight:600;margin:.4em 0}
+.kn{display:flex;gap:8px;margin-top:8px}
+.kn button{border-radius:8px;font-weight:700;font-size:.82rem;padding:.5em 1.3em;border:1.5px solid transparent}
+.kn .keep{background:var(--good);color:#FAF6EF}
+.kn .nope{background:transparent;border-color:var(--line-2);color:var(--ink-soft)}
+.chat-actions{display:flex;flex-wrap:wrap;gap:8px;padding:10px 14px;border-top:1px dashed var(--line)}
+.chat-actions .lbl{font-family:var(--sans);font-size:.7rem;color:var(--muted);align-self:center}
+.ask{
+  border:1.5px solid var(--crimson);color:var(--crimson-ink);background:transparent;
+  border-radius:999px;font-size:.8rem;font-weight:600;padding:.4em 1em;font-family:var(--serif);font-style:italic;
+}
+.ask:hover:not(:disabled){background:var(--crimson);color:#FAF6EF}
+.ask:disabled{opacity:.4;cursor:not-allowed}
+
+/* history strip */
+.cps{display:flex;gap:4px;align-items:center;padding:10px 14px 14px;overflow-x:auto;border-top:1px solid var(--line)}
+.cp{flex:none;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:0;padding:2px 4px;font-family:var(--sans)}
+.cp .dot{width:13px;height:13px;border-radius:50%;border:2px solid transparent;transition:transform .15s}
+.cp:hover .dot{transform:scale(1.25)}
+.cp.you .dot{background:var(--you)}
+.cp.claude .dot{background:var(--crimson)}
+.cp.head .dot{border-color:var(--ink);box-shadow:0 0 0 2px var(--bg) inset}
+.cp .l{font-size:.6rem;color:var(--muted);max-width:74px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cp.pop{animation:cp-pop .35s ease-out}
+@keyframes cp-pop{0%{transform:scale(.3);opacity:0}100%{transform:scale(1);opacity:1}}
+.cp-conn{flex:none;width:14px;border-top:2px dotted var(--line-2);margin-bottom:14px}
+
+/* mat svg bits */
+.part-ghost{fill:none;stroke:var(--muted);stroke-width:.045;stroke-dasharray:.14 .1;opacity:.75}
+.pulse{animation:partpulse 1.4s ease-in-out infinite}
+@keyframes partpulse{0%,100%{opacity:1}50%{opacity:.55}}
+
+/* pending lock: Claude is thinking — mat & history paused */
+.pane{position:relative}
+svg.mat.pending{cursor:wait}
+.think{
+  position:absolute;top:40px;right:12px;z-index:3;
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--sans);font-size:.74rem;font-weight:700;
+  color:var(--crimson-ink);background:var(--crimson-soft);
+  border:1.5px solid var(--crimson);border-radius:999px;
+  padding:.32em .85em .32em .7em;box-shadow:var(--shadow);
+}
+.think[hidden]{display:none}
+.think .tdot{width:8px;height:8px;border-radius:50%;background:var(--crimson);animation:pulse-dot 1.1s infinite}
+.think.bump{animation:think-bump .4s ease}
+@keyframes think-bump{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}55%{transform:translateX(5px)}80%{transform:translateX(-2px)}}
+.cps.paused{opacity:.55}
+.cps.paused .cp{cursor:not-allowed}
+
+/* ============ verbs table & general tables ============ */
+table{border-collapse:collapse;font-size:.88rem;min-width:640px}
+th{font-family:var(--sans);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;text-align:left;color:var(--muted);border-bottom:2px solid var(--ink);padding:8px 14px 6px 0}
+td{border-bottom:1px solid var(--line);padding:9px 14px 9px 0;vertical-align:top}
+td:first-child{font-family:var(--sans);font-weight:700;white-space:nowrap}
+td .small{color:var(--muted);font-size:.82rem}
+
+/* ============ history comparison widget ============ */
+.hx{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.hcard{background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.hcard.rej{border-top:4px solid var(--bad)}
+.hcard.win{border-top:4px solid var(--good)}
+.hcard h3{font-size:.95rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tag{font-size:.62rem;font-weight:700;letter-spacing:.12em;border-radius:4px;padding:.15em .5em;text-transform:uppercase}
+.tag.r{background:var(--bad-soft);color:var(--bad)}
+.tag.w{background:var(--good-soft);color:var(--good)}
+.hcard .sub{font-size:.82rem;color:var(--muted);margin:0}
+.ops{display:flex;align-items:center;gap:0;overflow-x:auto;padding:14px 2px}
+.op{
+  flex:none;border:1.5px solid var(--line-2);background:var(--panel);border-radius:8px;
+  padding:7px 10px;font-family:var(--sans);text-align:left;min-width:86px;transition:all .25s;
+}
+.op .on1{display:block;font-size:.72rem;font-weight:700}
+.op .on2{display:block;font-size:.64rem;color:var(--muted)}
+.op:hover{border-color:var(--ink)}
+.op.edited{border-color:var(--warn);background:var(--warn-soft)}
+.op.edited .on2{color:var(--warn);font-weight:700}
+.op.broken{border-color:var(--bad);background:var(--bad-soft)}
+.op.broken .on2{color:var(--bad);font-weight:700}
+.op-arrow{flex:none;width:18px;border-top:2px solid var(--line-2);position:relative;margin:0 1px}
+.op-arrow::after{content:"";position:absolute;right:-1px;top:-4px;border:3px solid transparent;border-left-color:var(--line-2)}
+.hdots{display:flex;align-items:flex-start;gap:2px;overflow-x:auto;padding:14px 2px}
+.hd{flex:none;background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:5px;width:86px;font-family:var(--sans);padding:0}
+.hd .dot{width:16px;height:16px;border-radius:50%;border:2.5px solid transparent;transition:transform .15s}
+.hd:hover .dot{transform:scale(1.2)}
+.hd.you .dot{background:var(--you)}
+.hd.claude .dot{background:var(--crimson)}
+.hd.head .dot{border-color:var(--ink)}
+.hd .hl{font-size:.64rem;line-height:1.25;color:var(--ink-soft);text-align:center}
+.hd .ha{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.hd.you .ha{color:var(--you)}
+.hd.claude .ha{color:var(--crimson-ink)}
+.hd.pop{animation:cp-pop .35s ease-out}
+.hd-conn{flex:none;width:16px;border-top:2px dotted var(--line-2);margin-top:8px}
+.hmsg{font-size:.84rem;font-family:var(--sans);border-radius:8px;padding:9px 12px;background:var(--panel);color:var(--ink-soft);min-height:3.2em}
+.hmsg.badmsg{background:var(--bad-soft);color:var(--bad)}
+.hmsg.goodmsg{background:var(--good-soft);color:var(--good)}
+.hreset{align-self:flex-start;border:1px solid var(--line-2);background:transparent;color:var(--muted);border-radius:6px;font-size:.72rem;font-weight:700;padding:.3em .8em}
+.hreset:hover{border-color:var(--ink);color:var(--ink)}
+.legend{display:flex;gap:16px;font-family:var(--sans);font-size:.74rem;color:var(--muted);margin-top:10px;flex-wrap:wrap}
+.legend i{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:5px}
+.legend .ly i{background:var(--you)}
+.legend .lc i{background:var(--crimson)}
+
+/* ============ schema snippet ============ */
+pre.codeblock{
+  background:var(--json-bg);border:1px solid var(--line);border-radius:10px;
+  font-family:var(--mono);font-size:.78rem;line-height:1.55;padding:14px 18px;overflow-x:auto;
+}
+pre.codeblock mark{background:var(--add-bg);color:var(--add-ink);border-radius:3px;padding:0 .2em}
+pre.codeblock .cm{color:var(--muted)}
+
+/* wireframe */
+pre.wire{
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  font-family:var(--mono);font-size:.68rem;line-height:1.35;padding:16px;overflow-x:auto;color:var(--ink-soft);
+}
+
+/* llm loop steps */
+.loop6{counter-reset:loopstep;display:grid;gap:0;margin-top:18px}
+.lstep{display:grid;grid-template-columns:56px 1fr;gap:14px;padding:13px 0;border-bottom:1px dashed var(--line)}
+.lstep:last-child{border-bottom:0}
+.lstep .ln{
+  font-family:var(--sans);font-weight:700;font-size:.72rem;letter-spacing:.1em;color:var(--kraft-deep);
+  border:2px solid var(--kraft);border-radius:8px;height:36px;display:flex;align-items:center;justify-content:center;
+}
+.lstep h4{font-size:.92rem;margin:0 0 2px}
+.lstep p{font-size:.9rem;margin:0;color:var(--ink-soft)}
+
+/* milestones as build steps */
+.steps{display:grid;gap:12px;margin-top:20px}
+.step{
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 18px;
+  display:grid;grid-template-columns:74px 1fr;gap:16px;box-shadow:var(--shadow);
+}
+.step .sn{font-family:var(--sans);font-weight:700;font-size:1.5rem;color:var(--kraft-deep);line-height:1}
+.step .sn small{display:block;font-size:.6rem;letter-spacing:.18em;color:var(--muted);margin-bottom:2px}
+.step h4{font-size:.98rem;margin:0 0 3px}
+.step p{font-size:.9rem;margin:0;color:var(--ink-soft)}
+.accept{
+  border:2px solid var(--good);border-radius:8px;background:var(--good-soft);
+  padding:10px 14px;margin-top:6px;font-size:.88rem;color:var(--ink);
+}
+.accept b{font-family:var(--sans);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--good);display:block}
+
+/* conflicts */
+details.conf{border:1px solid var(--line);border-radius:9px;background:var(--surface);margin-top:10px;overflow:hidden}
+details.conf summary{
+  cursor:pointer;padding:11px 16px;font-family:var(--sans);font-weight:600;font-size:.9rem;
+  list-style:none;display:flex;gap:10px;align-items:baseline;
+}
+details.conf summary::-webkit-details-marker{display:none}
+details.conf summary::before{content:"+";font-weight:700;color:var(--kraft-deep);font-family:var(--mono)}
+details.conf[open] summary::before{content:"–"}
+details.conf summary .cn{font-family:var(--mono);font-size:.68rem;color:var(--kraft-deep)}
+details.conf .confbody{padding:0 16px 14px 40px;font-size:.9rem;color:var(--ink-soft)}
+details.conf .confbody b.who{color:var(--crimson-ink)}
+
+/* not-yet list */
+.notyet{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:8px;margin-top:16px}
+.ny{border:1px dashed var(--line-2);border-radius:8px;padding:10px 14px;font-size:.86rem;color:var(--ink-soft);background:var(--surface)}
+.ny b{font-family:var(--sans);font-size:.82rem;color:var(--ink)}
+
+footer.colo{margin-top:80px;border-top:2px solid var(--ink);padding-top:18px;font-family:var(--sans);font-size:.76rem;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+/* ============ responsive ============ */
+@media (max-width:920px){
+  .studio-grid{grid-template-columns:1fr}
+  .pane + .pane{border-left:0}
+  .hx{grid-template-columns:1fr}
+  section.sheet::before{font-size:4.6rem}
+}
+@media (max-width:480px){
+  body{font-size:16px}
+  .jsonbox{height:260px}
+  .step{grid-template-columns:1fr;gap:6px}
+  .lstep{grid-template-columns:44px 1fr;gap:10px}
+}
+</style>
+
+<header class="mast">
+  <div class="mast-in">
+    <div class="plate">
+      <div class="brand">CARDBOARD <b>STUDIO</b></div>
+      <div class="sheetno">DESIGN DOC · SHEET 0 OF 8 · PRINT AT 100%</div>
+    </div>
+    <h1 class="title">Cutting Mat<span class="tail"> — the CAD for cardboard toys</span></h1>
+    <p class="dek">A structured, direct-manipulation editor over the <code>design.json</code> we already ship: a 2D mat that <b>is</b> the printed template, a live 3D fold-up, and a chat rail where Claude proposes reviewable edits to the same file. The worst outcome of any edit, by any hand, is a colored lint chip with a sentence — <b>never a broken recompute.</b></p>
+    <div class="mast-meta">
+      <span>Synthesis of concepts A · B · C</span>
+      <span>Three judge verdicts honored</span>
+      <span>No new format · no timeline · no expressions</span>
+    </div>
+    <nav class="toc" aria-label="Sections">
+      <a href="#play">Try it</a><a href="#decisions">Five decisions</a><a href="#document">Document</a><a href="#history">History</a><a href="#interaction">The Mat</a><a href="#loop">LLM loop</a><a href="#reuse">What we reuse</a><a href="#conflicts">Conflicts</a><a href="#roadmap">Roadmap</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ================= 1. TRY IT ================= -->
+<section class="sheet" id="play" data-n="1">
+  <div class="sheet-label">Sheet 1 · Working model</div>
+  <h2>Try the whole design in one box</h2>
+  <p class="lede">This is the entire product in miniature, running right here: the <b>Mat</b> (drag parts, pull the blade&rsquo;s SIZE handle, punch holes), the <b>fold-up pane</b> fed by the same document, the <b>document inspector</b> showing every edit land in <code>design.json</code>, and the <b>chat rail</b> where Claude stages a proposal you can Keep or Nope. Everything below the fold of this page explains what you just did.</p>
+
+  <div class="studio">
+    <div class="studio-head">
+      <span class="t">PIRATE SWORD <span style="font-weight:400;color:var(--muted)">(remix)</span></span>
+      <div class="goalcard" id="goals" aria-label="Goal card">
+        <span class="g" data-g="size"><span class="tick"></span>Drag the blade tip — longer</span>
+        <span class="g" data-g="slide"><span class="tick"></span>Slide FLAT ⟶ BUILT</span>
+        <span class="g" data-g="claude"><span class="tick"></span>Ask Claude, then Keep it</span>
+      </div>
+    </div>
+
+    <div class="studio-grid">
+      <div class="pane">
+        <div class="pane-head">The Mat <span class="hint">1&Prime; grid = the printed page · snap ¼&Prime;</span></div>
+        <div class="think" id="thinkChip" hidden role="status"><span class="tdot"></span>Claude is thinking&hellip; mat &amp; history paused</div>
+        <svg id="mat" class="mat" viewBox="0 0 16 7.5" aria-label="2D cutting mat with draggable sword parts"></svg>
+        <div class="verbbar" id="verbbar">
+          <button class="vb live" data-verb="move" title="Drag any part">MOVE</button>
+          <button class="vb live" data-verb="size" title="Select the blade, drag its square handle">SIZE</button>
+          <button class="vb live" data-verb="punch" id="punchBtn" title="Toggle, then click a part to punch a hole">PUNCH</button>
+          <span class="fit" id="fitSeg" role="group" aria-label="Hole fit">
+            <button class="on" data-fit="LOOSE" title="0.28 inch — dowel spins">LOOSE · spins</button>
+            <button data-fit="SNUG" title="0.24 inch — dowel grips">SNUG · grips</button>
+          </span>
+          <span class="verbnote">TURN · COPIES · FOLD work the same way in the full app</span>
+        </div>
+        <div class="lintstrip" id="lint" aria-live="polite"></div>
+      </div>
+
+      <div class="pane">
+        <div class="pane-head">Fold-up <span class="hint">same document, ~300&thinsp;ms debounce</span>
+          <span class="ba-toggle" id="baToggle" role="group" aria-label="Before or after">
+            <button data-ba="before">BEFORE</button><button class="on" data-ba="after">AFTER</button>
+          </span>
+        </div>
+        <svg id="fold" class="fold" viewBox="0 0 21 8" aria-label="Assembled sword preview"></svg>
+        <div class="foldbar">
+          <span>FLAT</span>
+          <input type="range" id="foldT" min="0" max="100" value="0" aria-label="Flat to built slider">
+          <span>BUILT</span>
+        </div>
+      </div>
+
+      <div class="pane jsonpane">
+        <div class="pane-head"><span>design.json — the only document <span class="livedot"></span></span><span class="hint">history lives <em>about</em> this file, never in it</span></div>
+        <div class="jsonbox" id="jsonbox"></div>
+      </div>
+
+      <div class="pane chatpane">
+        <div class="pane-head">Chat · propose → validate → merge → review → commit</div>
+        <div class="chatlog" id="chatlog"></div>
+        <div class="chat-actions" id="askRow">
+          <span class="lbl">Ask Claude:</span>
+          <button class="ask" data-ask="fiercer">&ldquo;make it fiercer&rdquo;</button>
+          <button class="ask" data-ask="lanyard">&ldquo;add a lanyard hole&rdquo;</button>
+        </div>
+        <div class="pane-head" style="border-top:1px solid var(--line)">History — append-only checkpoints <span class="hint">click a dot to restore</span></div>
+        <div class="cps" id="cps"></div>
+      </div>
+    </div>
+  </div>
+  <p style="font-size:.88rem;color:var(--muted);margin-top:12px">Three of the six verbs are live in this miniature; the other three (TURN, COPIES, FOLD) are the same shape of gesture. Notice what is <em>absent</em>: no feature tree, no parameters panel, no numeric entry, no mode where a drag means something different. Every edit — yours or Claude&rsquo;s — is a property write to the JSON on the left, and every accepted change becomes a dot in the strip. And while Claude is thinking, the mat and history pause: a drag or restore during the wait is refused with a visible chip, never silently overwritten by the landing proposal (the real system goes further and three-way merges it).</p>
+</section>
+
+<!-- ================= 2. FIVE DECISIONS ================= -->
+<section class="sheet" id="decisions" data-n="2">
+  <div class="sheet-label">Sheet 2 · Headline decisions</div>
+  <h2>Five decisions carry the whole design</h2>
+  <div class="decisions">
+    <div class="dcard"><span class="dn">DECISION 1</span>
+      <h3>Document: literal <code>design.json</code>, unchanged in role</h3>
+      <p>One representation, literal coordinates only. No shape recipes, no params, no expressions — nothing that can cascade. One additive change: stable <code>id</code>s on holes and slits so diffs anchor on identity, not array position — and ids are the reference currency: mechanisms and fitChecks point at them, never at indices.</p>
+      <a class="go" href="#document">Why → Sheet 3</a>
+    </div>
+    <div class="dcard"><span class="dn">DECISION 2</span>
+      <h3>History: append-only snapshots, never inside the file</h3>
+      <p>Onshape&rsquo;s version dots, not Fusion&rsquo;s timeline. Every accepted change is a full-snapshot checkpoint <code>{author, summary, base}</code>; diffs are computed views; one uniform undo that also undoes the robot.</p>
+      <a class="go" href="#history">Why → Sheet 4</a>
+    </div>
+    <div class="dcard"><span class="dn">DECISION 3</span>
+      <h3>Interaction: the Mat, six verbs that all work</h3>
+      <p>A true-scale 2D canvas on the printed 1&Prime; grid — screen&nbsp;=&nbsp;paper. MOVE / TURN / SIZE / COPIES / PUNCH / FOLD, Shape Shelf starters instead of drawing, live fold-up as the reward, Toy Doctor chips with one-tap fixes.</p>
+      <a class="go" href="#interaction">Why → Sheet 5</a>
+    </div>
+    <div class="dcard"><span class="dn">DECISION 4</span>
+      <h3>LLM loop: symmetric editors, asymmetric commit rights</h3>
+      <p>Claude reads the head document + selection + lint + recent history and returns a full modified file; the server validates, diffs against a recorded base, three-way merges, and stages a proposal. Nothing is ever silently applied.</p>
+      <a class="go" href="#loop">Why → Sheet 6</a>
+    </div>
+    <div class="dcard"><span class="dn">DECISION 5</span>
+      <h3>MVP: first playable needs zero new AI machinery</h3>
+      <p>Milestone 1&rsquo;s acceptance test: open a pirate-sword remix, drag the blade 2&Prime; longer, slide FLAT→BUILT, print, hold a valid PDF — under 5 minutes, no chat involved. ~90% of the existing stack is reused untouched.</p>
+      <a class="go" href="#roadmap">Plan → Sheet 8</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3. DOCUMENT MODEL ================= -->
+<section class="sheet" id="document" data-n="3">
+  <div class="sheet-label">Sheet 3 · Document model</div>
+  <h2>One file, literal coordinates, nothing that can cascade</h2>
+  <p><code>design.json</code> stays the <strong>only</strong> document — the same file the validator, the toy-statics linter, both PDF renderers, and the 3D viewer already consume. The editor treats it as a flat, addressable scene graph: objects are parts, holes, slits, hardware, mechanisms, steps. A canvas drag is a property write; an LLM edit is a JSON edit; diffs are per-object, per-property — which is exactly what makes them renderable as chips and, later, partially acceptable.</p>
+  <p>Geometry is <strong>literal, always</strong>. Two seductive alternatives were killed by the judges:</p>
+  <p><strong>No per-part shape recipes.</strong> Two judges independently ruled the dual representation fatal: a recompile-on-save precedence rule silently clobbers any hand or LLM edit to the raw path, and &ldquo;cracking the egg&rdquo; is a mystery box even with a warning dialog. Shelf starters keep their kid-friendly dials (wheel diameter, slit count, fit choice) <em>at creation time only</em> — the dial compiles immediately to a plain path and the dial state is discarded. Re-parameterizing later is a job for SIZE handles or the chat.</p>
+  <p><strong>No <code>params</code>/expression block.</strong> All three judges killed it: expression strings inside numeric fields fork the schema contract, reintroduce cascade, and are a <em>syntax</em> — the thing this product exists to not teach. &ldquo;Change one number, everything updates&rdquo; is served by coherent stretch handles and, honestly, by asking Claude — whose dependent-feature recompute is exactly what a timeline automates, but <em>reviewable</em>. Verification-based parametrics: <code>fitChecks</code> re-verify, they never drive.</p>
+  <p>The one additive schema change, demanded by the round-trip judge — stable ids so an insertion at index 0 can&rsquo;t corrupt diff attribution or re-aim a mechanism:</p>
+  <pre class="codeblock">"holes": [
+  { <mark>"id": "h1"</mark>, "x": 2.5, "y": 0.6, "d": 0.6 },   <span class="cm">// editor-assigned on first touch</span>
+  { <mark>"id": "h2"</mark>, "x": 4.1, "y": 0.6, "d": 0.28 }   <span class="cm">// diffs anchor on identity, not index</span>
+],
+"mechanisms": [{
+  "type": "revolute", "axle": "axle-dowel",
+  "bearings": [ { "part": "body-core", "hole": <mark>"h1"</mark> } ],   <span class="cm">// was "hole": 0 — id, never index</span>
+  "hubs":     [ { "part": "wheel-disc", "hole": <mark>"h2"</mark> } ]    <span class="cm">// an inserted hole can't re-aim this</span>
+}]</pre>
+  <p>Those ids are also the <strong>reference currency</strong>. <code>mechanisms[]</code> bearings/hubs and <code>fitChecks</code> historically named holes by array index (<code>{"part": "body-core", "hole": 0}</code>) — the exact positional-reference failure this decision exists to kill: an LLM inserting a hole would silently shift every mechanism&rsquo;s meaning. Every cross-reference — bearings, hubs, fitCheck hole refs, anything future — points at a hole/slit id, never an index. The legacy index form stays readable during migration: the schema accepts both, the validator warns on indices, and the pipeline (linter resolution, spec examples, the <code>ai.mjs</code> prompt, the exemplar) migrates in M0.</p>
+  <div class="rejected"><b>Rejected at judgment</b>
+    <span>Fusion-style operation history as truth (the file becomes a program the LLM must simulate)</span>
+    <span>OpenSCAD code-first UI (the LLM already plays the programmatic role)</span>
+    <span>A separate editor-native format (two sources of truth)</span>
+    <span>A sketch-constraint solver (solver mystery vs. the linter&rsquo;s plain sentences)</span>
+  </div>
+</section>
+
+<!-- ================= 4. HISTORY ================= -->
+<section class="sheet" id="history" data-n="4">
+  <div class="sheet-label">Sheet 4 · History model</div>
+  <h2>Checkpoints, not a timeline — feel the difference</h2>
+  <p class="lede">Brennen, this one&rsquo;s for you. Both widgets below are honest. Click things.</p>
+
+  <div class="hx">
+    <div class="hcard rej">
+      <h3>Fusion 360 parametric timeline <span class="tag r">rejected</span></h3>
+      <p class="sub">The document is a program: each feature re-executes everything after it. Click any operation to &ldquo;edit&rdquo; it.</p>
+      <div class="ops" id="fops"></div>
+      <div class="hmsg" id="fmsg">Click an early operation — say, the Extrude — and watch the future re-run.</div>
+      <button class="hreset" id="freset">Reset timeline</button>
+    </div>
+    <div class="hcard win">
+      <h3>Cutting Mat checkpoints <span class="tag w">chosen</span></h3>
+      <p class="sub">Append-only full snapshots of <code>design.json</code>, authored and labeled. Click any older dot to restore it.</p>
+      <div class="hdots" id="hdots"></div>
+      <div class="hmsg" id="hmsg">Restore never rewrites history — it writes the old document as a <em>new</em> head checkpoint.</div>
+      <button class="hreset" id="hreset">Reset checkpoints</button>
+      <div class="legend"><span class="ly"><i></i>You</span><span class="lc"><i></i>Claude</span></div>
+    </div>
+  </div>
+
+  <p style="margin-top:20px"><code>designs/&lt;slug&gt;/history/</code> holds the append-only log — full immutable snapshots, each with <code>{author: "kid"|"parent"|"claude", summary, timestamp, baseCheckpoint}</code>. Checkpoints are written on every accepted LLM proposal and on every debounced human save-pause, so it feels like game autosave. Diffs between any two checkpoints are <strong>computed</strong> by the same structural differ Review mode uses (build it once) and rendered as ghost geometry plus plain-language chips: <em>&ldquo;Blade: 12in → 14in&rdquo;, &ldquo;New part: Crossguard&rdquo;.</em> Author-colored dots name every hand, and one uniform undo stack covers human and robot alike.</p>
+  <p>Storage is snapshots, never diff-chains — diff-chain reconstruction is precisely the drift mechanism the round-trip lens exists to catch. Branching collapses to the operation the studio already has: <strong>Remix duplicates the design folder into a new slug.</strong> The only scrubbable &ldquo;timeline&rdquo; a kid ever sees is the assembly itself — the existing FLAT⟷BUILT slider, where glue order drives build steps.</p>
+  <div class="rejected"><b>Rejected</b>
+    <span>Fusion&rsquo;s replayed timeline (its own community documents &ldquo;models impossible to edit&rdquo;)</span>
+    <span>Onshape&rsquo;s branch/merge graph UI (ceremony a 12-year-old doesn&rsquo;t need)</span>
+    <span>Diff-chains as storage (drift)</span>
+  </div>
+</section>
+
+<!-- ================= 5. THE MAT ================= -->
+<section class="sheet" id="interaction" data-n="5">
+  <div class="sheet-label">Sheet 5 · Interaction model</div>
+  <h2>The Mat: screen = paper, six verbs, zero modes</h2>
+  <p>One screen, <code>/edit/:slug</code>. The center is an SVG canvas in real inches, y-down, on the same 1&Prime;/3&Prime; gray grid the printed cut sheets use — so the deepest CAD abstraction, units and scale, simply doesn&rsquo;t exist. Snap at ¼&Prime;. On the left, the <strong>Shape Shelf</strong>: starters (Panel, Wheel, Strip, Blade, Tab) drag onto the mat and compile instantly to plain paths — nobody must draw a curve to make a part. Hardware chips (dowel, skewer, straw, string, brad, rubber band, paper clip) are drawn <strong>to true scale</strong>, so a dowel visually explains its own hole size. On the right, the existing Three.js fold-up in an iframe, re-fed the working document. Along the bottom, the Toy Doctor lint strip and the chat rail.</p>
+
+  <div class="scroll" style="margin-top:18px">
+  <table>
+    <thead><tr><th>Verb</th><th>Gesture</th><th>Writes</th></tr></thead>
+    <tbody>
+      <tr><td>MOVE</td><td>drag, snaps ¼&Prime;</td><td>part layout position</td></tr>
+      <tr><td>TURN</td><td>rotate handle</td><td>part orientation</td></tr>
+      <tr><td>SIZE</td><td>corner/edge handles, live inch readouts; scales the whole path coherently</td><td><code>part.path</code></td></tr>
+      <tr><td>COPIES</td><td>×N stepper <span class="small">(laminated stacks are big N; laminate lives in the inspector)</span></td><td><code>count</code> / <code>laminate</code></td></tr>
+      <tr><td>PUNCH</td><td>click a spot → hole appears with a fit chooser: <em>&ldquo;LOOSE so it spins&rdquo; / &ldquo;SNUG so it grips&rdquo;</em> — diameters taken verbatim from the linter&rsquo;s tolerance bands. Non-modal: no pick-hardware-first order dependency</td><td><code>holes[]</code> <span class="small">(+ crosshair marks on templates for free)</span></td></tr>
+      <tr><td>FOLD</td><td>drag a straight line across a part → dashed score line; a CURL helper fans N parallel lines (the knuckle-guard pattern)</td><td><code>slits[]</code> — and <em>only</em> <code>slits[]</code>: fold <em>angles</em> are owned by <code>assembly.instances[].folds</code>, set in 3D/assembly context or by chat, never from the 2D tool</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p style="margin-top:18px">Rules the judges made non-negotiable: <strong>the verb set shown equals the verb set that works</strong> — FOLD ships in v1, and GLUE/DOWEL are not toolbar verbs, so no stub buttons exist. <strong>No anchor dots by default</strong> — freeform point-edit is the one pro tool, behind an explicit double-click, never the default rendering of a selected part. <strong>No modes, no overloading</strong> — MOVE, SIZE and point-edit are distinct verbs, not three behaviors of one drag, and TURN exists. The <strong>Toy Doctor</strong> runs the validator and statics linter continuously; chips pin to the offending geometry in both panes, phrased as shop rules (&ldquo;this axle wobbles — bearing is shorter than 2× its width&rdquo;). Where the linter can compute a fix, the chip carries a one-tap deterministic fix — deterministic fixes stay deterministic and visible, never robot magic. Where it can&rsquo;t, the chip offers <em>&ldquo;ask Claude to fix&rdquo;</em>. And the <strong>first run is a remix, not a blank page</strong>, opened with a three-line goal card — you met it at the top of this page.</p>
+  <p>Assembly in v1 is a drag-to-reorder Build Order list plus chat placement (&ldquo;put the guard on the grip&rdquo;). <strong>No numeric nudge fields</strong> — typing coordinates is the abstraction this product exists to remove.</p>
+
+  <pre class="wire" aria-label="Main screen wireframe">┌────────────────────────────────────────────────────────────────────────────────────┐
+│ ◀ Gallery   PIRATE SWORD (remix)          [Undo] [Redo]   ○●○●○ history   [PRINT] │
+├──────────────┬──────────────────────────────────────────────┬──────────────────────┤
+│ SHAPE SHELF  │  THE MAT                    1in grid = paper │  FOLD-UP (3D viewer) │
+│ ┌──────────┐ │  ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐   │                      │
+│ │▭ Panel   │ │  ·   ┌─────────────────────────┐         ·   │        /\            │
+│ │◯ Wheel   │ │  ·   │  sword-body      ▣──▣   │         ·   │       /  \_____      │
+│ │≡ Strip   │ │  ·   └──────────▣──────────────┘         ·   │      | ()_____/      │
+│ │▷ Blade   │ │  ·        ▣ = SIZE handles (live inches) ·   │      |  |            │
+│ │▭ Tab     │ │  ·   ┌─────────┐   ⊙ hole «LOOSE·spins»  ·   │      |__|            │
+│ └──────────┘ │  ·   │ guard   │   ╌╌╌ FOLD score line   ·   │                      │
+│ PARTS        │  ·   └─────────┘                         ·   │  FLAT ⟷──●──⟶ BUILT │
+│ ▸ sword-body │  └ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘   │  [▶ Play] [Reset]    │
+│ ▸ guard  ×1  │  [MOVE] [TURN] [SIZE] [COPIES] [PUNCH] [FOLD]│  (iframe: viewer fed │
+│ ▸ grip   ×2  │                                              │   by draft endpoint) │
+│ HARDWARE     ├──────────────────────────────────────────────┴──────────────────────┤
+│ ▬ dowel 1/4" │ TOY DOCTOR  ● grip hole too tight for dowel — [Fix it]  ○ 8/8 checks│
+│ ∿ rubber band├─────────────────────────────────────────────────────────────────────┤
+│ (true scale) │ CHAT  「make the guard swoopier」→ ghost preview → [Keep] [Nope]     │
+└──────────────┴─────────────────────────────────────────────────────────────────────┘</pre>
+
+  <div class="rejected"><b>Rejected</b>
+    <span>3D-first solid modeling (all six shipped designs are flat parts + folds + hardware)</span>
+    <span>Freeform bezier as the primary creation path</span>
+    <span>Modal hardware-first PUNCH</span>
+    <span>Fold-angle dial in 2D</span>
+    <span>Unlabeled &ldquo;score&rdquo;/&ldquo;laminate&rdquo; jargon on the toolbar</span>
+  </div>
+</section>
+
+<!-- ================= 6. LLM LOOP ================= -->
+<section class="sheet" id="loop" data-n="6">
+  <div class="sheet-label">Sheet 6 · Human ⟷ LLM loop</div>
+  <h2>Same file, same door — only the human commits</h2>
+  <p class="lede">You already ran this loop in Sheet 1 when you pressed <em>&ldquo;make it fiercer&rdquo;</em> and watched the ghost overlay, the JSON diff, and the Keep/Nope buttons. Here is what each stage does in the real system.</p>
+
+  <div class="loop6">
+    <div class="lstep"><div class="ln">READ</div><div>
+      <h4>Claude sees what you see</h4>
+      <p>Each turn sends the current <code>design.json</code>, the spec context <code>ai.mjs</code> already uses, the <strong>selection + current lint output</strong> (&ldquo;kid has guard-bowl selected, lint says curl too shallow&rdquo;), and the last few checkpoint labels + diffs so it knows what the humans just did by hand. The head checkpoint hash is recorded as the proposal&rsquo;s base.</p>
+    </div></div>
+    <div class="lstep"><div class="ln">EDIT</div><div>
+      <h4>Full-document replace, deliberately</h4>
+      <p>Claude returns prose or a complete modified <code>design.json</code>. LLMs botch positional patches, the docs are 18–38&thinsp;KB, and the server owning the diff is what makes everything downstream possible.</p>
+    </div></div>
+    <div class="lstep"><div class="ln">VALID</div><div>
+      <h4>The existing validate/repair loop runs first</h4>
+      <p>Server-side, before the kid ever sees the proposal. Failures are auto-repaired or rejected.</p>
+    </div></div>
+    <div class="lstep"><div class="ln">MERGE</div><div>
+      <h4>Three-way merge at the property level</h4>
+      <p>Against the recorded base, with stable ids as anchors — unrelated edits never conflict, so a kid edit during LLM thinking is never lost. A true same-property conflict renders as a two-ghost picker in kid language: <em>&ldquo;You made the blade 14in, Claude made it 16 — tap the one you want&rdquo;</em> (default: keep yours). &ldquo;Re-diff with a badge&rdquo; without a recorded base was ruled fatal — it can attribute the kid&rsquo;s own edit to the robot.</p>
+    </div></div>
+    <div class="lstep"><div class="ln">REVIEW</div><div>
+      <h4>Ghosts, chips, and a lint verdict</h4>
+      <p>The Mat shows before-geometry as dashed gray ghosts under the proposal&rsquo;s ink; changed parts pulse; kid-language chips highlight their geometry in 2D and 3D; a banner says &ldquo;still passes all 8 toy checks&rdquo; or shows what broke. The 3D pane gets the <strong>whole proposal document with a BEFORE/AFTER toggle</strong> — never a dual-document ghost render inside the 985-line viewer. The ghost-diff is the pedagogy: every accepted robot edit shows which handles would have done it by hand.</p>
+    </div></div>
+    <div class="lstep"><div class="ln">COMMIT</div><div>
+      <h4>Accept writes head + a checkpoint authored &ldquo;Claude: …&rdquo;</h4>
+      <p>Reject discards. v1 is whole-proposal accept/reject; part-group Keep/Nope is milestone M5 — and the diff/merge machinery shipped in v1 already supports it, so no rework.</p>
+    </div></div>
+  </div>
+
+  <div class="rejected"><b>Rejected</b>
+    <span>Silent/live LLM co-editing (destroys authorship and the learning channel)</span>
+    <span>JSON-patch wire formats</span>
+    <span>Full CRDT multiplayer (one family + a turn-based robot)</span>
+    <span>No-concurrency-story (a kid edit during LLM thinking must never be lost)</span>
+  </div>
+</section>
+
+<!-- ================= 7. REUSE ================= -->
+<section class="sheet" id="reuse" data-n="7">
+  <div class="sheet-label">Sheet 7 · Relationship to the pipeline</div>
+  <h2>~90% of the stack is reused, most of it untouched</h2>
+  <div class="scroll" style="margin-top:16px">
+  <table>
+    <thead><tr><th>Existing asset</th><th>Role in Cutting Mat</th></tr></thead>
+    <tbody>
+      <tr><td><code>design.json</code></td><td>THE document. Editor reads/writes it directly. Additive changes only: optional stable <code>id</code>s on <code>holes[]</code>/<code>slits[]</code>, and id-based hole refs in <code>mechanisms[]</code>/<code>fitChecks</code> (legacy index refs readable, warned).</td></tr>
+      <tr><td><code>schema.mjs</code></td><td>Validator + statics linter run continuously on the draft → Toy Doctor chips; run on every LLM proposal before review. Resolves hole refs by id, accepts the legacy index form with a warning (M0). Fit bands feed PUNCH&rsquo;s LOOSE/SNUG presets.</td></tr>
+      <tr><td><code>templates.mjs</code> / <code>guide.mjs</code> / <code>pdfkit.mjs</code></td><td>Untouched. PRINT calls them; hole crosshair marks appear on templates for free.</td></tr>
+      <tr><td><code>geometry.mjs</code></td><td>Path parse/bbox/sample math ported to (or served for) the Mat&rsquo;s SVG canvas.</td></tr>
+      <tr><td><code>viewer.html</code> / <code>viewer.js</code></td><td>Untouched in v1. Embedded as an iframe fed by the new in-memory draft endpoint; fold semantics, FLAT⟷BUILT, ROLL all come free. <code>assembly.instances[].folds</code> remains the sole owner of fold angles.</td></tr>
+      <tr><td><code>ai.mjs</code></td><td>Reused as the proposal engine with an &ldquo;edit this design&rdquo; prompt mode and enriched READ context (selection, lint, recent checkpoints). GEOMETRY_RULES move to id-based hole refs in M0.</td></tr>
+      <tr><td><code>index.mjs</code> (Express)</td><td>Gains <code>GET /edit/:slug</code>, draft endpoints, <code>POST …/checkpoint</code>, proposal stage/accept/reject.</td></tr>
+      <tr><td><code>designs/&lt;slug&gt;/</code></td><td>Gains <code>history/</code> (snapshot JSONs + metadata). Remix = folder copy to a new slug — the existing pattern.</td></tr>
+      <tr><td><code>designs/pirate-sword/</code></td><td>Stays valid, stays the few-shot example — gains hole ids + id refs in M0 so the few-shot teaches the id form; legacy index designs stay readable.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ================= 8. CONFLICTS + ROADMAP ================= -->
+<section class="sheet" id="conflicts" data-n="8">
+  <div class="sheet-label">Sheet 8 · Judgment calls &amp; roadmap</div>
+  <h2>Who was overridden, and why</h2>
+  <p class="lede">Eight places where concepts or judges disagreed and someone had to lose. The pattern: <strong>buildability and round-trip safety outrank elegance and completeness.</strong></p>
+
+  <details class="conf"><summary><span class="cn">C1</span>Gen recipes: removal beat repair</summary><div class="confbody">Judge 1 asked to <em>fix</em> crack-the-egg with an explicit dialog; Judges 2 and 3 ruled the dual representation itself fatal. <b class="who">Overrode Judge 1&rsquo;s repair in favor of removal</b> — with no persisted recipe there is nothing to crack, which also satisfies Judge 1&rsquo;s underlying nothing-surprising rule.</div></details>
+  <details class="conf"><summary><span class="cn">C2</span>Partial acceptance: v1.x, machinery in v1</summary><div class="confbody">Judge 2 wanted part-group Keep/Nope <em>in</em> the MVP; Judge 3 ruled that a fatal scope flaw. <b class="who">Overrode Judge 2 on timing only</b>: whole-proposal accept/reject ships first (M4), Keep/Nope is the immediate next milestone (M5) — and Judge 2&rsquo;s mechanism demands (base hash, stable ids, property-level differ, three-way merge) are all in v1, so no rework.</div></details>
+  <details class="conf"><summary><span class="cn">C3</span>FOLD ships in v1</summary><div class="confbody">Concept A deferred BEND; Judge 1 ruled visible-but-broken verbs fatal. <b class="who">Sided with Judge 1</b>: the FOLD slit tool ships in M2 — scoped to <code>slits[]</code> only, so Judge 3&rsquo;s veto of the 2D fold-angle dial holds too.</div></details>
+  <details class="conf"><summary><span class="cn">C4</span>3D proposal preview: toggle, not ghosts</summary><div class="confbody">Judge 1 grafted a simultaneous kraft/blue ghost + hold-to-peek in 3D; Judge 3 ruled dual-document rendering inside viewer.js a fatal repaint. <b class="who">Overrode Judge 1&rsquo;s rendering detail</b>: a BEFORE/AFTER toggle feeding the whole proposal doc to the unmodified viewer delivers the same comparison at zero viewer cost. 2D keeps the full simultaneous ghost overlay — where the pedagogy lives anyway.</div></details>
+  <details class="conf"><summary><span class="cn">C5</span>The lint &ldquo;Fix it&rdquo; button: partitioned</summary><div class="confbody">Judges 2 and 3 grafted hand-the-check-to-Claude; Judge 1 ruled LLM-mediated <em>deterministic</em> fixes fatal. <b class="who">Both survive, partitioned</b>: computable fixes are one-tap deterministic and visible; only non-computable checks get &ldquo;ask Claude to fix&rdquo;.</div></details>
+  <details class="conf"><summary><span class="cn">C6</span>No numeric assembly nudge</summary><div class="confbody">A&rsquo;s v1 fallback was typed coordinates; Judge 1 ruled that fatal. <b class="who">Sided with Judge 1</b>: v1 assembly fallback is the Build Order list + chat placement only.</div></details>
+  <details class="conf"><summary><span class="cn">C7</span>Verb naming: split the difference</summary><div class="confbody">C&rsquo;s material verbs are the best idea in the field, but &ldquo;score&rdquo; and &ldquo;laminate&rdquo; as labels are a hidden tutorial. <b class="who">PUNCH and FOLD keep material names</b> because kids&rsquo; hands know them; SCORE becomes FOLD&rsquo;s rendering, LAMINATE becomes a plain stepper in the inspector.</div></details>
+  <details class="conf"><summary><span class="cn">C8</span>No viewer refactor in v1</summary><div class="confbody">B made a <code>build(design)</code> extraction a v1 prerequisite; Judge 3 vetoed. <b class="who">Sided with Judge 3</b>: iframe + draft endpoint in v1; refactor only if debounce latency demands it.</div></details>
+
+  <h2 id="roadmap" style="margin-top:56px">Build order</h2>
+  <div class="steps">
+    <div class="step"><div class="sn"><small>STEP</small>M0</div><div><h4>Draft plumbing + id-reference migration</h4><p>In-memory working-draft endpoint per open design (<code>GET/PUT /api/designs/:slug/draft</code>); viewer embedded via iframe pointed at the draft endpoint — zero refactor of viewer.js. Plus the reference migration: <code>schema.mjs</code> accepts hole refs by id (<code>{"part": "body-core", "hole": "h1"}</code>) alongside the legacy index form and warns on indices; the linter resolves both; MECHANICS-SPEC examples, <code>ai.mjs</code> GEOMETRY_RULES, and the pirate-sword exemplar move to id refs.</p></div></div>
+    <div class="step"><div class="sn"><small>STEP</small>M1</div><div><h4>First playable</h4><p><code>/edit/:slug</code>: SVG Mat rendering parts from <code>design.json</code>, MOVE/TURN/SIZE/COPIES, selection-synced parts tray, inspector, grid, Print button calling the existing PDF renderers.</p>
+      <div class="accept"><b>Acceptance test — also the first-run script</b>Remix pirate-sword, drag the blade 2&Prime; longer, slide FLAT→BUILT, print, hold the PDF — under 5 minutes, no AI machinery.</div></div></div>
+    <div class="step"><div class="sn"><small>STEP</small>M2</div><div><h4>Cardboard verbs + Toy Doctor</h4><p>PUNCH with the two named fits from the linter&rsquo;s bands; FOLD slit tool + CURL helper; Shape Shelf starters (server-side pure functions → plain paths); continuous lint chips with one-tap deterministic fixes; goal card; stable-id assignment on edit.</p></div></div>
+    <div class="step"><div class="sn"><small>STEP</small>M3</div><div><h4>History</h4><p>Checkpoint writes (accepted proposals + debounced saves), history strip of author-colored labeled dots, restore, two-checkpoint ghost-diff view — the structural differ is built here and shared with M4&rsquo;s Review mode.</p></div></div>
+    <div class="step"><div class="sn"><small>STEP</small>M4</div><div><h4>Chat proposals</h4><p><code>ai.mjs</code> &ldquo;edit this design&rdquo; mode with selection+lint+history context; base-hash recording; server-side per-object/per-property differ (~150 lines); three-way merge with the two-ghost conflict picker; Review mode with whole-proposal accept/reject, chips, BEFORE/AFTER 3D toggle; &ldquo;ask Claude to fix&rdquo; on non-deterministic lint chips.</p></div></div>
+    <div class="step"><div class="sn"><small>STEP</small>M5</div><div><h4>v1.x, in order</h4><p>Part-group Keep/Nope partial acceptance → checkpoint thumbnails → laminate section view → 3D place-and-snap assembly (face-to-face, hole-onto-axle) + glue-order auto-writing steps → mirror/symmetry tools.</p></div></div>
+  </div>
+
+  <h2 style="margin-top:56px">Deliberately not deciding yet</h2>
+  <div class="notyet">
+    <div class="ny"><b>params / expressions</b> — killed for v1 <em>and</em> v1.1 by all three judges; not reconsidered until literal-coordinates + LLM-as-parametric-engine demonstrably fails a real family.</div>
+    <div class="ny"><b>Persisted shape recipes</b> — same bar as above.</div>
+    <div class="ny"><b>Realtime co-editing / CRDTs</b> — one family plus a turn-based robot needs base-hash merge, not Figma&rsquo;s sync engine.</div>
+    <div class="ny"><b>Branch/merge UI</b> — beyond Remix-a-copy.</div>
+    <div class="ny"><b>A 2D constraint solver</b> — fitChecks that verify and flag beat constraints that drive and fight the kid&rsquo;s drag.</div>
+    <div class="ny"><b>3D face-snap GLUE / DOWEL-as-a-verb</b> — v1.x (M5); until then assembly edits flow through the Build Order list and chat.</div>
+    <div class="ny"><b>fitCheck authoring UI</b> — the LLM writes fitChecks when asked to &ldquo;lock&rdquo; a relationship.</div>
+    <div class="ny"><b>Editing steps &amp; hero art on canvas</b> — remains Claude&rsquo;s job via chat; it is already good at them.</div>
+    <div class="ny"><b>Checkpoint thumbnails</b> — labeled, author-colored list first; thumbnails need a renderer we refuse to build before M5.</div>
+    <div class="ny"><b>Freeform bezier pen as a primary tool</b> — point-edit stays behind double-click; Shelf + SIZE + chat cover shape creation.</div>
+    <div class="ny"><b>New mechanism types beyond revolute</b> — the linter and viewer define what exists; the editor surfaces, never invents.</div>
+  </div>
+</section>
+
+<footer class="colo">
+  <span>CARDBOARD STUDIO · CUTTING MAT DESIGN DOC</span>
+  <span>Every verb shown works · nothing cascades · only the human commits</span>
+</footer>
+</div>
+
+<script>
+(function(){
+"use strict";
+/* ============================================================
+   Shared helpers
+============================================================ */
+var clone = function(o){ return JSON.parse(JSON.stringify(o)); };
+function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function fmtIn(x){
+  var w = Math.floor(x + 1e-6), f = Math.round((x - w) * 4);
+  if (f === 4){ w += 1; f = 0; }
+  var fr = ["","¼","½","¾"][f];
+  if (w === 0 && fr) return fr;
+  return w + fr;
+}
+function snap(v){ return Math.round(v * 4) / 4; }
+function bbox(path){
+  var xs = path.map(function(p){return p[0];}), ys = path.map(function(p){return p[1];});
+  var x0 = Math.min.apply(null,xs), y0 = Math.min.apply(null,ys);
+  return { x:x0, y:y0, w:Math.max.apply(null,xs)-x0, h:Math.max.apply(null,ys)-y0 };
+}
+function ptsAttr(path){ return path.map(function(p){return p[0]+","+p[1];}).join(" "); }
+
+/* ============================================================
+   The document (literal coordinates, like the real thing)
+============================================================ */
+function bladePts(L){ return [[0,0],[L-2.2,0],[L,0.75],[L-2.2,1.5],[0,1.5]]; }
+function rectPts(w,h){ return [[0,0],[w,0],[w,h],[0,h]]; }
+var INIT_BLADE = 11;
+var doc = {
+  name: "pirate-sword",
+  units: "inches",
+  parts: [
+    { id:"blade", name:"Blade", layout:{x:1.5,y:0.75}, path:bladePts(INIT_BLADE), holes:[], count:1 },
+    { id:"guard", name:"Guard", layout:{x:1.5,y:3.5}, path:rectPts(5,1.2),
+      holes:[{ id:"h1", x:2.5, y:0.6, d:0.6, fit:"SNUG" }], count:1 },
+    { id:"grip",  name:"Grip",  layout:{x:8,y:3.5}, path:rectPts(4.5,1.2), holes:[], count:2 }
+  ],
+  hardware: [{ id:"grip-dowel", kind:"dowel", d:0.25, len:6 }],
+  /* cross-references name holes by stable id — never by array index */
+  fitChecks: [{ part:"guard", hole:"h1", against:"grip-dowel", want:"SNUG" }]
+};
+function partOf(d,id){ for (var i=0;i<d.parts.length;i++) if (d.parts[i].id===id) return d.parts[i]; return null; }
+function nextHoleId(d){
+  var n = 1;
+  d.parts.forEach(function(p){ p.holes.forEach(function(h){
+    var m = /^h(\d+)$/.exec(h.id); if (m) n = Math.max(n, +m[1]+1);
+  });});
+  return "h"+n;
+}
+
+/* state */
+var selId = "blade";
+var punchMode = false, punchFit = "LOOSE";
+var review = null;        /* {before, prop, chips, summary} */
+var pending = false;      /* proposal in flight: mat + history locked from the moment the staged animation starts */
+var foldShow = "after";
+var foldT = 0;
+var cps = [];             /* checkpoints: {author,label,snap} */
+var cpTimer = null, pendingLabel = null;
+var goalsDone = { size:false, slide:false, claude:false };
+
+var matSvg = document.getElementById("mat");
+var foldSvg = document.getElementById("fold");
+var jsonbox = document.getElementById("jsonbox");
+var chatlog = document.getElementById("chatlog");
+var cpsEl = document.getElementById("cps");
+var lintEl = document.getElementById("lint");
+var thinkChip = document.getElementById("thinkChip");
+
+/* pending lock: engaged the instant a proposal's staged animation starts,
+   released only when the review state takes over (or the ask fizzles).
+   While pending, every edit path — drag, punch, fix-it, restore — is REFUSED
+   with a visible nudge, never silently clobbered by the landing proposal. */
+function setPending(v){
+  pending = v;
+  thinkChip.hidden = !v;
+  thinkChip.classList.remove("bump");
+  matSvg.classList.toggle("pending", v);
+  cpsEl.classList.toggle("paused", v);
+}
+function refusePending(){
+  thinkChip.classList.remove("bump");
+  void thinkChip.offsetWidth;   /* restart the shake */
+  thinkChip.classList.add("bump");
+}
+
+/* ============================================================
+   Mat rendering
+============================================================ */
+var MW = 16, MH = 7.5;
+function gridSvg(){
+  var s = "";
+  for (var x=0; x<=MW; x++)
+    s += '<line x1="'+x+'" y1="0" x2="'+x+'" y2="'+MH+'" stroke="var(--'+(x%3===0?"grid-major":"grid")+')" stroke-width="'+(x%3===0?0.03:0.016)+'"/>';
+  for (var y=0; y<=MH; y++)
+    s += '<line x1="0" y1="'+y+'" x2="'+MW+'" y2="'+y+'" stroke="var(--'+(y%3===0?"grid-major":"grid")+')" stroke-width="'+(y%3===0?0.03:0.016)+'"/>';
+  return s;
+}
+function holeSvg(h){
+  var r = h.d/2;
+  return '<g pointer-events="none">'
+    + '<circle cx="'+h.x+'" cy="'+h.y+'" r="'+r+'" fill="var(--bg)" stroke="var(--ink)" stroke-width="0.03"/>'
+    + '<line x1="'+(h.x-r-0.07)+'" y1="'+h.y+'" x2="'+(h.x+r+0.07)+'" y2="'+h.y+'" stroke="var(--ink)" stroke-width="0.018"/>'
+    + '<line x1="'+h.x+'" y1="'+(h.y-r-0.07)+'" x2="'+h.x+'" y2="'+(h.y+r+0.07)+'" stroke="var(--ink)" stroke-width="0.018"/>'
+    + '</g>';
+}
+function partSvg(p, opts){
+  opts = opts || {};
+  var b = bbox(p.path);
+  var sel = !opts.ghostOnly && !review && p.id === selId;
+  var cls = opts.pulse ? ' class="pulse"' : "";
+  var s = '<g'+cls+' data-part="'+p.id+'" transform="translate('+p.layout.x+','+p.layout.y+')">';
+  if (p.count > 1)
+    s += '<polygon points="'+ptsAttr(p.path)+'" transform="translate(0.12,0.14)" fill="var(--kraft-deep)" opacity="0.55"/>';
+  s += '<polygon points="'+ptsAttr(p.path)+'" fill="var(--kraft)" stroke="'+(sel ? "var(--crimson)" : "var(--kraft-deep)")+'" stroke-width="'+(sel?0.055:0.035)+'"/>';
+  p.holes.forEach(function(h){ s += holeSvg(h); });
+  s += '<text x="'+(b.x+b.w/2)+'" y="'+(b.y+b.h/2+0.11)+'" text-anchor="middle" font-size="0.34" font-weight="600" fill="var(--ink-on-kraft)" pointer-events="none" style="font-family:var(--sans)">'+esc(p.name)+(p.count>1?" ×"+p.count:"")+'</text>';
+  if (sel && p.id === "blade"){
+    var L = b.w;
+    s += '<rect data-handle="blade-tip" x="'+(L-0.15)+'" y="0.6" width="0.3" height="0.3" fill="var(--surface)" stroke="var(--crimson)" stroke-width="0.05" style="cursor:ew-resize"/>';
+    s += '<rect data-handle="blade-tip" x="'+(L-0.42)+'" y="0.3" width="0.84" height="0.9" fill="transparent" style="cursor:ew-resize"/>';
+    s += '<text x="'+(L-0.1)+'" y="-0.22" text-anchor="end" font-size="0.36" font-weight="700" fill="var(--crimson)" pointer-events="none" style="font-family:var(--sans)">'+fmtIn(L)+'&#8243;</text>';
+  }
+  return s + "</g>";
+}
+function renderMat(){
+  var s = gridSvg();
+  s += '<text x="0.15" y="0.42" font-size="0.3" fill="var(--muted)" style="font-family:var(--mono)" pointer-events="none">1&#8243; = 1&#8243; on paper</text>';
+  var d = review ? review.prop : doc;
+  if (review){
+    review.before.parts.forEach(function(p){
+      s += '<g transform="translate('+p.layout.x+','+p.layout.y+')" pointer-events="none">'
+         + '<polygon class="part-ghost" points="'+ptsAttr(p.path)+'"/>'
+         + p.holes.map(function(h){ return '<circle class="part-ghost" cx="'+h.x+'" cy="'+h.y+'" r="'+(h.d/2)+'"/>'; }).join("")
+         + '</g>';
+    });
+    var changed = {}; review.chips.forEach(function(c){ changed[c.part] = true; });
+    d.parts.forEach(function(p){ s += partSvg(p, { pulse: !!changed[p.id] }); });
+  } else {
+    d.parts.forEach(function(p){ s += partSvg(p); });
+  }
+  matSvg.innerHTML = s;
+  matSvg.classList.toggle("punchmode", punchMode && !review);
+}
+
+/* ============================================================
+   Fold-up pane (same document → second view)
+============================================================ */
+function foldPoses(d){
+  var blade = partOf(d,"blade"), guard = partOf(d,"guard"), grip = partOf(d,"grip");
+  var gripL = bbox(grip.path).w, guardW = bbox(guard.path).w;
+  var cy = 3.6, x0 = 1.1;
+  var guardX = x0 + gripL - 0.35;           /* guard center x */
+  var bladeX = guardX + 0.65;
+  return {
+    grip:  { x:x0, y:cy-0.6, r:0 },
+    guard: { x:guardX - guardW/2, y:cy-0.6, r:90 },
+    blade: { x:bladeX, y:cy-0.75, r:0 }
+  };
+}
+function renderFold(){
+  var d = review ? (foldShow === "before" ? review.before : review.prop) : doc;
+  var poses = foldPoses(d), t = foldT/100;
+  var s = "";
+  for (var x=0; x<=21; x+=3)
+    s += '<line x1="'+x+'" y1="0" x2="'+x+'" y2="8" stroke="var(--grid)" stroke-width="0.02"/>';
+  s += '<line x1="1" y1="6.4" x2="20" y2="6.4" stroke="var(--line-2)" stroke-width="0.03" stroke-dasharray="0.25 0.18"/>';
+  var order = ["blade","guard","grip"];
+  order.forEach(function(id){
+    var p = partOf(d,id), pose = poses[id], b = bbox(p.path);
+    var fx = p.layout.x, fy = p.layout.y;
+    var x = fx + (pose.x - fx)*t, y = fy + (pose.y - fy)*t, r = pose.r*t;
+    var copies = p.count > 1 ? 2 : 1;
+    for (var i = copies-1; i >= 0; i--){
+      var ox = i*0.12, oy = i*0.14;
+      s += '<g transform="translate('+(x+ox)+','+(y+oy)+') rotate('+r+' '+(b.x+b.w/2)+' '+(b.y+b.h/2)+')">'
+        + '<polygon points="'+ptsAttr(p.path)+'" transform="translate(0.09,0.11)" fill="var(--kraft-deep)"/>'
+        + '<polygon points="'+ptsAttr(p.path)+'" fill="var(--kraft)" stroke="var(--kraft-deep)" stroke-width="0.035"/>'
+        + p.holes.map(function(h){
+            return '<circle cx="'+h.x+'" cy="'+h.y+'" r="'+(h.d/2)+'" fill="var(--bg)" stroke="var(--ink)" stroke-width="0.025"/>';
+          }).join("")
+        + '</g>';
+    }
+  });
+  s += '<text x="20.8" y="7.7" text-anchor="end" font-size="0.34" fill="var(--muted)" style="font-family:var(--mono)">'
+     + (review ? (foldShow==="before" ? "BEFORE (head)" : "AFTER (proposal)") : (t<0.05 ? "FLAT — as printed" : t>0.95 ? "BUILT" : "folding up…"))
+     + "</text>";
+  foldSvg.innerHTML = s;
+}
+
+/* ============================================================
+   JSON inspector + diff
+============================================================ */
+function fmtDoc(d){
+  var s = JSON.stringify(d, function(k,v){
+    return typeof v === "number" ? Math.round(v*100)/100 : v;
+  }, 2);
+  s = s.replace(/\[\s*([-\d.,eE\s]+?)\s*\]/g, function(m, inner){
+    return "[" + inner.replace(/\s+/g," ").replace(/, /g,",").split(",").join(", ").trim() + "]";
+  });
+  s = s.replace(/\[\s*((?:\[[^\[\]]*\],?\s*)+)\]/g, function(m, inner){
+    var one = "[" + inner.replace(/\s+/g," ").trim().replace(/,\s*$/,"") + "]";
+    return one.length <= 72 ? one : m;
+  });
+  return s;
+}
+function diffLines(a,b){
+  var n=a.length, m=b.length, i, j;
+  var dp = [];
+  for (i=0;i<=n;i++) dp.push(new Uint16Array(m+1));
+  for (i=n-1;i>=0;i--) for (j=m-1;j>=0;j--)
+    dp[i][j] = a[i]===b[j] ? dp[i+1][j+1]+1 : Math.max(dp[i+1][j], dp[i][j+1]);
+  var out=[]; i=0; j=0;
+  while (i<n && j<m){
+    if (a[i]===b[j]){ out.push({t:" ",s:a[i]}); i++; j++; }
+    else if (dp[i+1][j] >= dp[i][j+1]){ out.push({t:"-",s:a[i]}); i++; }
+    else { out.push({t:"+",s:b[j]}); j++; }
+  }
+  while (i<n) out.push({t:"-",s:a[i++]});
+  while (j<m) out.push({t:"+",s:b[j++]});
+  return out;
+}
+var prevJsonLines = null;
+function renderJSON(){
+  var html = "", firstMark = -1, k = 0;
+  if (review){
+    var d = diffLines(fmtDoc(review.before).split("\n"), fmtDoc(review.prop).split("\n"));
+    d.forEach(function(l){
+      var cls = l.t==="+" ? "jl add" : l.t==="-" ? "jl del" : "jl";
+      if (l.t!==" " && firstMark<0) firstMark = k;
+      html += '<div class="'+cls+'">'+(l.t===" "?"  ":l.t+" ")+esc(l.s)+"</div>"; k++;
+    });
+    prevJsonLines = null;
+  } else {
+    var lines = fmtDoc(doc).split("\n");
+    var chg = {};
+    if (prevJsonLines){
+      diffLines(prevJsonLines, lines).forEach(function(l){
+        if (l.t === "+") chg[l.s] = true;
+      });
+    }
+    lines.forEach(function(l){
+      var isC = prevJsonLines && chg[l];
+      if (isC && firstMark<0) firstMark = k;
+      html += '<div class="jl'+(isC?" chg":"")+'">  '+esc(l)+"</div>"; k++;
+    });
+    prevJsonLines = lines;
+  }
+  jsonbox.innerHTML = html;
+  if (firstMark > 0){
+    var el = jsonbox.children[firstMark];
+    if (el) jsonbox.scrollTop = Math.max(0, el.offsetTop - jsonbox.clientHeight/2);
+  }
+}
+
+/* ============================================================
+   Toy Doctor lint
+============================================================ */
+function runLint(d){
+  var issues = [];
+  d.parts.forEach(function(p){
+    var b = bbox(p.path);
+    p.holes.forEach(function(h){
+      var m = Math.min(h.x-b.x-h.d/2, h.y-b.y-h.d/2, b.x+b.w-h.x-h.d/2, b.y+b.h-h.y-h.d/2);
+      if (m < 0.18) issues.push({
+        part:p.id, hole:h.id,
+        txt: p.name+": hole "+h.id+" too close to the edge — cardboard will tear",
+        fix: true
+      });
+    });
+  });
+  return issues;
+}
+function renderLint(){
+  var d = review ? review.prop : doc;
+  var issues = runLint(d);
+  var html = "";
+  if (!issues.length)
+    html = '<span class="lint-chip ok">TOY DOCTOR · 6/6 shop checks pass</span>';
+  else issues.forEach(function(is){
+    html += '<span class="lint-chip warn">'+esc(is.txt)
+      + (is.fix && !review ? ' <button data-fix="'+is.part+':'+is.hole+'">Fix it</button>' : "")
+      + "</span>";
+  });
+  lintEl.innerHTML = html;
+}
+lintEl.addEventListener("click", function(e){
+  var b = e.target.closest("[data-fix]");
+  if (!b) return;
+  if (pending){ refusePending(); return; }
+  var pi = b.getAttribute("data-fix").split(":");
+  var p = partOf(doc, pi[0]);
+  var h = p.holes.filter(function(x){return x.id===pi[1];})[0];
+  if (!h) return;
+  var bb = bbox(p.path), mg = 0.22 + h.d/2;
+  h.x = Math.min(Math.max(h.x, bb.x+mg), bb.x+bb.w-mg);
+  h.y = Math.min(Math.max(h.y, bb.y+mg), bb.y+bb.h-mg);
+  afterHumanEdit("Fixed hole in "+p.name+" (deterministic)");
+});
+
+/* ============================================================
+   Goals
+============================================================ */
+function goal(id){
+  if (goalsDone[id]) return;
+  goalsDone[id] = true;
+  var el = document.querySelector('#goals .g[data-g="'+id+'"]');
+  if (el) el.classList.add("done");
+}
+
+/* ============================================================
+   Checkpoints (append-only)
+============================================================ */
+function pushCp(author, label){
+  cps.push({ author:author, label:label, snap:clone(doc) });
+  renderCps(true);
+}
+function renderCps(pop){
+  var html = "";
+  cps.forEach(function(c,i){
+    if (i) html += '<span class="cp-conn"></span>';
+    var head = i === cps.length-1;
+    html += '<button class="cp '+c.author+(head?" head":"")+(pop && head?" pop":"")+'" data-cp="'+i+'" title="'
+      + esc((c.author==="you"?"You: ":"Claude: ")+c.label)+(head?" (head)":" — click to restore")+'">'
+      + '<span class="dot"></span><span class="l">'+esc(c.label)+"</span></button>";
+  });
+  cpsEl.innerHTML = html;
+  cpsEl.scrollLeft = cpsEl.scrollWidth;
+}
+cpsEl.addEventListener("click", function(e){
+  var b = e.target.closest("[data-cp]");
+  if (!b) return;
+  if (pending){ refusePending(); return; }   /* restore is queued behind the review, never lost under it */
+  if (review) return;
+  var i = +b.getAttribute("data-cp");
+  if (i === cps.length-1) return;
+  flushCp();
+  doc = clone(cps[i].snap);
+  selId = "blade";
+  pushCp("you", "Restored: "+cps[i].label);
+  renderAll();
+  chatSys("Restored “"+cps[i].label+"” — written as a new checkpoint at the head. History never rewrites.");
+});
+function scheduleCp(label){
+  pendingLabel = label;
+  clearTimeout(cpTimer);
+  cpTimer = setTimeout(flushCp, 1200);
+}
+function flushCp(){
+  clearTimeout(cpTimer);
+  if (pendingLabel){ pushCp("you", pendingLabel); pendingLabel = null; }
+}
+
+/* ============================================================
+   Mat interactions: MOVE, SIZE, PUNCH
+============================================================ */
+function matPt(e){
+  var r = matSvg.getBoundingClientRect();
+  return { x:(e.clientX-r.left)/r.width*MW, y:(e.clientY-r.top)/r.height*MH };
+}
+var drag = null;
+matSvg.addEventListener("pointerdown", function(e){
+  if (pending){ refusePending(); return; }   /* refused, not clobbered */
+  if (review) return;
+  var pt = matPt(e);
+  var hEl = e.target.closest("[data-handle]");
+  if (hEl){
+    drag = { kind:"size" };
+    matSvg.setPointerCapture(e.pointerId);
+    e.preventDefault();
+    return;
+  }
+  var pEl = e.target.closest("[data-part]");
+  if (pEl){
+    var id = pEl.getAttribute("data-part");
+    var p = partOf(doc,id);
+    if (punchMode){
+      var lx = Math.round((pt.x - p.layout.x)*8)/8, ly = Math.round((pt.y - p.layout.y)*8)/8;
+      p.holes.push({ id:nextHoleId(doc), x:lx, y:ly, d:punchFit==="LOOSE"?0.28:0.24, fit:punchFit });
+      afterHumanEdit("Punched "+punchFit+" hole in "+p.name);
+      return;
+    }
+    selId = id;
+    drag = { kind:"move", id:id, start:pt, orig:{ x:p.layout.x, y:p.layout.y }, moved:false };
+    matSvg.setPointerCapture(e.pointerId);
+    renderMat();
+    e.preventDefault();
+    return;
+  }
+  selId = null;
+  renderMat();
+});
+matSvg.addEventListener("pointermove", function(e){
+  if (!drag || review || pending) return;
+  var pt = matPt(e);
+  if (drag.kind === "size"){
+    var blade = partOf(doc,"blade");
+    var L = Math.min(14, Math.max(7, snap(pt.x - blade.layout.x)));
+    if (Math.abs(L - bbox(blade.path).w) > 0.01){
+      blade.path = bladePts(L);
+      if (L > INIT_BLADE + 0.26) goal("size");
+      liveUpdate("Resized Blade to "+fmtIn(L)+"″");
+    }
+  } else if (drag.kind === "move"){
+    var p = partOf(doc, drag.id);
+    var b = bbox(p.path);
+    var nx = snap(drag.orig.x + pt.x - drag.start.x);
+    var ny = snap(drag.orig.y + pt.y - drag.start.y);
+    nx = Math.min(Math.max(nx, 0.25), MW - b.w - 0.25);
+    ny = Math.min(Math.max(ny, 0.25), MH - b.h - 0.25);
+    if (nx !== p.layout.x || ny !== p.layout.y){
+      p.layout.x = nx; p.layout.y = ny; drag.moved = true;
+      liveUpdate("Moved "+p.name);
+    }
+  }
+});
+function endDrag(){ drag = null; }
+matSvg.addEventListener("pointerup", endDrag);
+matSvg.addEventListener("pointercancel", endDrag);
+
+function liveUpdate(label){
+  renderMat(); renderFold(); renderJSON(); renderLint();
+  scheduleCp(label);
+}
+function afterHumanEdit(label){
+  renderAll();
+  scheduleCp(label);
+}
+
+/* verb bar */
+document.getElementById("punchBtn").addEventListener("click", function(){
+  punchMode = !punchMode;
+  this.classList.toggle("on", punchMode);
+  document.getElementById("fitSeg").classList.toggle("show", punchMode);
+  renderMat();
+});
+document.getElementById("fitSeg").addEventListener("click", function(e){
+  var b = e.target.closest("[data-fit]");
+  if (!b) return;
+  punchFit = b.getAttribute("data-fit");
+  this.querySelectorAll("button").forEach(function(x){ x.classList.toggle("on", x===b); });
+});
+
+/* fold slider + BEFORE/AFTER */
+document.getElementById("foldT").addEventListener("input", function(){
+  foldT = +this.value;
+  if (foldT > 85) goal("slide");
+  renderFold();
+});
+document.getElementById("baToggle").addEventListener("click", function(e){
+  var b = e.target.closest("[data-ba]");
+  if (!b) return;
+  foldShow = b.getAttribute("data-ba");
+  this.querySelectorAll("button").forEach(function(x){ x.classList.toggle("on", x===b); });
+  renderFold();
+});
+
+/* ============================================================
+   Chat + proposals (the LLM loop in miniature)
+============================================================ */
+function chatSys(txt){
+  var d = document.createElement("div");
+  d.className = "bub claude";
+  d.innerHTML = '<span class="who">Studio</span>'+esc(txt);
+  chatlog.appendChild(d);
+  chatlog.scrollTop = chatlog.scrollHeight;
+}
+function bubble(who, html){
+  var d = document.createElement("div");
+  d.className = "bub "+who;
+  d.innerHTML = '<span class="who">'+(who==="you"?"You":"Claude")+"</span>"+html;
+  chatlog.appendChild(d);
+  chatlog.scrollTop = chatlog.scrollHeight;
+  return d;
+}
+function computeChips(a,b){
+  var chips = [];
+  b.parts.forEach(function(pb){
+    var pa = partOf(a, pb.id);
+    if (!pa){ chips.push({part:pb.id, txt:"New part: "+pb.name}); return; }
+    var wa = bbox(pa.path).w, wb = bbox(pb.path).w;
+    if (Math.abs(wa-wb) > 0.01)
+      chips.push({part:pb.id, txt:pb.name+": "+(wb>wa?(pb.id==="blade"?"longer":"wider"):"smaller")+", "+fmtIn(wa)+"in → "+fmtIn(wb)+"in"});
+    else if (JSON.stringify(pa.path) !== JSON.stringify(pb.path))
+      chips.push({part:pb.id, txt:pb.name+": reshaped"});
+    if (pa.layout.x !== pb.layout.x || pa.layout.y !== pb.layout.y)
+      chips.push({part:pb.id, txt:pb.name+": moved on the mat"});
+    pb.holes.forEach(function(h){
+      if (!pa.holes.some(function(x){return x.id===h.id;}))
+        chips.push({part:pb.id, txt:pb.name+": new "+h.fit+" hole ("+(h.fit==="LOOSE"?"so it slides":"so it grips")+")"});
+    });
+  });
+  return chips;
+}
+var ASKS = {
+  fiercer: {
+    msg: "make it fiercer",
+    summary: "Longer blade, wider guard",
+    apply: function(d){
+      var blade = partOf(d,"blade");
+      var L = Math.min(14, bbox(blade.path).w + 2);
+      blade.path = bladePts(L);
+      var g = partOf(d,"guard");
+      if (bbox(g.path).w < 6){ g.path = rectPts(6,1.2); g.holes[0].x = 3; }
+    },
+    already: "It’s already about as fierce as one printed page allows — try the lanyard hole."
+  },
+  lanyard: {
+    msg: "add a lanyard hole",
+    summary: "Lanyard hole in the grip",
+    apply: function(d){
+      var g = partOf(d,"grip"), b = bbox(g.path);
+      if (!g.holes.some(function(h){return h.fit==="LOOSE";}))
+        g.holes.push({ id:nextHoleId(d), x:b.x+b.w-0.45, y:0.6, d:0.28, fit:"LOOSE" });
+    },
+    already: "The grip already has a LOOSE hole — a string will slide right through it."
+  }
+};
+var askRow = document.getElementById("askRow");
+askRow.addEventListener("click", function(e){
+  var b = e.target.closest("[data-ask]");
+  if (!b || review || pending) return;
+  var ask = ASKS[b.getAttribute("data-ask")];
+  flushCp();
+  bubble("you", esc("“"+ask.msg+"”"));
+  setAsksDisabled(true);
+  var before = clone(doc), prop = clone(doc);
+  ask.apply(prop);
+  var chips = computeChips(before, prop);
+  if (!chips.length){
+    setTimeout(function(){ bubble("claude", esc(ask.already)); setAsksDisabled(false); }, 450);
+    return;
+  }
+  /* stage the proposal with a visible pipeline — and lock the mat + history
+     the moment the staged animation starts, so nothing lands on top of an
+     edit made while Claude is "thinking" */
+  setPending(true);
+  var card = bubble("claude",
+    '<div class="pipeline">'
+    + '<span>READ</span><span>EDIT</span><span>VALIDATE</span><span>MERGE</span><span>REVIEW</span>'
+    + "</div><div class='pbody'></div>");
+  var stages = card.querySelectorAll(".pipeline span");
+  var si = 0;
+  var tick = setInterval(function(){
+    if (si < stages.length){ stages[si++].classList.add("lit"); return; }
+    clearInterval(tick);
+    review = { before:before, prop:prop, chips:chips, summary:ask.summary };
+    setPending(false);   /* the review state takes over the lock — no unlocked gap */
+    var lintN = runLint(prop).length;
+    var body = card.querySelector(".pbody");
+    body.innerHTML =
+      esc(ask.summary)+ ' <span style="color:var(--muted);font-size:.76em">(validated · merged onto checkpoint #'+cps.length+')</span>'
+      + '<div class="chips">'+chips.map(function(c){return '<span class="chip">'+esc(c.txt)+"</span>";}).join("")+"</div>"
+      + '<div class="lintline">'+(lintN? lintN+" shop check"+(lintN>1?"s need":" needs")+" a look — chips stay pinned to the geometry" : "still passes all 6 shop checks")+"</div>"
+      + '<div class="kn"><button class="keep">Keep</button><button class="nope">Nope</button></div>';
+    document.getElementById("baToggle").classList.add("show");
+    renderAll();
+    chatlog.scrollTop = chatlog.scrollHeight;
+    body.querySelector(".keep").addEventListener("click", function(){ settle(true); });
+    body.querySelector(".nope").addEventListener("click", function(){ settle(false); });
+    function settle(keep){
+      if (keep){
+        doc = review.prop;
+        pushCp("claude", ask.summary);
+        goal("claude");
+      }
+      review = null;
+      foldShow = "after";
+      var t = document.getElementById("baToggle");
+      t.classList.remove("show");
+      t.querySelectorAll("button").forEach(function(x){ x.classList.toggle("on", x.getAttribute("data-ba")==="after"); });
+      body.querySelector(".kn").remove();
+      body.insertAdjacentHTML("beforeend",
+        '<div style="font-size:.76rem;font-weight:700;color:var(--'+(keep?"good":"muted")+')">'
+        + (keep ? "Kept — checkpoint written: “Claude: "+esc(ask.summary)+"”" : "Discarded — nothing was applied.")+"</div>");
+      setAsksDisabled(false);
+      renderAll();
+    }
+  }, 210);
+});
+function setAsksDisabled(v){
+  askRow.querySelectorAll(".ask").forEach(function(b){ b.disabled = v; });
+}
+
+/* ============================================================
+   Boot the studio
+============================================================ */
+function renderAll(){ renderMat(); renderFold(); renderJSON(); renderLint(); }
+pushCp("you", "Opened pirate-sword remix");
+renderAll();
+chatSys("This design is yours and Claude’s to edit — same file, same rules. Claude proposes; you commit.");
+
+/* ============================================================
+   Sheet 4 widget: Fusion timeline vs checkpoints
+============================================================ */
+var FOPS = [
+  { n:"Sketch1",  d:"blade profile", fail:"profile re-solved: 2 constraints lost" },
+  { n:"Extrude1", d:"12 in",         fail:"lost profile reference" },
+  { n:"Shell1",   d:"t = 0.15",      fail:"face missing" },
+  { n:"Pattern1", d:"holes ×6",      fail:"edge not found" },
+  { n:"Fillet3",  d:"r = 0.2",       fail:"2 edges vanished" }
+];
+var fopsEl = document.getElementById("fops"), fmsg = document.getElementById("fmsg");
+var ftimers = [];
+function renderFops(){
+  fopsEl.innerHTML = FOPS.map(function(o,i){
+    return (i ? '<span class="op-arrow"></span>' : "")
+      + '<button class="op" data-op="'+i+'"><span class="on1">'+o.n+'</span><span class="on2">'+o.d+"</span></button>";
+  }).join("");
+}
+function fReset(){
+  ftimers.forEach(clearTimeout); ftimers = [];
+  renderFops();
+  fmsg.className = "hmsg";
+  fmsg.textContent = "Click an early operation — say, the Extrude — and watch the future re-run.";
+}
+fopsEl.addEventListener("click", function(e){
+  var b = e.target.closest("[data-op]");
+  if (!b) return;
+  fReset();
+  var i = +b.getAttribute("data-op");
+  var ops = fopsEl.querySelectorAll(".op");
+  ops[i].classList.add("edited");
+  ops[i].querySelector(".on2").textContent = "edited: "+FOPS[i].d+" → changed";
+  var down = FOPS.length - 1 - i;
+  for (var j=i+1; j<FOPS.length; j++)(function(j,k){
+    ftimers.push(setTimeout(function(){
+      ops[j].classList.add("broken");
+      ops[j].querySelector(".on2").textContent = FOPS[j].fail;
+      if (j === FOPS.length-1){
+        fmsg.className = "hmsg badmsg";
+        fmsg.textContent = "You changed one number. "+down+" downstream feature"+(down>1?"s":"")
+          + " re-executed and failed. The file is a program — editing the past re-runs the future, and someone now owns the wreckage.";
+      }
+    }, 300*k));
+  })(j, j-i);
+  if (down === 0){
+    fmsg.className = "hmsg badmsg";
+    fmsg.textContent = "Nothing downstream — but only because you edited the last feature. Try an earlier one.";
+  }
+});
+document.getElementById("freset").addEventListener("click", fReset);
+renderFops();
+
+var HD0 = [
+  { a:"you",    l:"Opened remix" },
+  { a:"you",    l:"Blade 12 → 14 in" },
+  { a:"claude", l:"Snug wheel hole" },
+  { a:"you",    l:"Moved guard" }
+];
+var hd = clone(HD0);
+var hdotsEl = document.getElementById("hdots"), hmsg = document.getElementById("hmsg");
+function renderHd(pop){
+  hdotsEl.innerHTML = hd.map(function(c,i){
+    var head = i === hd.length-1;
+    return (i ? '<span class="hd-conn"></span>' : "")
+      + '<button class="hd '+c.a+(head?" head":"")+(pop&&head?" pop":"")+'" data-hd="'+i+'" title="'
+      + (head ? "head — the current document" : "click to restore this snapshot")+'">'
+      + '<span class="dot"></span><span class="ha">'+(c.a==="you"?"You":"Claude")+'</span><span class="hl">'+esc(c.l)+"</span></button>";
+  }).join("");
+  hdotsEl.scrollLeft = hdotsEl.scrollWidth;
+}
+hdotsEl.addEventListener("click", function(e){
+  var b = e.target.closest("[data-hd]");
+  if (!b) return;
+  var i = +b.getAttribute("data-hd");
+  if (i === hd.length-1){
+    hmsg.className = "hmsg";
+    hmsg.textContent = "That’s the head — the document you’re holding right now. Click an older dot.";
+    return;
+  }
+  hd.push({ a:"you", l:"Restored “"+hd[i].l+"”" });
+  renderHd(true);
+  hmsg.className = "hmsg goodmsg";
+  hmsg.textContent = "Restore wrote the old snapshot as a NEW head checkpoint. Nothing replayed, nothing broke, and every version — including the one you just left — is still there. One undo stack covers you and the robot alike.";
+});
+document.getElementById("hreset").addEventListener("click", function(){
+  hd = clone(HD0);
+  renderHd();
+  hmsg.className = "hmsg";
+  hmsg.textContent = "Restore never rewrites history — it writes the old document as a new head checkpoint.";
+});
+renderHd();
+})();
+</script>

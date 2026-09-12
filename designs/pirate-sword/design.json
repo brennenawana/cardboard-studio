@@ -1,0 +1,758 @@
+{
+  "slug": "pirate-sword",
+  "title": "Pirate Cutlass",
+  "tagline": "A proper captain's cutlass with a curved knuckle guard — ready for the high seas!",
+  "category": "armor-and-weapons",
+  "difficulty": 2,
+  "ageRange": "5+ with a grown-up",
+  "buildTime": "About 1 hour (plus drying time)",
+  "finishedSize": {
+    "widthIn": 8,
+    "heightIn": 19
+  },
+  "materials": [
+    "Corrugated cardboard — one large box (double-wall is best for the blade)",
+    "White glue or hot glue",
+    "String or cloth tape for the grip wrap (optional)",
+    "Paint or markers to decorate (optional)"
+  ],
+  "tools": [
+    "Scissors or craft knife (grown-up job!)",
+    "Metal ruler",
+    "Pencil",
+    "Printer + tape for the template"
+  ],
+  "parts": [
+    {
+      "id": "sword-body",
+      "name": "Sword Body",
+      "count": 2,
+      "path": "M 2.3 1.05 C 1.7 1.02 1.5 0.6 2.0 0.42 C 2.4 0.27 3.1 0.27 3.5 0.42 C 4.0 0.6 3.8 1.02 3.2 1.05 L 3.2 3.55 L 4.85 3.55 C 5.2 3.55 5.2 4.45 4.85 4.45 L 3.6 4.45 L 3.48 13.5 C 3.42 16.2 3.15 17.7 2.78 18.75 C 2.5 17.75 2.2 16.3 2.14 13.5 L 2.0 4.45 L 0.65 4.45 C 0.3 4.45 0.3 3.55 0.65 3.55 L 2.3 3.55 Z",
+      "holes": [],
+      "slits": [
+        {
+          "id": "s1",
+          "d": "M 2.3 1.6 L 3.2 2.0"
+        },
+        {
+          "id": "s2",
+          "d": "M 2.3 2.2 L 3.2 2.6"
+        },
+        {
+          "id": "s3",
+          "d": "M 2.3 2.8 L 3.2 3.2"
+        }
+      ],
+      "corrugation": "vertical",
+      "laminate": true,
+      "labelAt": {
+        "x": 2.75,
+        "y": 4.15
+      },
+      "arrowAt": {
+        "x": 2.8,
+        "y": 7.4
+      }
+    },
+    {
+      "id": "blade-top",
+      "name": "Blade Top Layer",
+      "count": 2,
+      "path": "M 0.5 0 L 1.45 0 L 1.38 9.0 C 1.35 11.2 1.15 12.6 0.95 13.4 C 0.72 12.65 0.55 11.2 0.52 9.0 Z",
+      "corrugation": "vertical",
+      "laminate": true,
+      "labelAt": {
+        "x": 0.97,
+        "y": 6.5,
+        "rotate": 90
+      },
+      "arrowAt": {
+        "x": 0.98,
+        "y": 2.2
+      }
+    },
+    {
+      "id": "guard-bowl",
+      "name": "Knuckle Guard",
+      "count": 1,
+      "path": "M 0.4 0 L 7.1 0 C 7.5 0 7.5 2.2 7.1 2.2 L 0.4 2.2 C 0 2.2 0 0 0.4 0 Z",
+      "slits": [
+        {
+          "id": "s1",
+          "d": "M 1.0 0 L 1.0 2.2"
+        },
+        {
+          "id": "s2",
+          "d": "M 1.6 0 L 1.6 2.2"
+        },
+        {
+          "id": "s3",
+          "d": "M 2.2 0 L 2.2 2.2"
+        },
+        {
+          "id": "s4",
+          "d": "M 2.8 0 L 2.8 2.2"
+        },
+        {
+          "id": "s5",
+          "d": "M 3.4 0 L 3.4 2.2"
+        },
+        {
+          "id": "s6",
+          "d": "M 4.0 0 L 4.0 2.2"
+        },
+        {
+          "id": "s7",
+          "d": "M 4.6 0 L 4.6 2.2"
+        },
+        {
+          "id": "s8",
+          "d": "M 5.2 0 L 5.2 2.2"
+        },
+        {
+          "id": "s9",
+          "d": "M 5.8 0 L 5.8 2.2"
+        },
+        {
+          "id": "s10",
+          "d": "M 6.4 0 L 6.4 2.2"
+        }
+      ],
+      "corrugation": "horizontal",
+      "labelAt": {
+        "x": 6.72,
+        "y": 1.1,
+        "rotate": 90
+      },
+      "arrowAt": {
+        "x": 0.55,
+        "y": 1.35
+      }
+    }
+  ],
+  "fitChecks": [
+    {
+      "reason": "blade top layer must be narrower than the blade so a flat rim shows along both edges",
+      "a": {
+        "part": "sword-body",
+        "measure": "length",
+        "d": "M 2.0 4.45 L 3.6 4.45"
+      },
+      "op": "clearance",
+      "b": {
+        "part": "blade-top",
+        "measure": "width"
+      },
+      "minIn": 0.3,
+      "maxIn": 0.8
+    },
+    {
+      "reason": "blade top layer must fit within the sword's length with room for the grip",
+      "a": {
+        "part": "sword-body",
+        "measure": "height"
+      },
+      "op": "atLeast",
+      "b": {
+        "part": "blade-top",
+        "measure": "height"
+      }
+    },
+    {
+      "reason": "knuckle guard strip must be long enough to curve from crossguard to pommel (4-inch chord plus the bow of the C)",
+      "a": {
+        "part": "guard-bowl",
+        "measure": "width"
+      },
+      "op": "atLeast",
+      "b": {
+        "valueIn": 6.5
+      }
+    }
+  ],
+  "steps": [
+    {
+      "title": "Print, tape and trace",
+      "figures": [
+        {
+          "refPart": "sword-body",
+          "caption": "Sword Body — trace TWICE."
+        },
+        {
+          "refPart": "blade-top",
+          "caption": "Blade Top Layer — trace TWICE."
+        },
+        {
+          "refPart": "guard-bowl",
+          "caption": "Knuckle Guard strip — trace ONCE."
+        }
+      ],
+      "instructions": [
+        "Print the template at 100% actual size and tape the pages together using the grid.",
+        "Trace the Sword Body TWICE, the Blade Top Layer TWICE, and the Knuckle Guard ONCE onto cardboard.",
+        "Keep the corrugation arrows lined up with the little waves inside the cardboard — that makes the blade strong."
+      ],
+      "check": "You should have 5 pencil outlines: 2 big swords, 2 slim blade layers, 1 slitted strip.",
+      "tip": "Trace on the plain side of the cardboard so pencil lines are easy to see."
+    },
+    {
+      "title": "Cut out the parts",
+      "figures": [
+        {
+          "parts": [
+            {
+              "refPart": "sword-body"
+            },
+            {
+              "refPart": "blade-top",
+              "dx": 6,
+              "dy": 2.7
+            },
+            {
+              "refPart": "guard-bowl",
+              "dx": 8.4,
+              "dy": 8
+            }
+          ],
+          "labels": [
+            {
+              "at": [
+                2.75,
+                -0.7
+              ],
+              "text": "Sword Body ×2"
+            },
+            {
+              "at": [
+                6.98,
+                1.9
+              ],
+              "text": "Blade Top ×2"
+            },
+            {
+              "at": [
+                12.15,
+                7.3
+              ],
+              "text": "Knuckle Guard ×1"
+            }
+          ],
+          "caption": "Your full cut list — 5 pieces. Dashed lines are NOT cuts: score them half-deep only."
+        }
+      ],
+      "instructions": [
+        "Grown-up job: cut along all solid lines with a sharp knife and metal ruler, in 2–3 light passes.",
+        "Kids can help by holding the ruler and peeling the offcuts.",
+        "Do NOT cut the dashed lines — those get scored lightly (half-deep) for folding and wrapping."
+      ],
+      "check": "5 cut pieces, and every dashed line is still uncut on the front face."
+    },
+    {
+      "title": "Glue the two body layers",
+      "figures": [
+        {
+          "parts": [
+            {
+              "refPart": "sword-body",
+              "style": "filled"
+            },
+            {
+              "refPart": "sword-body",
+              "dx": 6.4
+            },
+            {
+              "refPart": "sword-body",
+              "style": "ghost",
+              "dx": 13,
+              "dy": 0.22
+            },
+            {
+              "refPart": "sword-body",
+              "style": "filled",
+              "dx": 12.8
+            }
+          ],
+          "paths": [
+            {
+              "d": "M 2.6 1.3 L 3.0 2.1 L 2.5 2.9 L 3.7 3.8 L 1.5 4.1 L 3.0 5.0 L 2.4 6.4 L 3.2 7.8 L 2.4 9.2 L 3.1 10.6 L 2.45 12.0 L 3.05 13.4 L 2.5 14.8 L 2.9 16.2",
+              "stroke": "crimson",
+              "width": 2
+            }
+          ],
+          "arrows": [
+            {
+              "from": [
+                8.55,
+                2.3
+              ],
+              "to": [
+                3.4,
+                2.3
+              ]
+            },
+            {
+              "from": [
+                6.6,
+                4
+              ],
+              "to": [
+                5.5,
+                4
+              ]
+            },
+            {
+              "from": [
+                8.3,
+                10
+              ],
+              "to": [
+                3.75,
+                10
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "at": [
+                6.05,
+                9.45
+              ],
+              "text": "stack on top",
+              "size": 8.5,
+              "color": "crimson"
+            },
+            {
+              "at": [
+                2.75,
+                -0.7
+              ],
+              "text": "1. spread glue"
+            },
+            {
+              "at": [
+                9.15,
+                -0.7
+              ],
+              "text": "2. second body"
+            },
+            {
+              "at": [
+                15.55,
+                -0.7
+              ],
+              "text": "3. press flat"
+            },
+            {
+              "at": [
+                15.55,
+                19.6
+              ],
+              "text": "= 2 layers thick",
+              "size": 8.5
+            }
+          ],
+          "caption": "Glue covers the whole first sword; the second sword stacks straight onto it, edges matching all around."
+        }
+      ],
+      "instructions": [
+        "Cover one Sword Body with a thin layer of white glue, right to the edges.",
+        "Stack the second Sword Body on top, lining up the pommel, crossguard and blade tip exactly.",
+        "Press it flat under a stack of books while it dries — this makes the blade stiff and straight."
+      ],
+      "check": "Edges line up all around with no layer sticking out, and the blade does not flex when you wave it.",
+      "tip": "In a hurry? A grown-up can use hot glue in a zigzag instead — press for 30 seconds."
+    },
+    {
+      "title": "Add the blade top layers",
+      "figures": [
+        {
+          "parts": [
+            {
+              "refPart": "sword-body",
+              "style": "filled"
+            },
+            {
+              "refPart": "blade-top",
+              "style": "ghost",
+              "dx": 1.82,
+              "dy": 5.2
+            },
+            {
+              "refPart": "blade-top",
+              "style": "filledDark",
+              "dx": -3,
+              "dy": 5.2
+            }
+          ],
+          "arrows": [
+            {
+              "from": [
+                -1.3,
+                8.6
+              ],
+              "to": [
+                2.15,
+                8.6
+              ]
+            },
+            {
+              "from": [
+                -1.4,
+                17.4
+              ],
+              "to": [
+                2.3,
+                18.3
+              ]
+            }
+          ],
+          "labels": [
+            {
+              "at": [
+                -2.28,
+                4.5
+              ],
+              "text": "Blade Top ×2"
+            },
+            {
+              "at": [
+                -3.4,
+                8.5
+              ],
+              "text": "glue onto the blade",
+              "size": 8.5,
+              "align": "right",
+              "color": "crimson"
+            },
+            {
+              "at": [
+                -3.4,
+                17.3
+              ],
+              "text": "tips line up",
+              "size": 8.5,
+              "align": "right",
+              "color": "crimson"
+            }
+          ],
+          "caption": "The Blade Top lands on the dashed outline — centered on the blade, tip matching the sword tip. Flip the sword and repeat on the back."
+        }
+      ],
+      "instructions": [
+        "Glue one Blade Top Layer down the middle of the blade on the front side — the dashed outline in the diagram shows exactly where it lands.",
+        "Flip the sword over and glue the second one on the back, in the same spot.",
+        "Line each layer's tip up with the blade tip — an even strip of flat blade, about a finger wide, should show along both edges."
+      ],
+      "check": "The blade has a raised ridge down the middle on BOTH sides, and all three tips meet at one point."
+    },
+    {
+      "title": "Bend and attach the knuckle guard",
+      "figures": [
+        {
+          "parts": [
+            {
+              "refPart": "guard-bowl"
+            }
+          ],
+          "paths": [
+            {
+              "d": "M 2.6 3.6 C 0.3 3.7 -0.9 5.9 0.4 8.6",
+              "stroke": "kraftEdge",
+              "width": 3
+            }
+          ],
+          "arrows": [
+            {
+              "from": [
+                4.4,
+                2.9
+              ],
+              "to": [
+                1.6,
+                4.4
+              ],
+              "label": "crease each slit to curl it"
+            }
+          ],
+          "labels": [
+            {
+              "at": [
+                3.75,
+                -0.6
+              ],
+              "text": "Knuckle Guard — slits face IN"
+            }
+          ],
+          "caption": "Crease every slit so the flat strip curls into a big C, slits on the inside of the curve."
+        },
+        {
+          "parts": [
+            {
+              "refPart": "sword-body",
+              "style": "filled"
+            }
+          ],
+          "paths": [
+            {
+              "d": "M 0.85 4.45 C -0.55 2.6 0.5 0.5 2.1 0.5",
+              "stroke": "kraftEdge",
+              "width": 3.5
+            }
+          ],
+          "arrows": [
+            {
+              "from": [
+                -1.9,
+                6.3
+              ],
+              "to": [
+                0.8,
+                4.5
+              ],
+              "label": "glue under crossguard",
+              "labelAlign": "right"
+            },
+            {
+              "from": [
+                -1.2,
+                -0.5
+              ],
+              "to": [
+                1.95,
+                0.4
+              ],
+              "label": "glue to pommel"
+            }
+          ],
+          "labels": [
+            {
+              "at": [
+                4.2,
+                0.35
+              ],
+              "text": "pommel",
+              "size": 8.5,
+              "align": "left"
+            },
+            {
+              "at": [
+                4.75,
+                3.4
+              ],
+              "text": "crossguard",
+              "size": 8.5,
+              "align": "left"
+            }
+          ],
+          "caption": "The C bridges from the underside of the crossguard up to the pommel — hot-glue both ends where the arrows point."
+        }
+      ],
+      "instructions": [
+        "Crease each dashed slit on the Knuckle Guard with your fingernail so the strip curves smoothly — slits face IN, toward your fingers.",
+        "Hot-glue one end to the underside of the crossguard, on the side your fingers wrap.",
+        "Curve it around and glue the other end to the pommel (the round knob at the top of the grip).",
+        "Hold each end for 30 seconds while the glue sets. Grown-up job — hot glue is HOT!"
+      ],
+      "check": "Your fingers fit comfortably between the grip and the guard, and both glued ends hold when you tug gently."
+    },
+    {
+      "title": "Wrap the grip and decorate",
+      "figures": [
+        {
+          "parts": [
+            {
+              "refPart": "sword-body",
+              "style": "filled"
+            }
+          ],
+          "paths": [
+            {
+              "d": "M 0.85 4.45 C -0.55 2.6 0.5 0.5 2.1 0.5",
+              "stroke": "kraftEdge",
+              "width": 3.5
+            },
+            {
+              "d": "M 2.3 1.45 L 3.2 1.8 M 2.3 2.0 L 3.2 2.35 M 2.3 2.55 L 3.2 2.9 M 2.3 3.1 L 3.2 3.45",
+              "stroke": "black",
+              "width": 1.8
+            },
+            {
+              "d": "M 2.55 7.9 C 2.55 7.45 3.0 7.45 3.0 7.9 C 3.0 8.1 2.92 8.12 2.92 8.25 L 2.63 8.25 C 2.63 8.12 2.55 8.1 2.55 7.9 Z M 2.68 8.45 L 2.87 8.45",
+              "stroke": "black",
+              "width": 1.3
+            }
+          ],
+          "arrows": [
+            {
+              "from": [
+                5.6,
+                2.5
+              ],
+              "to": [
+                3.35,
+                2.5
+              ],
+              "label": "wrap string here",
+              "labelAlign": "left"
+            },
+            {
+              "from": [
+                5.6,
+                8.1
+              ],
+              "to": [
+                3.15,
+                8.1
+              ],
+              "label": "decorate the blade",
+              "labelAlign": "left"
+            }
+          ],
+          "caption": "The finished cutlass: string-wrapped grip, curved knuckle guard, decorated blade."
+        }
+      ],
+      "instructions": [
+        "Wrap string or cloth tape around the grip, following the scored diagonal lines — it looks great and feels grippy.",
+        "Paint the blade silver or gray, the guard gold, and the grip brown or black.",
+        "Captain's touch: draw a skull, an anchor, or your ship's name on the blade!"
+      ],
+      "check": "The wrap doesn't slide when you squeeze the grip — you're ready to set sail!",
+      "tip": "Acrylic paint works, but markers are faster and never warp the cardboard."
+    }
+  ],
+  "hero": {
+    "paths": [
+      {
+        "d": "M 2.3 1.05 C 1.7 1.02 1.5 0.6 2.0 0.42 C 2.4 0.27 3.1 0.27 3.5 0.42 C 4.0 0.6 3.8 1.02 3.2 1.05 L 3.2 3.55 L 4.85 3.55 C 5.2 3.55 5.2 4.45 4.85 4.45 L 3.6 4.45 L 3.48 13.5 C 3.42 16.2 3.15 17.7 2.78 18.75 C 2.5 17.75 2.2 16.3 2.14 13.5 L 2.0 4.45 L 0.65 4.45 C 0.3 4.45 0.3 3.55 0.65 3.55 L 2.3 3.55 Z",
+        "fill": "kraft",
+        "stroke": "kraftEdge",
+        "width": 2.5
+      },
+      {
+        "d": "M 2.32 4.6 L 3.26 4.6 L 3.16 13.4 C 3.13 15.6 2.95 16.9 2.77 17.9 C 2.55 16.95 2.38 15.6 2.35 13.4 Z",
+        "fill": "kraftDark",
+        "stroke": "none"
+      },
+      {
+        "d": "M 0.85 4.45 C -0.55 2.6 0.5 0.5 2.1 0.5",
+        "fill": "none",
+        "stroke": "kraftEdge",
+        "width": 3.5
+      },
+      {
+        "d": "M 2.35 1.6 L 3.15 2.0 M 2.35 2.2 L 3.15 2.6 M 2.35 2.8 L 3.15 3.2",
+        "fill": "none",
+        "stroke": "kraftEdge",
+        "width": 1.6
+      }
+    ]
+  },
+  "templateGrid": {
+    "cols": 1,
+    "rows": 3
+  },
+  "templatePages": 3,
+  "createdAt": "2026-08-11T00:16:10.735Z",
+  "brief": "test",
+  "assembly": {
+    "thicknessIn": 0.15,
+    "instances": [
+      {
+        "id": "body-back",
+        "part": "sword-body",
+        "copy": 1,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          0.15,
+          0
+        ],
+        "rot": [
+          -90,
+          0,
+          0
+        ],
+        "mirror": false
+      },
+      {
+        "id": "body-front",
+        "part": "sword-body",
+        "copy": 0,
+        "order": 0,
+        "step": 2,
+        "pos": [
+          0,
+          0.3,
+          0
+        ],
+        "rot": [
+          -90,
+          0,
+          0
+        ],
+        "mirror": false
+      },
+      {
+        "id": "top-front",
+        "part": "blade-top",
+        "copy": 0,
+        "order": 1,
+        "step": 3,
+        "pos": [
+          1.835,
+          0.45,
+          4.6
+        ],
+        "rot": [
+          -90,
+          0,
+          0
+        ],
+        "mirror": false
+      },
+      {
+        "id": "top-back",
+        "part": "blade-top",
+        "copy": 1,
+        "order": 1,
+        "step": 3,
+        "pos": [
+          1.835,
+          0.15,
+          4.6
+        ],
+        "rot": [
+          -90,
+          0,
+          0
+        ],
+        "mirror": true
+      },
+      {
+        "id": "guard",
+        "part": "guard-bowl",
+        "copy": 0,
+        "order": 2,
+        "step": 4,
+        "pos": [
+          3.85,
+          0.1,
+          4.62
+        ],
+        "rot": [
+          180,
+          0,
+          -90
+        ],
+        "mirror": false,
+        "folds": [
+          {
+            "slit": "all",
+            "angleDeg": 17
+          }
+        ]
+      }
+    ]
+  }
+}

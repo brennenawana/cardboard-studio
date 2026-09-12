@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Cutting Mat — Cardboard Studio</title>
+<style>
+  :root {
+    --crimson: #A8214A; --kraft: #C9AB84; --kraft-dark: #9E8261; --ink: #2B2523;
+    --paper: #FAF6EF; --panel: #EFEAE2; --line: #E2DBD0;
+    --grid: #d9d2c6; --grid-heavy: #b9ae9c;
+    --ok: #2E7D53; --warnc: #C07A0B; --errc: #A8214A;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: var(--paper); color: var(--ink);
+    font-family: "Avenir Next", "Segoe UI", system-ui, sans-serif; }
+  button { font-family: inherit; background: var(--crimson); border: none; color: #fff; font-weight: 700;
+    padding: 8px 13px; border-radius: 9px; cursor: pointer; font-size: 13px; white-space: nowrap; }
+  button.secondary { background: var(--kraft-dark); }
+  button.ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+  button.ghost:hover:not(:disabled) { background: var(--panel); }
+  button:disabled { opacity: 0.42; cursor: default; }
+
+  #app { display: grid; height: 100%; --chatw: 318px;
+         grid-template-columns: 232px minmax(0, 1fr) 356px var(--chatw);
+         grid-template-rows: 54px minmax(0, 1fr) auto auto 208px;
+         grid-template-areas: "head head head head" "tray mat fold chat" "hist hist hist chat"
+                              "doc doc doc chat" "insp insp insp chat"; }
+  #app.chatclosed { --chatw: 40px; }
+
+  /* ---- header ---- */
+  header { grid-area: head; background: var(--ink); color: #fff; display: flex; align-items: center;
+           gap: 12px; padding: 0 16px; }
+  header .back { color: #fff; opacity: 0.8; text-decoration: none; font-size: 13px; font-weight: 700; }
+  header .back:hover { opacity: 1; }
+  header h1 { font-size: 16px; margin: 0; letter-spacing: 0.6px; }
+  header .sub { font-size: 11px; color: #b6aaa0; letter-spacing: 1.6px; }
+  header .spacer { flex: 1; }
+  #status { font-size: 12px; color: #c9bdb2; min-width: 90px; max-width: 420px; text-align: right;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #status.warn { color: #F0B429; }
+  #status.err { color: #ff8f9f; }
+
+  /* ---- left tray: SHELF / PARTS / HARDWARE ---- */
+  #tray { grid-area: tray; background: #fff; border-right: 1px solid var(--line);
+          display: flex; flex-direction: column; min-height: 0; overflow-y: auto; }
+  .panelHead { font-size: 11px; letter-spacing: 1.6px; color: #8b8175; font-weight: 700;
+               padding: 11px 12px 6px; }
+  .panelHead .hint { font-weight: 400; letter-spacing: 0; text-transform: none; color: #a79c8e; }
+  #shelfRows { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 0 8px 8px; }
+  .schip { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 7px 4px;
+           border: 1px solid var(--line); border-radius: 9px; background: #fff; cursor: grab;
+           font-size: 11.5px; user-select: none; touch-action: none; }
+  .schip:hover { background: var(--panel); border-color: var(--kraft-dark); }
+  .schip .gl { font-size: 17px; line-height: 1; }
+  .schip.dragging { opacity: 0.4; }
+  #trayRows { padding: 0 8px 8px; }
+  .trow { display: flex; align-items: center; gap: 8px; padding: 7px 8px; border-radius: 8px;
+          font-size: 13px; cursor: pointer; user-select: none; }
+  .trow:hover { background: var(--panel); }
+  .trow.sel { background: var(--crimson); color: #fff; }
+  .trow .sw { width: 13px; height: 13px; border-radius: 3px; background: var(--kraft);
+              border: 1px solid var(--kraft-dark); flex: none; }
+  .trow.sel .sw { background: #fff; border-color: #fff; }
+  .trow .n { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .trow .c { font-size: 11.5px; opacity: 0.7; }
+  #hwRows { padding: 0 8px 10px; display: flex; flex-direction: column; gap: 5px; }
+  .hwchip { border: 1px solid var(--line); border-radius: 9px; padding: 5px 7px; background: #fff;
+            cursor: grab; user-select: none; touch-action: none; }
+  .hwchip:hover, .hwchip.hot { background: #FFF4D8; border-color: var(--kraft-dark); }
+  .hwchip.hot { box-shadow: 0 0 0 2px var(--crimson); }
+  .hwchip .lab { font-size: 11px; color: #6f6459; display: flex; justify-content: space-between; gap: 6px; }
+  .hwchip .lab b { color: var(--ink); }
+  .hwchip .art { display: block; margin: 2px 0 1px; }
+  .hwchip.mine { border-left: 3px solid var(--crimson); }
+  #verbs { border-top: 1px solid var(--line); padding: 10px 12px 12px; font-size: 11.5px;
+           color: #6f6459; line-height: 1.5; margin-top: auto; }
+  #verbs b { color: var(--ink); letter-spacing: 0.6px; }
+
+  /* ---- the mat ---- */
+  #matWrap { grid-area: mat; position: relative; display: flex; flex-direction: column; min-width: 0;
+             background: var(--panel); }
+  #matScroll { flex: 1; overflow: auto; padding: 18px; min-height: 0; display: flex; }
+  #mat { display: block; margin: auto; background: #fff; box-shadow: 0 2px 12px rgba(60,40,20,0.13);
+         touch-action: none; flex: none; }
+  #mat.tool { cursor: crosshair; }
+  .p-out { fill: var(--kraft); stroke: #241f1d; stroke-width: 2px; vector-effect: non-scaling-stroke;
+           fill-rule: evenodd; }
+  .part:hover .p-out { fill: #d8bd9c; }
+  .part.sel .p-out { stroke: var(--crimson); stroke-width: 2.5px; }
+  .p-hole { fill: #fff; stroke: #241f1d; stroke-width: 1.6px; vector-effect: non-scaling-stroke; }
+  .p-slit { fill: none; stroke: #7a6f65; stroke-width: 1.4px; stroke-dasharray: 5 4;
+            vector-effect: non-scaling-stroke; }
+  .p-back { fill: none; stroke: #a99e91; stroke-width: 1.2px; stroke-dasharray: 3 4;
+            vector-effect: non-scaling-stroke; }
+  /* NB: no font-size here — the size lives on the element in inches (user units) */
+  .p-name { font-family: "Avenir Next", system-ui, sans-serif; font-weight: 600; fill: #6b6058;
+            pointer-events: none; }
+  .part.sel .p-name { fill: var(--crimson); font-weight: 700; }
+  .selbox { fill: none; stroke: var(--crimson); stroke-width: 1.2px; stroke-dasharray: 4 3;
+            vector-effect: non-scaling-stroke; pointer-events: none; }
+  .handle { fill: #fff; stroke: var(--crimson); stroke-width: 2px; vector-effect: non-scaling-stroke; }
+  .handle:hover { fill: var(--crimson); }
+  /* the stem is decoration and it lies straight over the north SIZE handle —
+     with pointer events on, grabbing that handle hits the stem instead and the
+     gesture becomes a click on nothing (which deselects). Only the knob grabs. */
+  .turnstem { stroke: var(--crimson); stroke-width: 1.4px; vector-effect: non-scaling-stroke;
+              pointer-events: none; }
+  .turnknob { fill: var(--crimson); stroke: #fff; stroke-width: 1.6px; vector-effect: non-scaling-stroke; }
+  /* PUNCH: drag-ring + centre grab dot on every hole of the selected part */
+  .ring { fill: none; stroke: #1F6FB2; stroke-width: 2px; stroke-dasharray: 4 3;
+          vector-effect: non-scaling-stroke; cursor: ew-resize; }
+  .ringhit { fill: none; stroke: transparent; stroke-width: 11px; vector-effect: non-scaling-stroke;
+             cursor: ew-resize; }
+  .ring.act { stroke: var(--crimson); stroke-dasharray: none; stroke-width: 2.5px; }
+  .hdot { fill: #1F6FB2; stroke: #fff; stroke-width: 1.4px; vector-effect: non-scaling-stroke;
+          cursor: move; }
+  .hdot.act { fill: var(--crimson); }
+  /* NB: named dropghost, not ghost — button.ghost is a different thing entirely
+     and a bare .ghost rule would switch every toolbar button's pointer events off. */
+  .dropghost { fill: rgba(201,171,132,0.42); stroke: var(--crimson); stroke-width: 1.6px;
+           stroke-dasharray: 5 4; vector-effect: non-scaling-stroke; pointer-events: none; }
+  .ghostline { fill: none; stroke: var(--crimson); stroke-width: 1.6px; stroke-dasharray: 5 4;
+               vector-effect: non-scaling-stroke; pointer-events: none; }
+  .flashgeo { fill: none; stroke: #F0B429; stroke-width: 5px; vector-effect: non-scaling-stroke;
+              pointer-events: none; animation: geoflash 0.55s ease-in-out 4; }
+  @keyframes geoflash { 0%,100% { opacity: 0.15; } 50% { opacity: 1; } }
+
+  /* ---- M3 ghost-diff: the checkpoint's geometry, drawn UNDER today's parts ---- */
+  .g-out { fill: rgba(150,142,132,0.10); stroke: #8d857c; stroke-width: 1.8px; stroke-dasharray: 7 5;
+           vector-effect: non-scaling-stroke; pointer-events: none; fill-rule: evenodd; }
+  .g-hole, .g-slit { fill: none; stroke: #8d857c; stroke-width: 1.4px; stroke-dasharray: 4 3;
+                     vector-effect: non-scaling-stroke; pointer-events: none; }
+  .g-slit { stroke: #a49b91; }
+  /* the BEFORE silhouette, repeated over the proposal's ink (Review only) */
+  .g-top { fill: none; stroke: #6f675f; stroke-width: 1.8px; stroke-dasharray: 7 5;
+           vector-effect: non-scaling-stroke; pointer-events: none; fill-rule: evenodd; }
+  .cmp-tint { fill: rgba(168,33,74,0.30); stroke: var(--crimson); stroke-width: 2.5px;
+              vector-effect: non-scaling-stroke; pointer-events: none; fill-rule: evenodd; }
+  .cmp-geo { fill: none; stroke: var(--crimson); stroke-width: 2.4px; vector-effect: non-scaling-stroke;
+             pointer-events: none; }
+  #mat.locked { cursor: not-allowed; }
+  #mat.locked .part { pointer-events: none; }
+
+  #matBar { display: flex; align-items: center; gap: 7px; padding: 7px 14px; background: #fff;
+            border-top: 1px solid var(--line); font-size: 12px; color: #6f6459; }
+  #matBar .verb { background: var(--panel); border-radius: 999px; padding: 3px 10px; font-weight: 700;
+                  letter-spacing: 0.8px; font-size: 11px; color: #6f6459; }
+  #matBar .verb.on { background: var(--crimson); color: #fff; }
+  #matBar button.verb { border: 1px solid var(--line); cursor: pointer; padding: 4px 11px; }
+  #matBar button.verb.on { background: var(--crimson); color: #fff; border-color: var(--crimson); }
+  #matBar button.verb.sub { padding: 4px 9px; font-size: 10.5px; }
+  #readout { font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums;
+             overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #zoomBtns { margin-left: auto; display: flex; gap: 6px; align-items: center; }
+  #zoomBtns button { padding: 4px 9px; font-size: 12px; }
+  #curlStep { display: flex; align-items: center; gap: 5px; }
+  #curlStep button { width: 24px; height: 24px; padding: 0; font-size: 15px; line-height: 1; }
+  #curlN { font-weight: 700; min-width: 16px; text-align: center; color: var(--ink); }
+
+  /* ---- fold-up (3D viewer iframe) ---- */
+  #fold { grid-area: fold; border-left: 1px solid var(--line); display: flex; flex-direction: column;
+          background: #fff; min-width: 0; position: relative; }
+  #fold iframe { flex: 1; width: 100%; border: 0; min-height: 0; }
+
+  /* ---- M3 compare mode: banner over the mat + label list over the fold-up ---- */
+  /* in flow, not floating: the banner must never cover the geometry it describes */
+  #cmpBar { flex: none; display: flex; align-items: center; gap: 10px; padding: 7px 13px;
+            background: #FDF0F3; border-bottom: 2px solid var(--crimson); font-size: 12.5px;
+            color: #6f2338; }
+  #cmpBar.hidden { display: none !important; }
+  #cmpBar b { color: var(--crimson); }
+  #cmpBar .spacer { flex: 1; }
+  #cmpBar button { padding: 5px 12px; font-size: 12px; }
+  #cmpBar .key { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #7a6f65; }
+  #cmpBar .key i { width: 15px; height: 0; border-top: 2px dashed #8d857c; display: inline-block; }
+  #cmpBar .key i.now { border-top: 3px solid var(--crimson); }
+  #cmpPanel { position: absolute; inset: 0; z-index: 14; background: #fff; display: flex;
+              flex-direction: column; min-height: 0; }
+  #cmpHead { padding: 10px 12px 6px; border-bottom: 1px solid var(--line); }
+  #cmpHead .t { font-size: 11px; letter-spacing: 1.6px; color: var(--crimson); font-weight: 700; }
+  #cmpHead .s { font-size: 12.5px; color: #6f6459; margin-top: 3px; line-height: 1.4; }
+  /* block, not flex-column: a flex item will not shrink below its content and
+     the long labels then slide out under the ZOOM affordance */
+  #cmpList { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 8px; }
+  #cmpList .clab + .clab { margin-top: 6px; }
+  .clab .lb { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
+  .clab { display: flex; gap: 8px; align-items: flex-start; text-align: left; width: 100%;
+          border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink);
+          font-weight: 400; font-size: 12.5px; padding: 7px 9px; cursor: pointer; line-height: 1.35;
+          white-space: normal; }   /* the global button rule is nowrap — labels are sentences */
+  .clab:hover { background: var(--panel); border-color: var(--kraft-dark); }
+  .clab .kd { flex: none; width: 9px; height: 9px; border-radius: 50%; margin-top: 3px;
+              background: var(--crimson); }
+  .clab.removed .kd { background: #8d857c; }
+  .clab.added .kd { background: #2E7D53; }
+  .clab .zoom { flex: none; font-size: 10px; color: #a79c8e; letter-spacing: 1px; margin-top: 2px; }
+  #cmpEmpty { padding: 14px; font-size: 12.5px; color: #8b8175; }
+
+  /* ---- M3 history strip ---- */
+  #hist .dlab { font-size: 10.5px; letter-spacing: 1.5px; color: #8b8175; font-weight: 700; flex: none; }
+  #hist { grid-area: hist; background: #fff; border-top: 1px solid var(--line);
+          display: flex; align-items: center; gap: 10px; padding: 5px 12px; min-height: 40px; }
+  #histDots { display: flex; align-items: center; gap: 0; overflow-x: auto; overflow-y: hidden;
+              flex: 1; padding: 4px 2px; scrollbar-width: thin; }
+  .cpdot { flex: none; width: 15px; height: 15px; border-radius: 50%; padding: 0; border: 2px solid #fff;
+           background: var(--kraft-dark); cursor: pointer; box-shadow: 0 0 0 1px rgba(0,0,0,0.16); }
+  .cpdot.claude { background: var(--crimson); }
+  .cpdot.now { background: #fff; border: 2px dashed #9a9188; box-shadow: none; cursor: default; }
+  .cpdot.base { box-shadow: 0 0 0 3px rgba(168,33,74,0.45); }
+  .cpdot:hover { transform: scale(1.18); }
+  .cprail { flex: none; width: 16px; height: 2px; background: var(--line); }
+  #histNote { font-size: 11.5px; color: #8b8175; flex: none; }
+  #histLegend { display: flex; align-items: center; gap: 9px; font-size: 10.5px; color: #8b8175;
+                flex: none; }
+  #histLegend span { display: flex; align-items: center; gap: 4px; }
+  #histLegend i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  #histLegend i.you { background: var(--kraft-dark); }
+  #histLegend i.claude { background: var(--crimson); }
+  #cpTip { position: fixed; z-index: 90; background: var(--ink); color: #fff; font-size: 11.5px;
+           padding: 5px 9px; border-radius: 7px; pointer-events: none; display: none; max-width: 420px;
+           box-shadow: 0 5px 16px rgba(0,0,0,0.28); }
+  .pop .meta { font-size: 11.5px; color: #8b8175; margin-top: 2px; }
+  .pop .who { font-size: 12.5px; font-weight: 700; margin-top: 6px; }
+  .pop .who i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+  .lockpill { background: #FDF0F3; color: var(--crimson); border: 1px solid #e2a9b8; border-radius: 999px;
+              padding: 3px 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; }
+
+  /* ---- Toy Doctor strip ---- */
+  #doc { grid-area: doc; background: #fff; border-top: 1px solid var(--line);
+         display: flex; align-items: center; gap: 9px; padding: 6px 12px; min-height: 46px;
+         overflow-x: auto; }
+  #doc .dlab { font-size: 10.5px; letter-spacing: 1.5px; color: #8b8175; font-weight: 700; flex: none; }
+  .dchip { display: flex; align-items: center; gap: 7px; flex: none; max-width: 560px;
+           border: 1px solid var(--line); border-radius: 999px; padding: 4px 6px 4px 9px;
+           background: #fff; color: var(--ink); font-weight: 400; font-size: 12px; cursor: pointer;
+           text-align: left; }
+  .dchip:hover { background: var(--panel); }
+  .dchip .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; background: var(--ok); }
+  .dchip.warn .dot { background: var(--warnc); }
+  .dchip.err  .dot { background: var(--errc); }
+  .dchip.warn { border-color: #eccb87; background: #FFFAF0; }
+  .dchip.err  { border-color: #e2a9b8; background: #FEF3F5; }
+  .dchip.none { border-color: #b6dcc4; background: #F2FAF5; }
+  .dchip .msg { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 430px; }
+  .dchip .who { font-weight: 700; }
+  .dchip .fix { background: var(--crimson); color: #fff; border-radius: 999px; padding: 3px 10px;
+                font-size: 11px; font-weight: 700; border: none; cursor: pointer; flex: none; }
+  .dchip .fix:hover { background: #8c1a3d; }
+
+  /* ---- inspector ---- */
+  #insp { grid-area: insp; border-top: 1px solid var(--line); background: #fff;
+          display: grid; grid-template-columns: 260px minmax(0, 1fr); min-height: 0; }
+  #sel { border-right: 1px solid var(--line); padding: 10px 14px; overflow: auto; }
+  #selName { font-size: 14px; font-weight: 700; margin: 2px 0 3px; }
+  #selDims { font-size: 12px; color: #7a6f65; font-variant-numeric: tabular-nums; }
+  #copies { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
+  #copies .lbl { font-size: 11px; letter-spacing: 1.4px; color: #8b8175; font-weight: 700; }
+  #copies button { width: 28px; height: 28px; padding: 0; font-size: 16px; line-height: 1; }
+  #copyN { font-size: 15px; font-weight: 700; min-width: 20px; text-align: center; }
+  #copyNote { font-size: 11px; color: #8b8175; margin-top: 6px; min-height: 14px; }
+  #jsonWrap { display: flex; flex-direction: column; min-height: 0; min-width: 0; }
+  #jsonHead { display: flex; align-items: center; gap: 10px; padding: 8px 14px 4px; }
+  #json { flex: 1; overflow: auto; margin: 0; padding: 0 14px 10px;
+          font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11.5px; line-height: 1.45; }
+  #json .ln { white-space: pre; border-radius: 3px; }
+  #json .k { color: #8a5a2b; }
+  #json .v { color: #2b6b4f; }
+  #json .n { color: #1f5fa8; }
+  #json .ln.flash { animation: flash 1.9s ease-out; }
+  @keyframes flash {
+    0%, 55% { background: #FFD97A; box-shadow: 0 0 0 2px #FFD97A; }
+    100% { background: transparent; box-shadow: none; }
+  }
+
+  /* ================================================================
+     M4 — the chat rail: transcript, proposal cards, Review mode
+     ================================================================ */
+  #chat { grid-area: chat; background: #fff; border-left: 1px solid var(--line);
+          display: flex; flex-direction: column; min-height: 0; min-width: 0; overflow: hidden; }
+  #chatHead { display: flex; align-items: center; gap: 8px; padding: 9px 10px 8px;
+              border-bottom: 1px solid var(--line); flex: none; }
+  #chatHead .t { font-size: 11px; letter-spacing: 1.6px; color: #8b8175; font-weight: 700; flex: 1; }
+  #chatToggle { background: none; color: #8b8175; font-size: 15px; padding: 2px 7px; }
+  #chatToggle:hover { color: var(--crimson); }
+  #chatBody { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+  #chatLog { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 10px 10px 4px;
+             display: flex; flex-direction: column; gap: 8px; }
+  .bub { font-size: 12.5px; line-height: 1.45; border-radius: 12px; padding: 7px 10px;
+         max-width: 92%; overflow-wrap: anywhere; }
+  .bub.you { align-self: flex-end; background: var(--kraft); color: #2B2523;
+             border-bottom-right-radius: 4px; }
+  .bub.claude { align-self: flex-start; background: var(--panel); border-bottom-left-radius: 4px;
+                border-left: 3px solid var(--crimson); }
+  .bub.note { align-self: center; background: none; color: #8b8175; font-size: 11.5px;
+              text-align: center; padding: 2px 4px; }
+  .bub.think { align-self: flex-start; background: #FDF0F3; border-left: 3px solid var(--crimson);
+               color: #6f2338; display: flex; align-items: center; gap: 7px; }
+  .bub.think .dots i { width: 5px; height: 5px; border-radius: 50%; background: var(--crimson);
+                       display: inline-block; margin-right: 3px; animation: bounce 1s infinite; }
+  .bub.think .dots i:nth-child(2) { animation-delay: 0.16s; }
+  .bub.think .dots i:nth-child(3) { animation-delay: 0.32s; }
+  @keyframes bounce { 0%, 60%, 100% { opacity: 0.28; } 30% { opacity: 1; } }
+  .card { align-self: stretch; border: 2px solid var(--crimson); border-radius: 13px;
+          background: #fff; padding: 9px 11px 10px; font-size: 12.5px; line-height: 1.45; }
+  .card .h { font-size: 10.5px; letter-spacing: 1.5px; color: var(--crimson); font-weight: 700; }
+  .card .sum { font-weight: 700; margin: 5px 0 8px; }
+  .card button { width: 100%; padding: 7px 8px; }
+  .card.stale { border-color: var(--line); opacity: 0.85; }
+  #chatStatus { flex: none; font-size: 11px; color: #8b8175; padding: 2px 12px 4px; min-height: 15px;
+                white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #chatForm { flex: none; display: flex; gap: 6px; padding: 8px 10px 10px; border-top: 1px solid var(--line); }
+  #chatInput { flex: 1; min-width: 0; resize: none; font-family: inherit; font-size: 12.5px;
+               border: 1px solid var(--line); border-radius: 10px; padding: 7px 9px; height: 70px; line-height: 1.35;
+               color: var(--ink); background: #fff; }
+  #chatInput:focus { outline: none; border-color: var(--kraft-dark); }
+  #chatSend { align-self: flex-end; }
+  /* collapsed: a vertical tab, nothing else */
+  #chatTab { display: none; writing-mode: vertical-rl; font-size: 11px; letter-spacing: 1.6px;
+             font-weight: 700; color: #8b8175; background: none; padding: 12px 4px; text-align: left; }
+  #chatTab:hover { color: var(--crimson); }
+  #app.chatclosed #chatBody, #app.chatclosed #chatForm, #app.chatclosed #chatStatus,
+  #app.chatclosed #chatHead .t { display: none; }
+  #app.chatclosed #chatHead { border-bottom: none; padding: 6px 2px; justify-content: center; }
+  #app.chatclosed #chatTab { display: block; }
+  #chatDot { width: 8px; height: 8px; border-radius: 50%; background: var(--crimson); flex: none;
+             display: none; }
+  #chat.busy #chatDot, #chat.unread #chatDot { display: block; }
+
+  /* ---- review panel (takes over the rail while reviewing) ---- */
+  #review { position: absolute; inset: 0; background: #fff; display: flex; flex-direction: column;
+            min-height: 0; z-index: 12; }
+  #chat { position: relative; }
+  #revBan { flex: none; padding: 9px 11px 10px; background: #FDF0F3;
+            border-bottom: 2px solid var(--crimson); }
+  #revBan .h { font-size: 10.5px; letter-spacing: 1.5px; color: var(--crimson); font-weight: 700; }
+  #revBan .sum { font-size: 13px; font-weight: 700; margin: 4px 0 7px; line-height: 1.35; color: #6f2338; }
+  #revBan .row { display: flex; gap: 7px; }
+  #revBan .row button { flex: 1; padding: 7px 8px; }
+  #revLint { font-size: 11.5px; line-height: 1.4; padding: 7px 11px; border-bottom: 1px solid var(--line);
+             flex: none; }
+  #revLint.ok { background: #F2FAF5; color: #1f6b45; }
+  #revLint.bad { background: #FEF3F5; color: #8c1a3d; }
+  #revMoved { flex: none; font-size: 11.5px; padding: 6px 11px; background: #FFFAF0; color: #8a5a2b;
+              border-bottom: 1px solid #eccb87; }
+  #revList { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 8px; }
+  #revList .subh { font-size: 10.5px; letter-spacing: 1.4px; color: #8b8175; font-weight: 700;
+                   padding: 3px 2px 6px; }
+  #revList .clab + .clab { margin-top: 6px; }
+  .conf { border: 2px solid #C07A0B; border-radius: 12px; background: #FFFAF0; padding: 7px 8px 8px;
+          margin-bottom: 8px; }
+  .conf .q { font-size: 11.5px; color: #8a5a2b; margin-bottom: 6px; line-height: 1.35; }
+  .cgroup { border: 2px solid #C07A0B; border-radius: 12px; background: #FFFAF0; padding: 6px 7px 1px;
+            margin-bottom: 8px; }
+  /* one conflict = one You/Claude PAIR: tight inside, roomy between */
+  .cgroup .conf { border: none; background: none; padding: 7px 0 0; margin: 0;
+                  border-top: 1px dashed #e6d5b4; }
+  .cgroup .conf:first-of-type { border-top: none; padding-top: 0; }
+  .cgroup .picks { gap: 3px; margin-bottom: 7px; }
+  .ghead { display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: #8a5a2b;
+           padding: 1px 2px 6px; flex-wrap: wrap; }
+  .ghead b { color: var(--ink); }
+  .ghead span { color: #a08256; }
+  .allbtn { background: #fff; color: #8a5a2b; border: 1px solid #eccb87; border-radius: 999px;
+            padding: 2px 9px; font-size: 10.5px; font-weight: 700; cursor: pointer; }
+  .allbtn:hover { background: #C07A0B; color: #fff; border-color: #C07A0B; }
+  .ghead .allbtn:last-child { margin-left: auto; }
+  .conf .picks { display: flex; flex-direction: column; gap: 5px; }
+  .pick { display: flex; gap: 7px; align-items: flex-start; text-align: left; width: 100%;
+          border: 1px solid var(--line); border-radius: 9px; background: #fff; color: var(--ink);
+          font-weight: 400; font-size: 12px; padding: 6px 8px; cursor: pointer; line-height: 1.35;
+          white-space: normal; }
+  .pick:hover { background: var(--panel); }
+  .pick .w { font-weight: 700; flex: none; }
+  .pick.on { border-color: var(--crimson); box-shadow: 0 0 0 2px rgba(168,33,74,0.22); background: #fff; }
+  .pick.on .w { color: var(--crimson); }
+  .pick .tick { flex: none; margin-left: auto; color: var(--crimson); font-weight: 700; }
+
+  /* ---- 3D BEFORE/AFTER toggle above the fold-up pane ---- */
+  #baBar { flex: none; display: flex; align-items: center; gap: 6px; padding: 5px 10px;
+           background: #FDF0F3; border-bottom: 1px solid var(--crimson); font-size: 11px;
+           color: #6f2338; letter-spacing: 1px; font-weight: 700; }
+  #baBar button { padding: 3px 12px; font-size: 11px; background: #fff; color: #6f2338;
+                  border: 1px solid #e2a9b8; border-radius: 999px; letter-spacing: 1px; }
+  #baBar button.on { background: var(--crimson); color: #fff; border-color: var(--crimson); }
+
+  /* ASK CLAUDE on a Toy Doctor chip with no deterministic fix */
+  .dchip .ask { background: #fff; color: var(--crimson); border: 1px solid #e2a9b8; border-radius: 999px;
+                padding: 3px 10px; font-size: 11px; font-weight: 700; cursor: pointer; flex: none;
+                letter-spacing: 0.6px; }
+  .dchip .ask:hover { background: var(--crimson); color: #fff; }
+
+  /* ---- popovers (fit chooser, shelf dials) ---- */
+  .pop { position: fixed; z-index: 60; background: #fff; border: 2px solid var(--kraft-dark);
+         border-radius: 13px; box-shadow: 0 10px 30px rgba(60,40,20,0.26); padding: 11px 13px 12px;
+         width: 268px; font-size: 12.5px; }
+  .pop h4 { margin: 0 0 3px; font-size: 11px; letter-spacing: 1.4px; color: var(--crimson); }
+  .pop .sub { font-size: 11px; color: #8b8175; margin-bottom: 8px; line-height: 1.4; }
+  .pop .hwname { font-size: 11.5px; font-weight: 700; margin: 8px 0 4px; color: #6f6459; }
+  .pop .fits { display: flex; gap: 6px; }
+  .fitchip { flex: 1; border: 1px solid var(--line); border-radius: 9px; background: #fff; color: var(--ink);
+             padding: 6px 7px; cursor: pointer; text-align: left; font-weight: 400; font-size: 11.5px;
+             line-height: 1.35; }
+  .fitchip:hover { background: var(--panel); border-color: var(--kraft-dark); }
+  .fitchip b { display: block; font-size: 11.5px; }
+  .fitchip .dia { color: var(--crimson); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .pop .dial { margin: 9px 0 0; }
+  .pop .dial .dl { display: flex; justify-content: space-between; font-size: 11.5px; color: #6f6459; }
+  .pop .dial .dl b { color: var(--ink); font-variant-numeric: tabular-nums; }
+  .pop .dial input[type=range] { width: 100%; margin: 2px 0 0; accent-color: var(--crimson); }
+  .pop .row { display: flex; gap: 7px; margin-top: 11px; }
+  .pop .row button { flex: 1; padding: 7px 8px; }
+  .pop .close { position: absolute; top: 6px; right: 8px; background: none; color: #8b8175;
+                font-size: 15px; padding: 2px 5px; }
+
+  /* ---- goal card / toast / drag ghost ---- */
+  #goal { position: fixed; left: 248px; bottom: 300px; width: 320px; background: #fff;
+          border: 2px solid var(--kraft-dark); border-radius: 14px; padding: 14px 16px 12px;
+          box-shadow: 0 8px 26px rgba(60,40,20,0.22); z-index: 40; }
+  #goal h3 { margin: 0 0 8px; font-size: 14px; letter-spacing: 1px; color: var(--crimson); }
+  #goal ol { margin: 0; padding-left: 20px; font-size: 13.5px; line-height: 1.7; }
+  #goal .go { margin-top: 12px; }
+  #toast { position: fixed; left: 50%; bottom: 280px; transform: translateX(-50%); z-index: 70;
+           background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 10px; font-size: 13px;
+           box-shadow: 0 6px 18px rgba(0,0,0,0.25); display: none; max-width: 620px; }
+  #toast.err { background: #7d152f; }
+  #dragGhost { position: fixed; z-index: 80; pointer-events: none; background: var(--crimson);
+               color: #fff; font-size: 11.5px; font-weight: 700; padding: 4px 9px; border-radius: 8px;
+               display: none; }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <a class="back" href="/">&#8592; Gallery</a>
+    <div>
+      <h1 id="title">&hellip;</h1>
+      <div class="sub">THE CUTTING MAT</div>
+    </div>
+    <div class="spacer"></div>
+    <div id="status"></div>
+    <button class="ghost" id="undo" title="Undo (Cmd/Ctrl-Z)">&#8630; Undo</button>
+    <button class="ghost" id="redo" title="Redo (Cmd/Ctrl-Shift-Z)">&#8631; Redo</button>
+    <button id="print" title="Render the draft and open the Letter cut sheet">&#128424;&#xFE0E; PRINT</button>
+    <button class="secondary" id="save" title="Write the draft into the gallery design">&#128190; SAVE</button>
+  </header>
+
+  <aside id="tray">
+    <div class="panelHead">SHAPE SHELF <span class="hint">&mdash; drag onto the mat</span></div>
+    <div id="shelfRows"></div>
+    <div class="panelHead">PARTS</div>
+    <div id="trayRows"></div>
+    <div class="panelHead">HARDWARE <span class="hint">&mdash; true scale</span></div>
+    <div id="hwRows"></div>
+    <div id="verbs">
+      <b>MOVE</b> drag a part &middot; snaps &frac14;&Prime;<br>
+      <b>TURN</b> the knob above it &middot; snaps 15&deg;<br>
+      <b>SIZE</b> drag a square handle<br>
+      <b>PUNCH</b> click the part &rarr; a hole + fit chips<br>
+      <b>FOLD</b> drag a score line &middot; <b>CURL</b> fans them
+    </div>
+  </aside>
+
+  <section id="matWrap">
+    <div id="cmpBar" class="hidden">
+      <span>Comparing <b id="cmpWhat">&hellip;</b> &rarr; <b>now</b></span>
+      <span class="key"><i></i> then</span>
+      <span class="key"><i class="now"></i> now</span>
+      <span class="spacer"></span>
+      <button id="cmpExit">Exit</button>
+    </div>
+    <div id="matScroll"><svg id="mat" xmlns="http://www.w3.org/2000/svg"></svg></div>
+    <div id="matBar">
+      <span class="lockpill hidden" id="lockPill">&#128274; EDITING LOCKED</span>
+      <span class="verb" id="vMove">MOVE</span>
+      <span class="verb" id="vTurn">TURN</span>
+      <span class="verb" id="vSize">SIZE</span>
+      <button class="verb" id="vPunch" title="Click the selected part to punch a hole">PUNCH</button>
+      <button class="verb" id="vFold" title="Drag a score line across the selected part">FOLD</button>
+      <button class="verb sub" id="vCurl" title="Fan several parallel score lines">CURL</button>
+      <span id="curlStep" class="hidden">
+        <button class="ghost" id="curlMinus">&minus;</button>
+        <span id="curlN">8</span>
+        <button class="ghost" id="curlPlus">+</button>
+      </span>
+      <span id="readout">the grid is real inches &mdash; 1&Prime; squares, heavy every 3&Prime;</span>
+      <span id="zoomBtns">
+        <button class="ghost" id="zoomOut">&minus;</button>
+        <span id="zoomPct">100%</span>
+        <button class="ghost" id="zoomIn">+</button>
+        <button class="ghost" id="zoomFit">Fit</button>
+      </span>
+    </div>
+  </section>
+
+  <aside id="fold">
+    <div class="panelHead">FOLD-UP &mdash; slide FLAT &#8594; BUILT</div>
+    <div id="baBar" class="hidden">
+      <span>3D SHOWS</span>
+      <button id="baBefore" title="Show the design you have now">BEFORE</button>
+      <button id="baAfter" class="on" title="Show Claude's idea">AFTER</button>
+      <span id="baWhich" style="font-weight:400;letter-spacing:0"></span>
+    </div>
+    <iframe id="viewer" title="3D fold-up preview"></iframe>
+    <div id="cmpPanel" class="hidden">
+      <div id="cmpHead">
+        <div class="t">WHAT CHANGED</div>
+        <div class="s" id="cmpSub">&hellip;</div>
+      </div>
+      <div id="cmpList"></div>
+    </div>
+  </aside>
+
+  <aside id="chat">
+    <div id="chatHead">
+      <span class="t">ASK CLAUDE</span>
+      <span id="chatDot" title="Claude is thinking"></span>
+      <button id="chatToggle" title="Hide the chat rail">&#8594;</button>
+      <button id="chatTab" title="Show the chat rail">ASK CLAUDE</button>
+    </div>
+    <div id="chatBody">
+      <div id="chatLog"></div>
+      <div id="chatStatus"></div>
+    </div>
+    <form id="chatForm">
+      <textarea id="chatInput" placeholder="Tell Claude what to change&hellip;&#10;(Enter sends, Shift+Enter for a new line)"></textarea>
+      <button id="chatSend" type="submit">Send</button>
+    </form>
+    <div id="review" class="hidden">
+      <div id="revBan">
+        <div class="h">CLAUDE PROPOSES</div>
+        <div class="sum" id="revSum">&hellip;</div>
+        <div class="row">
+          <button id="revKeep">Keep it all</button>
+          <button class="ghost" id="revNo">No thanks</button>
+        </div>
+      </div>
+      <div id="revLint" class="ok">&hellip;</div>
+      <div id="revMoved" class="hidden">You both edited while Claude thought &mdash; your changes are kept.</div>
+      <div id="revList"></div>
+    </div>
+  </aside>
+
+  <section id="hist">
+    <span class="dlab">HISTORY</span>
+    <span id="histDots"></span>
+    <span id="histNote"></span>
+    <span id="histLegend"><span><i class="you"></i>you</span><span><i class="claude"></i>Claude</span></span>
+  </section>
+
+  <section id="doc">
+    <span class="dlab">TOY DOCTOR</span>
+    <span id="docChips" style="display:flex;gap:9px;align-items:center"></span>
+  </section>
+
+  <section id="insp">
+    <div id="sel">
+      <div class="panelHead" style="padding:0 0 4px">SELECTION</div>
+      <div id="selName">nothing selected</div>
+      <div id="selDims">click a part on the mat</div>
+      <div id="copies">
+        <span class="lbl">COPIES</span>
+        <button class="ghost" id="copyMinus">&minus;</button>
+        <span id="copyN">&mdash;</span>
+        <button class="ghost" id="copyPlus">+</button>
+      </div>
+      <div id="copyNote"></div>
+    </div>
+    <div id="jsonWrap">
+      <div class="panelHead" id="jsonHead">DESIGN.JSON <span style="font-weight:400;letter-spacing:0;text-transform:none">(read-only &mdash; the changed line flashes)</span></div>
+      <div id="json"></div>
+    </div>
+  </section>
+</div>
+
+<div id="goal" class="hidden">
+  <h3>&#9986;&#xFE0F; TRY THIS</h3>
+  <ol>
+    <li>Drag the blade tip to make it longer.</li>
+    <li>Slide FLAT&rarr;BUILT.</li>
+    <li>Print it.</li>
+  </ol>
+  <button class="go" id="goalGo">Got it!</button>
+</div>
+<div id="toast"></div>
+<div id="dragGhost"></div>
+<div id="cpTip"></div>
+<script type="module" src="/edit.js"></script>
+</body>
+</html>

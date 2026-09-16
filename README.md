@@ -14,6 +14,10 @@ node src/index.mjs
 Open **http://localhost:4177**. That's it — design generation uses the Claude
 subscription through the `claude` CLI already installed on this machine. No API key.
 
+
+https://github.com/user-attachments/assets/332a729b-3268-4538-88b9-65d245139bff
+
+
 ## How a session goes
 
 1. **Invent something** in the chat ("a dragon shield!", "a garage with a ramp!").
